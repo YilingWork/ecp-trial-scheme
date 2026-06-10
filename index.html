@@ -9,7 +9,7 @@
   :root{
     --bg:#f6f7f9; --card:#fff; --ink:#1f2933; --sub:#52606d; --line:#e4e7eb;
     --m1:#2563eb; --m2:#0d9488; --m3:#7c3aed; --m4:#d97706; --m5:#db2777; --m6:#475569;
-    --pend:#b45309; --pendbg:#fef3c7; --done:#15803d; --donebg:#dcfce7; --hot:#dc2626;
+    --pend:#b45309; --pendbg:#fef3c7; --hot:#dc2626; --intl:#0369a1;
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
@@ -50,31 +50,32 @@
   .badge{font-size:.72rem;padding:2px 8px;border-radius:12px;color:#fff;white-space:nowrap}
   .badge.m1{background:var(--m1)} .badge.m2{background:var(--m2)} .badge.m3{background:var(--m3)}
   .badge.m4{background:var(--m4)} .badge.m5{background:var(--m5)} .badge.m6{background:var(--m6)}
-  .status{font-size:.74rem;padding:2px 8px;border-radius:12px;white-space:nowrap;margin-left:auto}
-  .status.pending{background:var(--pendbg);color:var(--pend)}
-  .status.decided{background:var(--donebg);color:var(--done)}
-  .ch-body{padding:2px 18px 16px;border-top:1px dashed var(--line)}
-  .ch-body ul.l1{margin:12px 0 6px;padding-left:20px}
-  .ch-body ul.l1>li{margin:5px 0}
-  .hot{color:var(--hot);font-weight:700}
+  .status{font-size:.74rem;padding:2px 8px;border-radius:12px;white-space:nowrap;margin-left:auto;
+    background:var(--pendbg);color:var(--pend)}
+  .ch-body{padding:8px 14px 14px;border-top:1px dashed var(--line)}
+  .ch-note{font-size:.84rem;color:var(--sub);margin:8px 4px 4px;font-style:italic}
+  /* 項目折疊（第二層＝項目） */
+  details.item{margin:8px 0;border:1px solid var(--line);border-radius:8px;background:#fafbfc}
+  details.item[open]{background:#fff}
+  details.item>summary{cursor:pointer;list-style:none;padding:9px 12px;display:flex;align-items:center;
+    gap:8px;flex-wrap:wrap;font-size:.94rem}
+  details.item>summary::-webkit-details-marker{display:none}
+  details.item>summary::before{content:"＋";color:var(--sub);font-weight:700}
+  details.item[open]>summary::before{content:"－"}
+  .item-t{font-weight:600}
+  .gate{font-size:.72rem;padding:2px 9px;border-radius:12px;background:#e0e7ff;color:#3730a3;
+    white-space:nowrap;margin-left:auto}
+  .gate.info{background:#e2e8f0;color:#475569}
   .tag-hot{background:#fee2e2;color:var(--hot);font-size:.7rem;padding:1px 6px;border-radius:8px;font-weight:700}
-  /* 決議區塊 */
-  .resolution{background:var(--donebg);border:1px solid #86efac;border-radius:8px;padding:10px 14px;margin:12px 0}
-  .resolution .rt{font-weight:700;color:var(--done);font-size:.9rem}
-  /* 第二層折疊 */
-  details.sub{margin:10px 0 4px;border:1px solid var(--line);border-radius:8px;background:#fafbfc}
-  details.sub>summary{cursor:pointer;list-style:none;padding:8px 12px;font-size:.88rem;color:var(--m3);font-weight:600}
-  details.sub>summary::-webkit-details-marker{display:none}
-  details.sub>summary::before{content:"＋ ";color:var(--sub)}
-  details.sub[open]>summary::before{content:"－ "}
-  .sub-body{padding:4px 14px 12px;font-size:.9rem}
-  .sub-body .item{margin:10px 0}
-  .sub-body .item .q{font-weight:600}
-  .sub-body .item .o{color:var(--sub);display:block;margin-top:2px}
-  .pending-note{color:var(--sub);font-size:.88rem;font-style:italic;margin:8px 0}
+  .item-body{padding:2px 14px 12px}
+  .item-body ul{margin:8px 0 2px;padding-left:20px}
+  .item-body ul li{margin:5px 0}
+  .item-body .models{margin:8px 0;padding-left:4px}
+  .item-body .models div{margin:4px 0}
+  .intl{display:block;margin-top:5px;color:var(--intl);font-size:.86rem;background:#f0f9ff;
+    border-left:3px solid #7dd3fc;padding:4px 10px;border-radius:0 6px 6px 0}
   /* 圖例 */
   .legend{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:.85rem;color:var(--sub)}
-  .legend span.badge,.legend span.status{margin-right:4px}
   .legend .row{margin:5px 0}
   /* 更新紀錄 */
   table.log{width:100%;border-collapse:collapse;font-size:.88rem;background:var(--card);border-radius:10px;overflow:hidden}
@@ -108,26 +109,26 @@
 
 <header class="top">
   <h1>緊急事後避孕藥社區藥局試辦方案<br>專家審議平台</h1>
-  <div class="meta">最後更新：<b>2026-06-09</b>　·　主辦：衛福部食藥署委託研究團隊（國立臺北護理健康大學）</div>
+  <div class="meta">最後更新：<b>2026-06-10</b>　·　主辦：衛福部食藥署委託研究團隊（國立臺北護理健康大學）</div>
 </header>
 
 <div class="intro">
-  <strong>給委員的說明：</strong>本框架係彙整國際政策（美、英、日、澳、韓）與國內歷次專家意見後<strong>全部整合</strong>之結果，力求面向完整。惟提醒：<strong>過於複雜的試辦計畫恐窒礙難行</strong>，各章子項<strong>並非全部都要納入</strong>，敬請就<strong>必要性</strong>逐項斟酌取捨——保留試辦初期確有需要者，其餘可簡化、延後或排除。所有子項目前<strong>均為待議</strong>，經各場議定後回填決議。
+  <strong>給委員的說明：</strong>本框架係彙整國際政策（美、英、日、澳）與國內歷次專家意見後<strong>全部整合</strong>之結果，力求面向完整。惟提醒：<strong>過於複雜的試辦計畫恐窒礙難行</strong>，各章項目<strong>並非全部都要納入</strong>，敬請就<strong>必要性</strong>逐項斟酌取捨。章節依<strong>專家會議討論順序</strong>編排；每章列出「項目」，每項請先決定<strong>是否納入</strong>，納入者再討論其下問題。所有項目目前<strong>均為待議</strong>，經各場議定後回填決議。
 </div>
 
 <!-- ============ 場次導覽 ============ -->
 <h2 class="sec">📍 六場專家會議 · 討論範圍</h2>
 <div class="meetings">
-  <div class="mtg m1"><div class="t">第1場 · 框架確立</div><div class="r">第 0、1 章 ＋ 整體架構（確認方案包含哪些部分／項目）</div><div class="d">📅 2026-06-17（排定）</div></div>
-  <div class="mtg m2"><div class="t">第2場 · 細節Ⅰ</div><div class="r">第 4–10 章（藥局條件、訓練、評估、給藥、隱私、年齡、代購）</div><div class="d">📅 2026-06-24（排定）</div></div>
-  <div class="mtg m3"><div class="t">第3場 · 細節Ⅱ</div><div class="r">第 3、11–16 章（協作模式、轉介、追蹤、衛教、稽核、成效）</div><div class="d">📅 待定</div></div>
-  <div class="mtg m4"><div class="t">第4場 · 適法性</div><div class="r">第 2 章（法源路徑、藥師責任）</div><div class="d">📅 待定</div></div>
-  <div class="mtg m5"><div class="t">第5場 · 試辦區域</div><div class="r">第 4 章（優先試辦區域選定）</div><div class="d">📅 待定</div></div>
-  <div class="mtg m6"><div class="t">第6場 · 總整定稿</div><div class="r">彙整前五場決議、確認跨章一致性與可行性 → 正式方案</div><div class="d">📅 待定</div></div>
+  <div class="mtg m1"><div class="t">第1場 · 框架確立</div><div class="r">第 0、1 章 ＋ 整體框架（確認方案包含哪些部分／項目）</div><div class="d">📅 2026-06-17</div></div>
+  <div class="mtg m2"><div class="t">第2場 · 細節Ⅰ</div><div class="r">第 2–7 章（藥局條件、訓練、評估、給藥含代購、隱私、年齡）</div><div class="d">📅 2026-06-24</div></div>
+  <div class="mtg m3"><div class="t">第3場 · 細節Ⅱ</div><div class="r">第 8–14 章（協作模式、轉介、追蹤、衛教、追蹤者、稽核、成效）</div><div class="d">📅 2026-07-08</div></div>
+  <div class="mtg m4"><div class="t">第4場 · 適法性</div><div class="r">第 15 章（法源路徑、藥師責任）</div><div class="d">📅 2026-08-07</div></div>
+  <div class="mtg m5"><div class="t">第5場 · 試辦區域</div><div class="r">2.4 優先試辦區域之選定</div><div class="d">📅 2026-08-26</div></div>
+  <div class="mtg m6"><div class="t">第6場 · 整合定稿</div><div class="r">彙整說明會意見、確認跨章一致性 → 正式方案</div><div class="d">📅 2026-11-27</div></div>
 </div>
 
 <!-- ============ 工具列 ============ -->
-<h2 class="sec">📂 試辦方案架構（點章名展開）</h2>
+<h2 class="sec">📂 試辦方案架構（依討論順序；點章名展開）</h2>
 <div class="tools">
   <button onclick="setAll(true)">全部展開</button>
   <button onclick="setAll(false)">全部收合</button>
@@ -136,310 +137,254 @@
     <option value="all">全部</option>
     <option value="1">第1場</option><option value="2">第2場</option>
     <option value="3">第3場</option><option value="4">第4場</option>
-    <option value="5">第5場</option>
   </select>
 </div>
 
 <div id="chapters">
 
-<!-- 第0章 -->
+<!-- 0 -->
 <details class="chapter" data-meeting="1">
-  <summary><span class="ch-title">第 0 章　試辦目的與政策定位</span><span class="badge m1">第1場</span><span class="status pending">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 0 章　試辦目的</span><span class="badge m1">第1場</span><span class="status">🟡 待議</span></summary>
   <div class="ch-body">
-    <ul class="l1">
-      <li>是否以 5 項為政策目的：①提升時效、降低非預期懷孕 ②強化生殖自主與偏鄉可及性 ③建立醫藥協作把關 ④蒐集本土循證 ⑤評估未來轉類可行性。</li>
-      <li>政策定位是否採「限縮式、風險管理型試辦」（非直接全面轉類）。</li>
-      <li>是否以「五個指定」為管理架構：指定藥局／藥師／流程／藥品／紀錄與追蹤。</li>
-      <li><span class="o">國際對照：日本高度管控試辦；英 PGD；FIP 專業把關。</span></li>
-    </ul>
+    <details class="item"><summary><span class="item-t">試辦計劃目的</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul>
+        <li>是否以下列為政策目的：①提升時效、降低非預期懷孕率 ②強化女性生殖自主與偏鄉可及性 ③建立醫藥協作專業把關 ④蒐集本土循證與使用行為資料 ⑤評估未來轉類／特殊供應制度可行性？哪些保留、哪些刪除？其他？</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 第1章 -->
+<!-- 1 -->
 <details class="chapter" data-meeting="1">
-  <summary><span class="ch-title">第 1 章　計畫架構與藥品</span><span class="badge m1">第1場</span><span class="status pending">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 1 章　計畫架構與藥品</span><span class="badge m1">第1場</span><span class="status">🟡 待議</span></summary>
   <div class="ch-body">
-    <ul class="l1">
-      <li>執行與合作單位之分工（食藥署、執行單位、藥師公會、婦產科醫會、地方衛生局、社福）。</li>
-      <li>試辦藥品範圍：第一階段是否僅限 <b>LNG 1.5mg 單次劑量</b>？是否納入 UPA／子宮內投藥系統？</li>
-      <li>包裝與廣告限制（包裝量限「單次所需量」？試辦期是否禁大眾廣告？）。</li>
-      <li>多廠商轉類一致性之防範（指定許可證清單／禁混合庫存／流向管控／稽核），避免未轉類處方版流入試辦通路。</li>
-    </ul>
+    <details class="item"><summary><span class="item-t">1.1 執行與合作單位分工</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>食藥署、執行單位、藥師公會／社區藥局醫學會、醫師公會／婦產科醫學會、地方衛生局、社福之分工為何？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">1.2 試辦藥品範圍</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>第一階段是否僅限 <b>LNG 1.5mg 單次劑量</b>？是否納入 UPA／子宮內投藥系統？</li></ul>
+      <span class="intl">國際：多數轉類國家以 LNG 為主；UPA 普遍管制較嚴。</span></div></details>
+    <details class="item"><summary><span class="item-t">1.3 包裝與廣告限制</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>包裝量是否限「單次所需量」？試辦期是否允許大眾廣告試辦計劃？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">1.4 多廠商轉類一致性</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>同成分多家持證，若僅部分轉類 → 試辦藥局恐同時陳列「未轉類處方版」。防範機制：指定許可證清單／禁混合庫存承諾／流向管控／稽核——採用哪些？</li></ul></div></details>
   </div>
 </details>
 
-<!-- 第2章 -->
+<!-- 2 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 2 章　藥局試辦條件與試辦區域</span><span class="badge m2">第2場</span><span class="badge m5">第5場·區域</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">2.1 藥局硬體空間</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>門檻訂多高——「<b>獨立諮詢室</b>」必備，或「<b>具遮蔽隔板專區</b>」即可？是否設最低規格（隔音、座位、面積、IT 終端）？</li></ul>
+      <span class="intl">國際：英國要求專屬諮詢室＋座位＋IT；澳洲、日本要求物理遮蔽／隔音專區。</span></div></details>
+    <details class="item"><summary><span class="item-t">2.2 藥局服務時段</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否強制夜間／週末／連假供應能力？最低時段要求？（解決假日就醫困難 vs 藥局營運負擔）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">2.3 資訊系統對接</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>藥局端是否須具備對接中央試辦管理系統之能力（即時、匿名登錄）？（系統設計與建置維運見第 10 章）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">2.4 優先試辦區域</span><span class="badge m5">第5場選定</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>①婦產科稀缺區 ②高中職或大專院校周邊 ③都會夜間醫療不足區 ④不限區域，廣徵尋求有意願之試辦單位。（區域選定留第 5 場）</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 3 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 3 章　藥師訓練</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">3.1 資格與認證效期</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>認證要件（藥師證書＋核心研修＋臨床模擬評核）？效期幾年、重訓時數（如 2 年／4 小時）？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">3.2 課程時數與模組</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>總時數（如 8–12 小時）？模組組成（臨床藥理／禁忌症評估／性暴力與兒少辨識／隱私與非歧視諮詢／法規系統與應急）？哪些必修、哪些選修？</li></ul>
+      <span class="intl">國際：英國 CPPE 線上課程＋能力宣告（DoC）；日本由藥劑師會＋產婦人科醫會共同研修。</span></div></details>
+    <details class="item"><summary><span class="item-t">3.3 基礎必修 vs 追加研修之分層</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>基礎必修需包含哪些課程？（STI 與長效避孕（LARC）衛教、性暴力辨識？）</li><li>追加模組（月經機制、懷孕症狀、生殖健康、特殊族群）如何定位？是否影響值班資格？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 4 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 4 章　標準化評估工具</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">4.1 評估形式（口頭 vs 紙本）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>採<b>口頭自然對話＋藥師系統勾選</b>，或<b>紙本表單</b>？</li></ul>
+      <span class="intl">國際：澳洲 2022 指紙本表單去人性化、對性暴力倖存者造成二度傷害 → 改採口頭；日本採檢核表。</span></div></details>
+    <details class="item"><summary><span class="item-t">4.2 標準化評估工具組成</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>採哪幾份？①事前問卷諮詢表 ②服用前說明同意書（本人簽署）③藥物資訊書（民眾留存）④藥局轉介單。</li></ul>
+      <span class="intl">國際：借鏡日本四表單。</span></div></details>
+    <details class="item"><summary><span class="item-t">4.3 判定異常基準</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>懷孕可能性分級標準；異常情形（疑性侵、既往妊娠、異常出血史、重複使用）之判定門檻與對應流程？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 5 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 5 章　標準化給藥流程（含供應條件、販售模式、代購）</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">5.1 供應條件（門檻）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>時效門檻：72h 內？72–120h 如何處置（轉介評估 UPA／IUS）？</li><li>排除已知懷孕：依口頭月經史，或搭配驗孕（自費或政府補助）？</li><li>排除兒少高風險／暴力（法定通報案件）。</li><li>重複使用之處置（30 日內 &gt;1 次如何處理）見 9.2 強制轉介門檻。</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">5.2 販售模式</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>採<b>櫃檯後（BTC）</b>？是否嚴禁開架、禁自販機與自助結帳？</li></ul>
+      <span class="intl">國際：多國採櫃檯後（BTC）模式。</span></div></details>
+    <details class="item"><summary><span class="item-t">5.3 給藥流程步驟</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>採幾步驟（如 8 步驟：提出需求 → 引導隱私空間 → 身分與年齡確認 → 藥師評估 → 衛教＋知情同意 → 交付 → 衛教單＋登錄 → 必要時轉介）？哪些可簡化以利實務？（衛教內容見第 11 章）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">5.4 當場服藥是否採用</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>正方：防轉售／代購、確保黃金期內服用。</li><li>反方：對性暴力受害者之二度傷害、侵犯隱私與自主、實務窒礙（民眾排斥、帶離爭執）。</li><li>折衷：原則當場、特定情形例外？</li></ul>
+      <span class="intl">國際：日本強制當場服用；美、澳、英不要求。</span></div></details>
+    <details class="item"><summary><span class="item-t">5.5 遠距／線上之取捨</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否納入遠距看診，或一律本人到局？</li></ul>
+      <span class="intl">國際：美、澳、英允許線上；日本限本人到局。</span></div></details>
+    <details class="item"><summary><span class="item-t">5.6 代購規範</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>政策立場：<b>嚴禁</b>／<b>附條件允許</b>／<b>轉介把關</b>？</li><li>若禁止代購：本人無法到場者之替代路徑（遠距通訊診療婦產科名單，線上看診＋傳真處方）？</li><li>若附條件允許：本人意願確認、防脅迫、不符者轉介之具體機制？</li></ul>
+      <span class="intl">國際：日本嚴禁（須本人到局）；澳洲允許但藥師須向代購者確認或電話聯繫本人；英國列為轉介篩檢題。</span></div></details>
+  </div>
+</details>
+
+<!-- 6 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 6 章　隱私保護與友善空間</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <div class="ch-note">物理空間規格見 2.1；本章專注非物理之隱私設計。</div>
+    <details class="item"><summary><span class="item-t">6.1 隱私原則</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>禁公開叫號／覆核品名、資訊蒐集最小化（不無故留存身分證號／地址）、諮詢區是否禁監視器／錄音？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">6.2 友善機制</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否導入無聲需求卡、數位購藥代碼／QR 預約（降低羞恥感）？</li></ul>
+      <span class="intl">國際：日本提供無聲購藥代碼。</span></div></details>
+  </div>
+</details>
+
+<!-- 7 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 7 章　年齡限制</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">7.1 最低年齡門檻</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>選項：<b>以 16 歲為界</b>（接軌刑法性自主年齡）／<b>英國 Fraser 逐案評估能力</b>／<b>不設年齡限制</b>。</li><li>核心張力：保護未成年 vs 避免將最需要的弱勢拒於門外。</li></ul>
+      <span class="intl">國際：英國 Fraser 逐案評估；日本 2026 取消年齡與家長同意（家長同意曾成「巨大現實障礙」）；美國全面開放、無年齡限制；WHO 主張不應以年齡作為取得障礙。</span></div></details>
+    <details class="item"><summary><span class="item-t">7.2 未滿門檻者之處置</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否拒絕直接給藥、啟動保護轉介（對接婦產科／兒少保護責任醫院）？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">7.3 兒少高風險強制通報</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>疑性侵／性剝削／家暴／脅迫之 SOP（安全隔離、勿盥洗保全證據、24h 內通報 113、對接一站式中心）？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">7.4 家長同意／陪同</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否要求家長同意／陪同？</li></ul>
+      <span class="intl">國際：日本試辦曾要求 16–17 歲家長陪同 → 實務造成遭拒障礙。</span></div></details>
+  </div>
+</details>
+
+<!-- 8 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 8 章　協作模式架構</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">8.1 協作模式</span><span class="gate info">說明</span></summary>
+      <div class="item-body"><div class="models">
+        <div><b>模式一</b>：婦產科院內＋院所之藥局</div>
+        <div><b>模式二</b>：診所處方＋藥局協作（試辦計劃雙向合作）</div>
+        <div><b>模式三</b>：社區藥局主導、無需處方（試辦計劃研議重點）</div>
+      </div></div></details>
+    <details class="item"><summary><span class="item-t">8.2 跨模式一致性設計</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>三模式之訓練、評估工具、衛教、通報機制是否要求一致（以利跨模式成效比較）？哪些可因模式調整？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">8.3 高風險個案承接轉介</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>疑性侵／禁忌症／超時等個案之承接轉介機制如何設計，以回應婦產科顧慮？（連動第 9 章）</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 9 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 9 章　醫療與社福轉介機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">9.1 區域聯防範圍</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>聯防半徑訂多大（如 5 公里內？偏鄉採責任網絡而非距離）？（與第 2 章 MOU、醫藥比例連動）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">9.2 強制轉介門檻</span><span class="tag-hot">★重點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>超時：72–120h（LNG 失效）→ 是否強制轉介評估 UPA／IUS？</li><li>臨床風險：劇烈腹痛、疑既往妊娠、3 週內異常大出血 → 轉介基準與話術。</li><li>頻繁重複：30 日內 &gt;1 次 → 是否拒絕給藥並轉婦產科建立常規避孕／LARC？</li><li>法律社會保護：未滿年齡門檻、家暴／性侵／性剝削 → 轉社工／婦援／社會局。</li><li>各門檻是「強制轉介」或「建議轉介」？藥師裁量空間多大？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">9.3 轉介工具與雙向回報</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>標準化轉介單（紙本＋電子）格式？是否要求雙向回報（確認個案完成轉介）？MOU 範本由誰制定？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 10 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 10 章　藥品追蹤追溯</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">10.1 登錄識別方式（隱私 vs 防濫用）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>選項：①<b>完全匿名碼</b>（最大隱私，難防跨店重複）；②<b>健保卡雜湊值</b>（可跨店比對防囤積，涉個資）；③藥局／藥師代碼＋年齡層等去識別欄位。</li><li>核心張力：與第 6 章「資訊蒐集最小化／隱私友善」直接衝突。</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">10.2 登錄欄位與時限</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>登錄哪些欄位（藥局／藥師代碼、購藥者年齡層、行為後投藥時間、是否當場服藥／簽同意書、處置結果）？時限（如 24h 內）？平台由誰建置維運（如「Pharm-Taiwan」）？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">10.3 防轉售／跨店濫用</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>重複購買警示規則（如同碼／健保卡雜湊 30 日內 &gt;1 次 → 紅燈）、每次限單次劑量、系統聯網防跨店囤積——採用哪些？（連動 9.2、5.6 代購）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">10.4 供應鏈與定價透明</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>採購、庫存、效期控管；建議售價是否公開；缺貨防範與「多廠商一致性」流向管控（連動第 1 章）？</li></ul>
+      <span class="intl">國際：日本建議售價 7,480 日圓、透明定價。</span></div></details>
+  </div>
+</details>
+
+<!-- 11 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 11 章　衛教資源</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">11.1 個案當下衛教</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>交付時之解說資料、口頭標準話術、書面單張，三者是否皆須標準化？由誰定稿？</li><li>衛教內容是否涵蓋雙重避孕（常規避孕＋保險套）、STI、LARC？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">11.2 對外衛教素材定位</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否以「<b>生殖健康／月經週期</b>」為主軸、強調<b>緊急避孕非常規避孕</b>（避免以「避孕」為主標）？（呼應啟動會議結論）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">11.3 多語與上架通路</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否提供多語版本（新住民，涵蓋諮詢服務與衛教素材）？上架通路（藥局、醫療院所、校園、社福、網站）涵蓋範圍？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 12 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 12 章　服藥者追蹤機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">12.1 第 21 天追蹤是否「強制」</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>選項：①<b>強制</b>第 21 天衛教自行驗孕或回婦產科確認；②<b>主動關懷但非強制</b>（簡訊／LINE 提醒，回填自願）；③僅提供衛教指引、不主動追蹤。</li><li>核心張力：化解婦產科「移除醫師後漏診異位妊娠」疑慮 vs 追蹤可行性與隱私。</li></ul>
+      <span class="intl">國際：日本訂有 3 週後追蹤規範。</span></div></details>
+    <details class="item"><summary><span class="item-t">12.2 追蹤時點與措施</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否採三階段（48h 內衛教指引／第 7–14 天匿名簡訊確認異常／第 21 天驗孕或回診）？各階段措施？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">12.3 追蹤工具與指標</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>工具（簡訊／官方 LINE 連結填表）、追蹤完成率、回診率、不良事件通報路徑？（可借鏡疫苗線上申報模式）</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 13 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 13 章　稽核與應急機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">13.1 特殊情形通報清單</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否採日本 12 類事件為基礎（過敏、嚴重嘔吐、暈厥、確認懷孕、異位妊娠疑慮、異常出血、情緒危機、年齡特殊、疑遭脅迫、未完成諮詢即販售、連續多次購買、其他）？增刪哪些？</li></ul>
+      <span class="intl">國際：借鏡日本 12 類通報事件。</span></div></details>
+    <details class="item"><summary><span class="item-t">13.2 拒絕當場服藥之處置</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>若 5.4 議定採「當場服藥」，則充分溝通後仍堅持帶離者 → 是否拒絕交付？或允許帶離但登錄列管？（連動 5.4、5.6 代購、10.3）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">13.3 暴力／脅迫／疑性侵 SOP</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>單獨引導入室、一鍵無聲報警、防治單張／113、對接性侵害責任醫院、保全證據（勿盥洗）——哪些列為必備 SOP？（連動第 7 章）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">13.4 稽核分工</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>三方分工是否為——食藥署制定規則／地方衛生局現場稽查／藥師公會自律通報？稽查頻率與罰則？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 14 -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 14 章　滿意度與成效評估</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">14.1 成效評估指標（四大維度，含滿意度）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul>
+        <li>①<b>安全性與循證</b>：不良反應通報率、3 週後異常出血／子宮外孕漏診率、追蹤完成率。</li>
+        <li>②<b>可近性與公衛時效</b>：黃金投藥時間縮短、夜間／假日／偏鄉使用占比。</li>
+        <li>③<b>社會安全與人權防護</b>：高風險未成年轉介件數、性暴力辨識轉介成功率、重複囤藥攔阻率。</li>
+        <li>④<b>制度可行性與滿意度</b>：醫藥合作滿意度、民眾隱私尊嚴滿意度（調查方式如衛教單 QR Code、第 21 天簡訊連結）。</li>
+        <li>哪些為必蒐核心指標、哪些為加分項？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">14.2 跨模式比較與對照組</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>是否設計三模式跨模式成效比較？是否納入與現行處方途徑對照組（含「判斷不需給藥」之比例與依據）？</li></ul></div></details>
+  </div>
+</details>
+
+<!-- 15 -->
 <details class="chapter" data-meeting="4">
-  <summary><span class="ch-title">第 2 章　法規適法性與藥師責任</span><span class="badge m4">第4場</span><span class="status pending">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 15 章　法規適法性與藥師責任</span><span class="badge m4">第4場</span><span class="status">🟡 待議</span></summary>
   <div class="ch-body">
-    <ul class="l1">
-      <li><b>法源路徑三選一</b>：(a) 修法（特定條件下研究計畫得用非經處方藥品＋落日條款）；(b) 轉類附條件及期限之附款；(c) 專案授權／專案 PGD（官方臨床指引暫時賦權受訓藥師）。比較合法性、時程、可逆性。</li>
-      <li>試辦期過渡性法律保護機制。</li>
-      <li>藥師責任歸屬：不良事件之民／刑事責任、遵循 SOP 之責任限縮、補償或保險機制。</li>
-      <li>多廠商分裂之法律工具（可否要求同成分同步變更分類）。</li>
-    </ul>
-    <p class="pending-note">逐子項討論題綱將於第 4 場（適法性）前補上。</p>
-  </div>
-</details>
-
-<!-- 第3章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 3 章　協作模式架構（三模式並存）</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 是否採「三模式並存」：模式一（婦產科院內自足）／模式二（診所處方＋藥局協作）／模式三（社區藥局主導、無需處方）。</li>
-      <li>各模式之適用情境與分流。</li>
-      <li>三模式之訓練、評估工具、衛教、通報機制一致性，及跨模式成效比較設計。</li>
-      <li>高風險個案承接轉介機制（移除醫師監督後之安全網）。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">3.1 <span class="tag-hot">★爭點</span> 是否採三模式並存</span><span class="o">選項：①三模式並存 ②僅試辦模式三（聚焦核心、簡化）③先模式二再進模式三（分階段）。核心張力：模式三移除醫師事前監督，是轉類核心命題，亦是婦產科最大顧慮。</span></div>
-      <div class="item"><span class="q">3.2 各模式適用情境與分流</span><span class="o">模式一限院內有駐診藥師者？模式二適用無駐診藥師之診所？</span></div>
-      <div class="item"><span class="q">3.3 跨模式一致性設計</span><span class="o">訓練、評估工具、衛教、通報是否要求一致以利成效比較？哪些可因模式調整？</span></div>
-      <div class="item"><span class="q">3.4 高風險個案承接轉介</span><span class="o">疑性侵／禁忌症／超時等個案之承接機制，回應婦產科顧慮（連動第 11 章）。</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第4章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 4 章　藥局試辦條件與試辦區域</span><span class="badge m2">第2場</span><span class="badge m5">第5場·區域</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>特約特許條件：藥師資質（認證研修藥師值班）、硬體（獨立諮詢專區）、時段（夜間／週末／連假）、資訊系統對接、區域聯防 MOU。</li>
-      <li>醫藥合作比例（如 1 婦產科：3–4 藥局，借鏡東京都比例失衡教訓）。</li>
-      <li>優先試辦區域（①原住民偏鄉／離島 ②婦產科稀缺區 ③大專院校周邊 ④都會夜間醫療不足區）→ <b>區域選定留第 5 場</b>。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">4.1 藥師資質門檻</span><span class="o">是否須認證藥師常態值班？供應時段是否全程在場？人力可行性 vs 把關強度。</span></div>
-      <div class="item"><span class="q">4.2 硬體空間</span><span class="o">「獨立諮詢室」必備，或「具遮蔽隔板專區」即可？最低規格（隔音、座位、面積、IT 終端）？英=專屬室；澳日=隔音專區。</span></div>
-      <div class="item"><span class="q">4.3 服務時段</span><span class="o">是否強制夜間／週末／連假供應能力？解決假日就醫困難 vs 營運負擔。</span></div>
-      <div class="item"><span class="q">4.4 資訊系統對接</span><span class="o">是否要求對接中央試辦管理系統（即時、匿名登錄）？由誰建置維運？</span></div>
-      <div class="item"><span class="q">4.5 區域聯防與 MOU</span><span class="o">是否要求與婦產科／責任醫院／社福簽 MOU？醫藥合作比例（東京都比例失衡教訓）。</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第5章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 5 章　藥師訓練</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>資格與認證：藥師證書＋核心研修＋臨床模擬評核；效期與重訓（如 2 年／4 小時）。</li>
-      <li>課程時數與模組（如 8–12 小時、5 模組：臨床藥理／禁忌症評估／性暴力與兒少辨識／隱私與非歧視諮詢／法規與系統與應急）。</li>
-      <li>基礎必修 vs 追加研修之分層。</li>
-      <li>STI 與長效避孕（LARC）衛教是否納入必修。</li>
-      <li><span class="o">國際對照：英 CPPE＋DoC；日 藥劑師會＋產婦人科醫會共同研修。</span></li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">5.1 資格與認證效期</span><span class="o">認證要件？效期幾年、重訓時數（如 2 年／4 小時）？</span></div>
-      <div class="item"><span class="q">5.2 課程時數與模組</span><span class="o">總時數（8–12 小時）？模組組成？哪些必修、哪些選修？</span></div>
-      <div class="item"><span class="q">5.3 基礎必修 vs 追加研修分層</span><span class="o">追加模組（月經機制、懷孕症狀、特殊族群）如何定位？是否影響值班資格？</span></div>
-      <div class="item"><span class="q">5.4 主辦與形式</span><span class="o">由誰共同開發認證（食藥署＋藥師公會＋婦產科醫會）？實體 ≥2 場＋線上之配置？</span></div>
-      <div class="item"><span class="q">5.5 必納內容</span><span class="o">STI 與 LARC 衛教、性暴力辨識是否明列必修？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第6章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 6 章　標準化評估工具</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 評估形式：口頭自然對話＋藥師系統勾選，或紙本？（澳洲：紙本易去人性化／二度傷害）。</li>
-      <li>工具組（借鏡日本）：①事前問卷諮詢表 ②服用前說明同意書（本人簽署）③藥物資訊書 ④藥局轉介單。</li>
-      <li>判定異常基準（懷孕可能性分級與對應流程）。</li>
-      <li>台灣版附錄一～四之內容定稿。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">6.1 <span class="tag-hot">★爭點</span> 評估形式：口頭 vs 紙本</span><span class="o">澳洲 2022 指紙本去人性化、對性暴力倖存者二度傷害→改口頭；日本用檢核表。台灣採何者？</span></div>
-      <div class="item"><span class="q">6.2 工具組成</span><span class="o">採哪幾份表單？</span></div>
-      <div class="item"><span class="q">6.3 判定異常基準</span><span class="o">懷孕可能性分級、異常情形（疑性侵、異常出血史、重複使用）之判定門檻與流程。</span></div>
-      <div class="item"><span class="q">6.4 知情同意書</span><span class="o">是否必備、是否要求本人親自簽署（防代購）？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第7章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 7 章　標準化給藥流程（含供應條件、販售模式）</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>供應條件門檻：①時效（72h 內？）②排除已知妊娠 ③重複使用防範（30 日內 &gt;1 次拒絕並轉介？）④排除兒少高風險／暴力 ⑤藥師親自篩檢。</li>
-      <li>販售模式：櫃檯後（BTC）／嚴禁開架／禁自販機與自助結帳。</li>
-      <li>給藥流程步驟（如 8 步驟）。</li>
-      <li><span class="hot">★</span>「當場服藥」是否採用（防轉售／代購 vs 對性暴力受害者之衝擊）。</li>
-      <li>遠距／線上之取捨（美澳英允許線上、日本限本人到局）。</li>
-      <li>衛教是否涵蓋雙重避孕、STI、LARC。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">7.1 供應條件門檻</span><span class="o">時效 72h 內？72–120h 轉介評估 UPA／IUS；排除已知妊娠；重複使用防範；排除兒少高風險／暴力；藥師親自篩檢。</span></div>
-      <div class="item"><span class="q">7.2 販售模式</span><span class="o">櫃檯後（BTC）？是否嚴禁開架、禁自販機與自助結帳？</span></div>
-      <div class="item"><span class="q">7.3 給藥流程步驟</span><span class="o">採幾步驟？哪些可簡化以利實務？</span></div>
-      <div class="item"><span class="q">7.4 <span class="tag-hot">★爭點</span> 當場服藥是否採用（最大爭點）</span><span class="o">正方：防轉售／代購、確保黃金期服用（日本強制）。反方：對性暴力受害者二度傷害、侵犯隱私自主、實務窒礙。折衷？（原則當場、特定情形例外）</span></div>
-      <div class="item"><span class="q">7.5 遠距／線上取捨</span><span class="o">是否納入遠距，或一律本人到局？（美澳英允許線上、日本限本人到局）</span></div>
-      <div class="item"><span class="q">7.6 衛教內容</span><span class="o">是否涵蓋雙重避孕（常規＋保險套）、STI、LARC？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第8章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 8 章　隱私保護與友善空間</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>物理規範：專屬諮詢室或具遮蔽隔板專區、隔音、平視坐談、IT 終端。</li>
-      <li>隱私原則：禁公開叫號／覆核品名、資訊蒐集最小化、諮詢區是否禁監視器／錄音。</li>
-      <li>友善機制：無聲需求卡、數位購藥代碼／QR 預約。</li>
-      <li>多語／新住民版本。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">8.1 物理規範</span><span class="o">諮詢室／隔板專區之最低規格（隔音、平視座位、IT 終端）？（與 4.2 連動）</span></div>
-      <div class="item"><span class="q">8.2 隱私原則</span><span class="o">禁公開叫號／覆核品名、資訊蒐集最小化、諮詢區是否禁監視器／錄音？</span></div>
-      <div class="item"><span class="q">8.3 友善機制</span><span class="o">是否導入無聲需求卡、數位購藥代碼／QR 預約？</span></div>
-      <div class="item"><span class="q">8.4 多語／新住民</span><span class="o">諮詢與衛教是否提供多語版本？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第9章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 9 章　年齡限制</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 是否設最低年齡門檻、以幾歲為界（如 16 歲接軌刑法性自主年齡？）。</li>
-      <li>未滿門檻者之處置（拒絕並啟動保護轉介？對接婦產科／兒少保護責任醫院）。</li>
-      <li>兒少高風險強制通報流程（疑性侵／家暴 → 安全隔離、保全證據、24h 內通報 113）。</li>
-      <li><span class="o">國際對照：英 Fraser 逐案評估、日 2026 取消年齡與家長同意、美全面開放。</span></li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">9.1 <span class="tag-hot">★爭點</span> 最低年齡門檻</span><span class="o">選項：以 16 歲為界（接軌刑法）／英 Fraser 逐案評估／不設年齡限制（日 2026）。核心張力：保護未成年 vs 避免將最需要弱勢拒於門外（CEDAW、日本「家長同意成巨大障礙」教訓）。</span></div>
-      <div class="item"><span class="q">9.2 未滿門檻者之處置</span><span class="o">是否拒絕直接給藥、啟動保護轉介（婦產科／兒少保護責任醫院）？</span></div>
-      <div class="item"><span class="q">9.3 兒少高風險強制通報</span><span class="o">疑性侵／性剝削／家暴／脅迫 SOP（安全隔離、勿盥洗保全證據、24h 內通報 113、一站式中心）。</span></div>
-      <div class="item"><span class="q">9.4 家長同意／陪同</span><span class="o">是否要求？（日本試辦曾要求 16–17 歲家長陪同→實務造成遭拒障礙）。</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第10章 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 10 章　代購規範</span><span class="badge m2">第2場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 政策立場：禁止／附條件允許／轉介把關？</li>
-      <li>若禁止：本人無法到場者之替代路徑（遠距通訊診療婦產科名單）。</li>
-      <li>若附條件允許：本人意願確認、防脅迫、不符者轉介。</li>
-      <li><span class="o">國際對照：日本嚴禁＋線上看診仍須本人到局；澳允許＋藥師確認；英列轉介篩檢。</span></li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">10.1 <span class="tag-hot">★爭點</span> 政策立場</span><span class="o">選項：嚴禁（日本）／附條件允許（澳：藥師向代購者確認或電話聯繫本人）／轉介把關（英：列轉介篩檢題）。</span></div>
-      <div class="item"><span class="q">10.2 本人無法到場之替代路徑</span><span class="o">若禁止，是否提供遠距通訊診療婦產科名單（線上醫師看診＋傳真處方）？</span></div>
-      <div class="item"><span class="q">10.3 若附條件允許</span><span class="o">本人意願確認、防脅迫、不符者轉介之具體機制？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第11章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 11 章　醫療與社福轉介機制</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>區域聯防範圍（5 公里內或偏鄉責任網絡）。</li>
-      <li><span class="hot">★</span> 強制轉介門檻：超時（72–120h→UPA／IUS）；臨床風險（劇烈腹痛、疑既往妊娠、3 週內異常大出血）；頻繁重複（30 日內→婦產科／LARC）；法律社會保護（未滿門檻、家暴／性侵→社工／婦援／社會局）。</li>
-      <li>轉介工具：標準化轉介單（紙本＋電子）、雙向回報、MOU 範本。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">11.1 區域聯防範圍</span><span class="o">半徑訂多大（5 公里？偏鄉採責任網絡）？與第 4 章 MOU、醫藥比例連動。</span></div>
-      <div class="item"><span class="q">11.2 <span class="tag-hot">★重點</span> 強制轉介門檻</span><span class="o">超時、臨床風險、頻繁重複（30 日內 &gt;1 次→拒絕並轉介？）、法律社會保護。各門檻是「強制」或「建議」轉介？藥師裁量空間？</span></div>
-      <div class="item"><span class="q">11.3 轉介工具與雙向回報</span><span class="o">轉介單格式、是否要求雙向回報（確認完成轉介）、MOU 範本由誰制定？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第12章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 12 章　藥品追蹤追溯</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 匿名化電子登錄（如「Pharm-Taiwan」）：登錄欄位與時限（24h 內）。</li>
-      <li>防轉售／跨店濫用：重複購買警示（30 日內紅燈）、每次限單次劑量、系統聯網防跨店囤積。</li>
-      <li>採購、庫存、效期控管、建議售價公開（日本 7,480 日圓透明定價參考）、缺貨防範。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">12.1 <span class="tag-hot">★爭點</span> 登錄識別方式（隱私 vs 防濫用）</span><span class="o">選項：①完全匿名碼（最大隱私，難防跨店重複）②健保卡雜湊值（可跨店比對，涉個資）③藥局／藥師代碼＋去識別欄位。與第 8 章「資訊最小化」直接衝突。</span></div>
-      <div class="item"><span class="q">12.2 登錄欄位與時限</span><span class="o">登錄哪些欄位？時限 24h 內？平台由誰建置維運？</span></div>
-      <div class="item"><span class="q">12.3 防轉售／跨店濫用</span><span class="o">重複購買警示規則、每次限單次劑量、系統聯網——採用哪些？（連動 11.2、第 10 章）</span></div>
-      <div class="item"><span class="q">12.4 供應鏈與定價透明</span><span class="o">採購、庫存、效期；建議售價是否公開（日本 7,480 日圓）；缺貨防範與多廠商一致性流向管控（連動第 1 章）。</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第13章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 13 章　衛教資源</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>個案當下衛教：解說資料、口頭標準話術、書面單張。</li>
-      <li>對外衛教素材：以「生殖健康／月經週期」為主軸，強調緊急避孕非常規避孕（避免以「避孕」為主標）。</li>
-      <li>多語版本（新住民）；上架通路（藥局、醫療院所、校園、社福、網站）。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">13.1 個案當下衛教</span><span class="o">解說資料、口頭標準話術、書面單張，三者是否皆須標準化？由誰定稿？</span></div>
-      <div class="item"><span class="q">13.2 對外衛教素材定位</span><span class="o">是否以「生殖健康／月經週期」為主軸、強調緊急避孕非常規避孕？（呼應啟動會議結論）</span></div>
-      <div class="item"><span class="q">13.3 多語與上架通路</span><span class="o">是否提供多語版本？上架通路涵蓋範圍？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第14章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 14 章　服藥者追蹤機制</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li><span class="hot">★</span> 追蹤時點與措施（三階段：48h 內衛教指引；第 7–14 天匿名簡訊確認異常；第 21 天強制衛教自行驗孕或回婦產科）。</li>
-      <li>追蹤工具（簡訊／官方 LINE 連結填表）、回診率、不良事件通報。</li>
-      <li><span class="o">化解醫界「漏診子宮外孕」疑慮；精準引入日本 3 週追蹤規範。</span></li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">14.1 <span class="tag-hot">★爭點</span> 第 21 天追蹤是否「強制」</span><span class="o">選項：①強制第 21 天驗孕或回婦產科 ②主動關懷但非強制 ③僅提供衛教指引不主動追蹤。核心張力：化解「漏診異位妊娠」疑慮 vs 追蹤可行性與隱私。</span></div>
-      <div class="item"><span class="q">14.2 追蹤時點與措施</span><span class="o">是否採三階段（48h／第 7–14 天／第 21 天）？各階段措施？</span></div>
-      <div class="item"><span class="q">14.3 追蹤工具與指標</span><span class="o">工具（簡訊／LINE）、追蹤完成率、回診率、不良事件通報路徑？（借鏡疫苗線上申報）</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第15章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 15 章　稽核與應急機制</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>特殊情形通報（借鏡日本 12 類事件）。</li>
-      <li><span class="hot">★</span> 應急 SOP：拒絕當場服藥之處置（回扣第 2 場 7.4）、堅持代購、暴力／生殖脅迫、疑性侵。</li>
-      <li>稽核分工（食藥署制定規則／地方衛生局現場稽查／藥師公會自律通報）。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">15.1 特殊情形通報清單</span><span class="o">是否採日本 12 類事件為基礎？增刪哪些？</span></div>
-      <div class="item"><span class="q">15.2 <span class="tag-hot">★爭點</span> 拒絕當場服藥之處置（回扣 7.4）</span><span class="o">若議定採當場服藥，堅持帶離者→是否拒絕交付？或允許帶離但登錄列管？（連動 7.4、第 10 章、12.3）</span></div>
-      <div class="item"><span class="q">15.3 暴力／脅迫／疑性侵 SOP</span><span class="o">單獨引導入室、一鍵無聲報警、113、對接性侵害責任醫院、保全證據——哪些列必備？（連動第 9 章）</span></div>
-      <div class="item"><span class="q">15.4 稽核分工</span><span class="o">三方分工（食藥署／地方衛生局／藥師公會）？稽查頻率與罰則？</span></div>
-    </div></details>
-  </div>
-</details>
-
-<!-- 第16章 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 16 章　滿意度與成效評估</span><span class="badge m3">第3場</span><span class="status pending">🟡 待議</span></summary>
-  <div class="ch-body">
-    <ul class="l1">
-      <li>滿意度調查方式與內涵（隱私感受、無障礙便利、藥師專業／無歧視、就醫延誤實質降低）。</li>
-      <li>成效評估指標（四大維度）：①安全性與循證 ②可近性與公衛時效 ③社會安全與人權防護 ④制度可行性與醫藥滿意度。</li>
-      <li>跨模式比較指標、與現行處方途徑對照組（含「判斷不需給藥」之比例與依據）。</li>
-    </ul>
-    <details class="sub"><summary>逐子項討論題綱（選項／國際對照）</summary><div class="sub-body">
-      <div class="item"><span class="q">16.1 滿意度調查</span><span class="o">方式（QR Code、第 21 天簡訊連結）與內涵？</span></div>
-      <div class="item"><span class="q">16.2 成效評估指標（四大維度）</span><span class="o">①不良反應通報率、子宮外孕漏診率、追蹤完成率 ②黃金投藥時間縮短、夜間／假日／偏鄉占比 ③高風險未成年轉介、性暴力辨識轉介、重複囤藥攔阻 ④醫藥合作滿意度、民眾隱私尊嚴滿意度。哪些為必蒐核心？</span></div>
-      <div class="item"><span class="q">16.3 跨模式比較與對照組</span><span class="o">是否設計三模式比較？是否納入與現行處方途徑對照組？</span></div>
-    </div></details>
+    <details class="item"><summary><span class="item-t">15.1 法源路徑（三選一）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>三選一比較：(a) <b>修法</b>（特定條件下研究計畫得用非經處方藥品＋落日條款）；(b) <b>轉類附條件及期限之附款</b>；(c) <b>專案授權／專案 PGD</b>（官方臨床指引暫時賦權受訓藥師）。比較合法性、時程、可逆性。</li></ul>
+      <span class="intl">國際：英國以 PGD（病人族群指示）賦權藥師於特定條件下供應。</span></div></details>
+    <details class="item"><summary><span class="item-t">15.2 試辦期過渡性法律保護</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>試辦期間藥師依規範執行之法律保障機制為何？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">15.3 藥師責任歸屬</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>給藥後不良事件之民／刑事責任歸屬？遵循標準化 SOP 之責任限縮效果？補償或保險機制？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">15.4 多廠商分裂之法律工具</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body"><ul><li>可否要求同成分同步變更分類？食藥署之裁量空間？</li></ul></div></details>
   </div>
 </details>
 
@@ -451,8 +396,8 @@
   <div class="row"><b>場次徽章：</b>
     <span class="badge m1">第1場</span><span class="badge m2">第2場</span><span class="badge m3">第3場</span>
     <span class="badge m4">第4場</span><span class="badge m5">第5場</span><span class="badge m6">第6場</span></div>
-  <div class="row"><b>狀態：</b><span class="status pending">🟡 待議</span> 尚未議定　<span class="status decided">✅ 已定案</span> 已於某場決議（附日期）</div>
-  <div class="row"><b><span class="tag-hot">★爭點</span></b> 重大爭點，會中建議優先聚焦　·　點章名展開待議子項，再點「＋ 逐子項討論題綱」看選項與國際對照。</div>
+  <div class="row"><b>狀態：</b><span class="status">🟡 待議</span> 尚未議定（議定後改為 ✅ 已定案＋日期）</div>
+  <div class="row"><b><span class="tag-hot">★爭點</span></b> 重大爭點，建議優先聚焦　·　<b>先決：是否納入？</b> 每項先決定納入與否，納入者再討論其下問題。</div>
 </div>
 
 <!-- ============ 更新紀錄 ============ -->
@@ -460,7 +405,7 @@
 <table class="log">
   <thead><tr><th>日期</th><th>場次</th><th>更新內容</th></tr></thead>
   <tbody>
-    <tr><td class="date">2026-06-09</td><td>—</td><td>平台建立；上線完整 17 章（第 0–16 章）待議框架、六場討論範圍、逐子項討論題綱（第 2、3 場）。</td></tr>
+    <tr><td class="date">2026-06</td><td>—</td><td>初版框架上線（供第 1 場會前預讀）。後續各場專家會議定案後，將於此記錄更新日期與內容。</td></tr>
   </tbody>
 </table>
 
@@ -481,9 +426,8 @@ async function sha256(s){
 }
 async function checkPw(){
   const v = document.getElementById("pw").value;
-  if(await sha256(v) === HASH){
-    sessionStorage.setItem("ok","1"); reveal();
-  } else { document.getElementById("err").textContent = "密碼錯誤，請再試一次。"; }
+  if(await sha256(v) === HASH){ sessionStorage.setItem("ok","1"); reveal(); }
+  else { document.getElementById("err").textContent = "密碼錯誤，請再試一次。"; }
 }
 function reveal(){
   document.getElementById("gate").style.display="none";
@@ -493,10 +437,10 @@ if(sessionStorage.getItem("ok")==="1") reveal();
 document.getElementById("pw").addEventListener("keydown",e=>{ if(e.key==="Enter") checkPw(); });
 
 // ====== 展開／收合／篩選 ======
-function setAll(open){ document.querySelectorAll("details.chapter").forEach(d=>d.open=open); }
+function setAll(open){ document.querySelectorAll("#chapters details").forEach(d=>d.open=open); }
 function doFilter(){
   const v = document.getElementById("filter").value;
-  document.querySelectorAll("#chapters details.chapter").forEach(d=>{
+  document.querySelectorAll("#chapters > details.chapter").forEach(d=>{
     d.style.display = (v==="all" || d.dataset.meeting===v) ? "" : "none";
   });
 }
