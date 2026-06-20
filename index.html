@@ -52,6 +52,7 @@
   .badge.m4{background:var(--m4)} .badge.m5{background:var(--m5)} .badge.m6{background:var(--m6)}
   .status{font-size:.74rem;padding:2px 8px;border-radius:12px;white-space:nowrap;margin-left:auto;
     background:var(--pendbg);color:var(--pend)}
+  .status.collected{background:#dcfce7;color:#15803d}
   .ch-body{padding:8px 14px 14px;border-top:1px dashed var(--line)}
   .ch-note{font-size:.84rem;color:var(--sub);margin:8px 4px 4px;font-style:italic}
   /* 項目折疊（第二層＝項目） */
@@ -66,14 +67,77 @@
   .gate{font-size:.72rem;padding:2px 9px;border-radius:12px;background:#e0e7ff;color:#3730a3;
     white-space:nowrap;margin-left:auto}
   .gate.info{background:#e2e8f0;color:#475569}
+  .gate.new{background:#fae8ff;color:#a21caf}
   .tag-hot{background:#fee2e2;color:var(--hot);font-size:.7rem;padding:1px 6px;border-radius:8px;font-weight:700}
   .item-body{padding:2px 14px 12px}
   .item-body ul{margin:8px 0 2px;padding-left:20px}
   .item-body ul li{margin:5px 0}
+  /* 無專家附議、可略 */
+  details.item.skip{opacity:.6}
+  details.item.skip>summary .item-t{color:#9aa5b1;text-decoration:line-through}
+  .skip-note{font-size:.72rem;color:#9aa5b1;margin-left:auto;font-style:italic;white-space:nowrap}
   .item-body .models{margin:8px 0;padding-left:4px}
   .item-body .models div{margin:4px 0}
+  /* 聚焦三色塊：已確定 / 已有共識可定調 / 待專家會議討論 */
+  .item-body .settled,.item-body .evidence,.item-body .todiscuss{margin:9px 0}
+  .item-body .settled>b,.item-body .evidence>b,.item-body .todiscuss>b{display:block;
+    font-size:.85rem;font-weight:700;margin:0 0 2px;padding-left:8px;border-left:3px solid}
+  .item-body .settled>b{color:#15803d;border-color:#22c55e}
+  .item-body .evidence>b{color:#0e7490;border-color:#22d3ee}
+  .item-body .todiscuss>b{color:#a21caf;border-color:#e879f9}
+  .item-body .why{color:#475569}
+  .item-body .draft{color:#b45309;font-weight:700}
   .intl{display:block;margin-top:5px;color:var(--intl);font-size:.86rem;background:#f0f9ff;
     border-left:3px solid #7dd3fc;padding:4px 10px;border-radius:0 6px 6px 0}
+  /* 第1場專家發言折疊區 */
+  details.voices{margin:12px 0 2px;border:1px solid #fde68a;border-radius:8px;background:#fffbeb}
+  details.voices[open]{background:#fffdf6}
+  details.voices>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:.9rem;
+    font-weight:600;color:#92400e;display:flex;align-items:center;gap:8px}
+  details.voices>summary::-webkit-details-marker{display:none}
+  details.voices>summary::before{content:"💬";font-weight:700}
+  details.voices .vbody{padding:2px 14px 12px}
+  details.voices .vbody ul{margin:6px 0 2px;padding-left:20px}
+  details.voices .vbody li{margin:6px 0;font-size:.88rem;color:#3f3f46}
+  details.voices .vbody .who{font-weight:600;color:#1f2933}
+  details.voices .vbody .conflict{color:var(--hot);font-weight:700}
+  details.voices .vbody .written{color:#7c3aed;font-weight:600}
+  /* 過去建言折疊區（2016／2024-25／食藥署歷次會議） */
+  details.past{margin:12px 0 2px;border:1px solid #cbd5e1;border-radius:8px;background:#f8fafc}
+  details.past[open]{background:#f1f5f9}
+  details.past>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:.9rem;
+    font-weight:600;color:#334155;display:flex;align-items:center;gap:8px}
+  details.past>summary::-webkit-details-marker{display:none}
+  details.past>summary::before{content:"🕑";font-weight:700}
+  details.past .pbody{padding:2px 14px 12px}
+  details.past .pgroup>b{display:block;font-size:.85rem;color:#0f172a;margin:9px 0 2px;
+    border-left:3px solid #94a3b8;padding-left:7px}
+  details.past .pgroup ul{margin:3px 0 7px;padding-left:18px}
+  details.past .pgroup li{margin:4px 0;font-size:.86rem;color:#3f3f46;line-height:1.5}
+  details.past .era{display:inline-block;font-size:.72rem;padding:0 5px;border-radius:4px;
+    margin-right:5px;background:#e2e8f0;color:#475569;font-weight:600;white-space:nowrap}
+  details.past .st-sup{color:#15803d;font-weight:700}
+  details.past .st-opp{color:#b91c1c;font-weight:700}
+  details.past .st-rec{color:#1d4ed8;font-weight:700}
+  details.past .st-doubt{color:#b45309;font-weight:700}
+  details.past .st-neu{color:#64748b;font-weight:700}
+  details.past .who{font-weight:600;color:#1f2933}
+  details.past .psrc{color:#94a3b8;font-size:.79rem}
+  /* 說明會與會者建言折疊區 */
+  details.survey{margin:12px 0 2px;border:1px solid #bbf7d0;border-radius:8px;background:#f0fdf4}
+  details.survey[open]{background:#f7fef9}
+  details.survey>summary{cursor:pointer;list-style:none;padding:9px 12px;font-size:.9rem;
+    font-weight:600;color:#166534;display:flex;align-items:center;gap:8px}
+  details.survey>summary::-webkit-details-marker{display:none}
+  details.survey>summary::before{content:"🗳"}
+  details.survey .sbody{padding:2px 14px 12px}
+  details.survey .sbody>b{display:block;font-size:.85rem;color:#14532d;margin:9px 0 2px;
+    border-left:3px solid #4ade80;padding-left:7px}
+  details.survey .sbody ul{margin:3px 0 7px;padding-left:18px}
+  details.survey .sbody li{margin:4px 0;font-size:.86rem;color:#3f3f46;line-height:1.5}
+  details.survey .st-doubt{color:#b45309;font-weight:700}
+  details.survey .st-rec{color:#1d4ed8;font-weight:700}
+  details.survey .st-neu{color:#64748b;font-weight:700}
   /* 圖例 */
   .legend{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;font-size:.85rem;color:var(--sub)}
   .legend .row{margin:5px 0}
@@ -109,26 +173,28 @@
 
 <header class="top">
   <h1>緊急事後避孕藥社區藥局試辦方案<br>專家審議平台</h1>
-  <div class="meta">最後更新：<b>2026-06-10</b>　·　主辦：衛福部食藥署委託研究團隊（國立臺北護理健康大學）</div>
+  <div class="meta">最後更新：<b>2026-06-19</b>　·　主辦：衛福部食藥署委託研究團隊（國立臺北護理健康大學）<br><span style="font-size:.85rem;color:var(--sub)">📍 第 3 場起場地移至 <b>TCCC 台灣文創訓練中心－新北板橋館 B405</b>（新北市板橋區萬板路 101 號 4 樓；捷運板南線新埔站 4 號出口步行約 5 分鐘）；第 3–6 場均為閉門專家會議、無公開說明會半場。</span></div>
 </header>
 
 <div class="intro">
-  <strong>給委員的說明：</strong>本框架係彙整國際政策（美、英、日、澳）與國內歷次專家意見後<strong>全部整合</strong>之結果，力求面向完整。惟提醒：<strong>過於複雜的試辦計畫恐窒礙難行</strong>，各章項目<strong>並非全部都要納入</strong>，敬請就<strong>必要性</strong>逐項斟酌取捨。章節依<strong>專家會議討論順序</strong>編排；每章列出「項目」，每項請先決定<strong>是否納入</strong>，納入者再討論其下問題。所有項目目前<strong>均為待議</strong>，經各場議定後回填決議。
+  <strong>給委員的說明：</strong>本框架係彙整國際政策（美、英、日、澳）與國內歷次專家意見後<strong>全部整合</strong>之結果，力求面向完整。惟提醒：<strong>過於複雜的試辦計畫恐窒礙難行</strong>，各章項目<strong>並非全部都要納入</strong>，敬請就<strong>必要性</strong>逐項斟酌取捨。<br>
+  <strong>2026-06-17 第 1 場會議後更新：</strong>依專家（許銘能顧問、陳柏菁處長等）建議，已<strong>調整章節更名與順序</strong>——三大結構變動為<strong>①法源前移（第 1 章）、②服藥者追蹤前移至藥品追蹤之前、③稽核與應急機制脫鉤</strong>。各章末新增<strong>「💬 第 1 場專家發言」折疊區</strong>，點開可見各委員對該章之發言要點（標 <span style="color:var(--hot);font-weight:700">★分歧</span> 者為委員間不同見解，留待後場討論）。<br>
+  <strong>2026-06-19 後續場次安排：</strong>依逐字稿完整核對補錄各委員發言，並依「原則／法源先行、同性質併場、陳柏菁委員不克出席第 2 場」排定——<strong>第 2 場（全天）核心決策、第 3 場法源與供給端量能、第 4 場服務流程與保護、第 5 場後段治理（追蹤、稽核、成效、責任）</strong>；各章徽章已標所屬場次。另，<strong>無任何專家附議之細項</strong>以<span style="color:#9aa5b1;text-decoration:line-through">淺灰刪除線</span>標示「可略」。
 </div>
 
 <!-- ============ 場次導覽 ============ -->
 <h2 class="sec">📍 六場專家會議 · 討論範圍</h2>
 <div class="meetings">
-  <div class="mtg m1"><div class="t">第1場 · 框架確立</div><div class="r">第 0、1 章 ＋ 整體框架（確認方案包含哪些部分／項目）</div><div class="d">📅 2026-06-17</div></div>
-  <div class="mtg m2"><div class="t">第2場 · 細節Ⅰ</div><div class="r">第 2–7 章（藥局條件、訓練、評估、給藥含代購、隱私、年齡）</div><div class="d">📅 2026-06-24</div></div>
-  <div class="mtg m3"><div class="t">第3場 · 細節Ⅱ</div><div class="r">第 8–14 章（協作模式、轉介、追蹤、衛教、追蹤者、稽核、成效）</div><div class="d">📅 2026-07-08</div></div>
-  <div class="mtg m4"><div class="t">第4場 · 適法性</div><div class="r">第 15 章（法源路徑、藥師責任）</div><div class="d">📅 2026-08-07</div></div>
-  <div class="mtg m5"><div class="t">第5場 · 試辦區域</div><div class="r">2.4 優先試辦區域之選定</div><div class="d">📅 2026-08-26</div></div>
-  <div class="mtg m6"><div class="t">第6場 · 整合定稿</div><div class="r">彙整說明會意見、確認跨章一致性 → 正式方案</div><div class="d">📅 2026-11-27</div></div>
+  <div class="mtg m1"><div class="t">第1場 · 框架確立</div><div class="r">確認方案納入哪些章節／項目（已完成）</div><div class="d">📅 2026-06-17 ✅ 已召開</div></div>
+  <div class="mtg m2"><div class="t">第2場 · 核心決策（全天）</div><div class="r">第 0 目的與風險、第 2 執行架構與藥品、第 9 協作模式、第 10 轉介</div><div class="d">📅 2026-06-24（三）9:30–17:00　📍 北護學思樓 515</div></div>
+  <div class="mtg m3"><div class="t">第3場 · 法源與供給端量能（半天）</div><div class="r">第 1 法源（提前討論）、第 3 藥局條件與區域、第 4 藥師資格與訓練、第 11 衛教資源</div><div class="d">📅 2026-07-08（三）13:00–17:00　📍 TCCC 板橋館 B405</div></div>
+  <div class="mtg m4"><div class="t">第4場 · 服務流程與保護（半天）</div><div class="r">第 5 用藥評估、第 6 給藥流程、第 7 隱私、第 8 年齡限制</div><div class="d">📅 2026-08-07（五）8:30–12:30　📍 TCCC 板橋館 B405</div></div>
+  <div class="mtg m5"><div class="t">第5場 · 後段治理（半天）</div><div class="r">第 12 服藥追蹤與應急、第 13 藥品追蹤、第 14 服務稽核、第 15 成效評估、第 16 法律責任</div><div class="d">📅 2026-08-26（三）13:00–17:00　📍 TCCC 板橋館 B405</div></div>
+  <div class="mtg m6"><div class="t">第6場 · 整合定稿</div><div class="r">彙整外界意見、確認跨章一致性 → 正式方案</div><div class="d">📅 2026-11-27（五）8:30–12:30　📍 TCCC 板橋館 B405</div></div>
 </div>
 
 <!-- ============ 工具列 ============ -->
-<h2 class="sec">📂 試辦方案架構（依討論順序；點章名展開）</h2>
+<h2 class="sec">📂 試辦方案架構（依方案邏輯順序；點章名展開）</h2>
 <div class="tools">
   <button onclick="setAll(true)">全部展開</button>
   <button onclick="setAll(false)">全部收合</button>
@@ -136,253 +202,1285 @@
   <select id="filter" onchange="doFilter()">
     <option value="all">全部</option>
     <option value="1">第1場</option><option value="2">第2場</option>
-    <option value="3">第3場</option><option value="4">第4場</option>
+    <option value="3">第3場</option><option value="4">第4場</option><option value="5">第5場</option>
   </select>
 </div>
 
 <div id="chapters">
 
-<!-- 0 -->
-<details class="chapter" data-meeting="1">
-  <summary><span class="ch-title">第 0 章　試辦目的</span><span class="badge m1">第1場</span><span class="status">🟡 待議</span></summary>
+<!-- 0 試辦目的與風險 -->
+<details class="chapter" data-meeting="2">
+  <summary><span class="ch-title">第 0 章　試辦目的與風險</span><span class="badge m2">第2場</span><span class="status collected">🟢 第1場已蒐集發言・第2場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">試辦計劃目的</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul>
-        <li>是否以下列為政策目的：①提升時效、降低非預期懷孕率 ②強化女性生殖自主與偏鄉可及性 ③建立醫藥協作專業把關 ④蒐集本土循證與使用行為資料 ⑤評估未來轉類／特殊供應制度可行性？哪些保留、哪些刪除？其他？</li>
+    <details class="item"><summary><span class="item-t">0.1 試辦計畫目的</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 計畫定位（已確定）</b>
+          <ul><li>本計畫為<b>研擬試辦方案（proposal）</b>，非決定是否轉類；轉類與否由食藥署後續行政程序判斷。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 政策目的選項——已有實證可定調者</b>
+          <ul>
+            <li><b>宜採框架＝可近性／時效／隱私／女性權益／國際接軌：</b>國際組織框架已從「降墮胎／公共成本」轉向生育自主權與可近性（WHO、UNFPA、Guttmacher）。</li>
+            <li><b>「降低非預期懷孕率／墮胎率」不宜作為主要正當性：</b>國際系統性回顧顯示，緊急避孕藥可近性提升雖可避免<u>個人層級</u>單次非預期懷孕，但<u>族群層級之人工流產率未明顯下降</u>；台灣亦無本土實證，列為主訴求易在審議中被質疑。<span class="why">（建議改置於「可近性／權益」框架下論述）</span></li>
+            <li><b>「蒐集本土循證與使用行為資料」目的明確且必要：</b>台灣在人工流產年齡別分布、再次懷孕率、未成年產婦心理健康等多項本土實證查無；我國亦缺懷孕率／人工流產率官方統計，致公衛效益難以客觀界定（呼應第 1 場「缺統計、效益須客觀界定」之提醒），試辦正可補此缺口。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul><li>政策目的之最終取捨——①提升時效・可近性 ②強化女性生殖自主與偏鄉可及性 ③建立醫藥協作專業把關 ④蒐集本土循證 ⑤評估未來轉類／特殊供應制度可行性：保留哪些、刪除哪些？</li></ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">0.2 風險與困境（◆第1場新增）</span><span class="gate new">◆專家建議新增</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 Ⓐ 試辦之風險——實證已知、國際已有應變與管制措施</b>
+          <ul>
+            <li><b>子宮外孕／臨床誤判：</b>緊急避孕藥<b>不增子宮外孕</b>（左炔諾孕酮校正勝算比 1.04，95% CI 0.76–1.42）；國際配套以藥師月經史評估＋月經延遲逾一週驗孕就醫、下腹痛或異常出血即就醫轉介為防誤判機制。</li>
+            <li><b>青少年觀念／免除保險套：</b>Cochrane 系統回顧（8 RCT、6,389 人）事前提供緊急避孕藥<b>未增無防護性行為、保險套使用率與他人相當、未增性病</b>，並未支持「易取得即放縱」之假設。</li>
+            <li><b>特殊體質／致癌／重複使用：</b>WHO（2021）緊急避孕藥不誘發流產、不損生育力、無絕對醫療禁忌、無年齡限制、<b>重複使用無已知健康風險</b>；屬一次性緊急使用，非如事前藥之長期荷爾蒙暴露。</li>
+            <li><span class="why">→ 意涵：上列回應正對應第 1 場所提之具體疑慮（子宮外孕誤判、青少年觀念、特殊體質與重複使用）；風險<b>可控、可配套</b>，國際既有應變與管制措施即國內據以研議對應配套之<b>理由與藍本</b>（連動後續各章；疑慮原文見下方過去建言）。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ Ⓑ 維持現狀／不作為之風險——是否另有解方待議</b>
+          <ul>
+            <li><b>不作為之風險已部分量化：</b>時效每延遲約 12h 有效性約減半（WHO 四試驗合併分析）；偏鄉落差（全台 159 鄉鎮無婦產科醫師）；處方門檻把需求推向非法境外網購（品質不明、不良反應無法申請藥害救濟、無正確適當之衛教及轉介）。</li>
+            <li><b>供給面量能：</b>健保藥局 8,887 家，遠多於婦產科診所 965 家——藥局可在婦產科診所之服務外另提供更高之取藥服務量能，惟現狀下因處方門檻無法發揮。</li>
+            <li><b>待議：</b>面對上述不作為之風險，除「緊急避孕藥轉類試辦」外，是否還有其他可行解方？第 1 場已浮現替代方向（如強化既有醫療管道之便利性、搭配常規避孕推廣），是否足以因應時效折損與偏鄉落差？（提請專家會議權衡）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">0.3 單選緊急避孕藥之正當性（◆第1場新增）</span><span class="gate new">◆專家建議新增</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 為何單選緊急避孕藥——時效性＋§0.2 風險困境已可定調</b>
+          <ul>
+            <li><b>時效獨特性：</b>緊急避孕藥越早越有效、每延約 12h 減半，處方門檻造成的看診延遲會<b>直接造成它所要預防的非預期懷孕</b>；屬一次性緊急使用、非長期，不需如事前藥之血栓長期監測——<b>補救 ≠ 常規</b>。</li>
+            <li><b>國際先例：</b>各國皆單獨且更早將緊急避孕藥轉類（美 2006 vs 常規 2023；英 2001 vs 2021）；緊急避孕藥已於 90 國（LNG）列為非處方藥（ECEC 資料 2023-01）——「單選緊急避孕藥」為國際常態，非便宜行事。</li>
+            <li><b>（平衡）衛教須涵蓋常規與雙重避孕：</b>緊急避孕藥屬<b>補救、非常規避孕</b>，失敗率高於規律事前避孕；衛教設計須涵蓋常規／雙重避孕觀念，避免被解讀為以緊急避孕藥取代常規避孕（直接回應「應搭配常規避孕、勿養成錯誤避孕觀念」之反方疑慮）。</li>
+            <li><span class="why">→ 意涵：基於緊急避孕藥之時效性與 §0.2 之風險困境，本案聚焦研議「<b>如何增加緊急避孕藥之可近性</b>」具正當性。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>其他類型避孕藥品（常規事前口服避孕藥等）是否亦有提升可近性之需求？是否、以及如何另案處理？</li>
+            <li>韓國等少數國家至今未將緊急避孕藥轉類，其考量為何？對本案有何借鏡？（第 1 場專家建議一併探究）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（2016 配套・食藥署歷次會議・藥師公會・民調）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§0.1 試辦目的</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會 李懿軒：</span>協助婦女及時取得、維護身體自主權；第一時間用藥可避免後續墮胎藥／人工流產（年約 5–6 萬人次）之更大傷害。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">台灣藥學會 高雅慧：</span>擴充可近性有助降低非法取得藥品與間接使用 RU486 之風險。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">勵馨 曹宜蓁：</span>關注焦點為性與生育健康之「可取得性」，屬健康權核心要素。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">兒少權益推動小組：</span>提供安全正當管道，可避免兒少轉向網路不明來源藥品。</li>
+          <li><span class="era">藥師公會說帖</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會全聯會：</span>藥局 8,887 家遠多於婦產科 965 家、每年約 6 萬婦女有中止懷孕需求、LNG 須 72h 內（黃金 12h）；政府應依 CEDAW 施行法第 5 條研擬轉類。</li>
+          <li><span class="era">民調</span><span class="st-sup">〔支持〕</span><span class="who">台灣女人連線：</span>2024/11 線上問卷逾六成五民眾支持開放（與 2016 約七成支持幾乎一致；近五成不知其屬處方藥）；支持理由為方便即時取得、提高女性自主。<span class="psrc">（黃淑英、陳儀軒投書，自由時報 2024/11/17）</span></li>
+        </ul></div>
+        <div class="pgroup"><b>§0.2 風險與困境　Ⓐ 試辦之風險（行動的風險）</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">醫師公會 張必正：</span>未告知懷孕下使用有子宮外孕、不孕等風險；併發症最終回到婦產科健保，成社會共同承擔。</li>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">婦產科醫學會 黃建霈：</span>ECP 為高劑量荷爾蒙、非全然安全；曾有誤判月經實已懷孕致子宮外孕切除輸卵管之案例；易取得後青少年恐誤為常規避孕、甚至免除保險套。</li>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">基層醫療協會 官大弘：</span>血栓／CVA 家族史者使用前應小心，副作用可能致不正常出血、流產或子宮外孕。</li>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 鄭威：</span>LNG 為黃體素具致癌風險、對年輕女性影響更甚；10–19 歲性病急劇上升，憂政策與疾病防疫不一致。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">醫師公會 鄭英傑：</span>子宮外孕、月經紊亂等安全性風險仍非常重要。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 魏書珮：</span>已有證據顯示事後避孕藥並非非常安全；憂民眾尤其青少年產生錯誤性觀念。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">製藥工業公會 蘇美惠：</span>憂民眾產生不合常理之避孕觀念（各團體共同憂慮）。</li>
+        </ul></div>
+        <div class="pgroup"><b>§0.2 風險與困境　Ⓑ 維持現狀／不作為之風險（不行動的風險）</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔現狀風險〕</span><span class="who">兒少權益推動小組：</span>若無安全正當管道，兒少恐轉向網路購買來源不明藥品、且未經藥師說明衛教。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔現狀風險〕</span><span class="who">台灣藥學會 高雅慧：</span>現狀下民眾恐非法取得藥品、或間接使用 RU486（墮胎藥），風險更高。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔現狀風險〕</span><span class="who">藥師公會 李懿軒：</span>看診取藥門檻高，錯失第一時間用藥將致後續墮胎藥／人工流產（年約 5–6 萬人次）之更大傷害。</li>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔現狀困境〕</span><span class="who">勵馨 曹宜蓁：</span>偏鄉（花蓮、台東、南投）未成年生育率長年居前三，恐與資訊及醫療物資取得薄弱有關。</li>
+          <li><span class="era">官方數據</span><span class="st-neu">〔現狀數據〕</span><span class="who">內政部戶政司（114 年／2025）：</span>全國 15–19 歲生育率 2‰；花蓮 8‰、臺東 7‰ 為全台最高（臺北 1‰、多數縣市 2–3‰），花東偏鄉顯著偏高，佐證偏鄉可近性落差。<span class="psrc">（性平會性別統計資料庫，更新 2026/06/11）</span></li>
+          <li class="psrc" style="list-style:none;margin-left:-10px">※ Ⓑ 之發言於 §0.1 亦以「目的／可近性」角度呈現；此處改以「不作為之風險」角度並列，供行動 vs 不行動之權衡。</li>
+        </ul></div>
+        <div class="pgroup"><b>§0.3 單選緊急避孕藥之正當性</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-opp">〔反對〕</span><span class="who">醫師公會 張必正：</span>ECP 不符「用於輕微疾病及症狀緩解」之轉類審查條件，懷孕時牽涉兩條人命。</li>
+          <li><span class="era">114-03 會議</span><span class="st-opp">〔反對〕</span><span class="who">婦產科醫學會 黃建霈：</span>台灣有世界第一健保與醫療體系，便利性應自此著手，不必比照他國轉類。</li>
+          <li><span class="era">114-03 會議</span><span class="st-opp">〔反對〕</span><span class="who">台灣醫院協會 何積泓：</span>避孕是專業，ECP 不應獨立存在，應搭配常規避孕方式。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">婦產科醫學會 黃建霈：</span>應推「雙重避孕」正確觀念，而非讓危險性較高的緊急避孕藥更易取得。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">臨床藥學會 孫淑慧：</span>安全性與效果皆無虞，考量非預期懷孕之身心與社會影響，建議轉類。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會 李懿軒：</span>依 CEDAW 第 16 條，保險套避孕失效時應保障女性使用 ECP 之可近性。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">兒少權益推動小組 戴瑀如：</span>德國文獻顯示 ECP 副作用較事前藥短暫、用藥風險低，傾向支持。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">兒少權益推動小組 張淑慧：</span>依 CRC 與吉利克能力，符合能力且有配套時應尊重兒少表意權與健康發展權。</li>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">製藥工業公會 蘇美惠：</span>業者無特定指示／處方立場，建議通盤考量、不應因少數例外推翻。</li>
+          <li><span class="era">藥師公會說帖</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會全聯會：</span>WHO 2010 安全性事實表、ICEC／FIGO 指南肯認 LNG／UPA 安全；全球已 88 國(LNG)／55 國(UPA)列非處方藥。<span class="psrc">〔按：ECEC 最新資料 2023-01 為 90 國(LNG)／56 國(UPA)〕</span></li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（8 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問（好心肝）：</span>第 0 章應把「風險」納進來——只談目的而不談風險，後面所有應變與管制措施就失去對象。並指出本場是提出 proposal、非決定要不要試辦。</li>
+        <li><span class="who">陳柏菁處長（中油法務／前食藥署）：</span>試辦目的要寫清楚「為什麼要試辦」（因現仍為處方藥、尚未轉 OTC），並把困境與難題一併寫出。</li>
+        <li><span class="who">孫淑慧主任（亞東／TFDA 諮議小組）：</span>目的很重要，應含風險評估。</li>
+        <li><span class="who">曹宜蓁處長（勵馨／社工）：</span>緊急避孕藥對女性是一種權利；惟我國缺懷孕率／墮胎率統計，公衛效益之客觀界定須一併思考（連動第 15 章）。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>質疑「墮胎率下降」宣稱與實證不一致；請說明單選緊急避孕藥之正當性，並一併評估常規避孕／LARC 可近性。</li>
+        <li><span class="who">張甫軒常務理事、張維君理事長：</span>對貿然轉類持保留，但抱持開放態度、願配合；強調避免醫藥對立。張甫軒並指本案與 RU486 墮胎藥性質不同、不應混為一談，建議一併探究韓國至今未轉類之原因。</li>
+        <li><span class="who">張文靜常務理事（藥師公會）：</span>緊急避孕藥涉女性權利（CEDAW 我國 2011 施行）；提出我國藥師／藥局數量、地理分布及臺灣女人連線 2016／2024 兩次約 7 成支持之民調，並指 COVID 後民眾對藥局信任度提升——佐證可近性與民意需求（與兩位醫師之可近性論點互為對照，詳第 9 章）。</li>
+        <li><span class="who">鄭文柏常務理事：</span>現況部分民眾透過非正式管道取得、缺乏專業把關；納入試辦可由受訓藥師篩選並轉介不適合者，兼顧女性自主與健康權。</li>
       </ul></div></details>
   </div>
 </details>
 
-<!-- 1 -->
-<details class="chapter" data-meeting="1">
-  <summary><span class="ch-title">第 1 章　計畫架構與藥品</span><span class="badge m1">第1場</span><span class="status">🟡 待議</span></summary>
+<!-- 1 法源與適法基礎（★由原第15章前移） -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 1 章　法源與適法基礎</span><span class="badge m3">第3場</span><span class="status collected">🟢 第1場已蒐集發言・第3場討論（法源提前）</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">1.1 執行與合作單位分工</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>食藥署、執行單位、藥師公會／社區藥局醫學會、醫師公會／婦產科醫學會、地方衛生局、社福之分工為何？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">1.2 試辦藥品範圍</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>第一階段是否僅限 <b>LNG 1.5mg 單次劑量</b>？是否納入 UPA／子宮內投藥系統？</li></ul>
-      <span class="intl">國際：多數轉類國家以 LNG 為主；UPA 普遍管制較嚴。</span></div></details>
-    <details class="item"><summary><span class="item-t">1.3 包裝與廣告限制</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>包裝量是否限「單次所需量」？試辦期是否允許試辦計劃藥品對大眾廣告？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">1.4 多廠商轉類一致性</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>同成分多家持證，若僅部分轉類 → 試辦藥局恐同時陳列「未轉類處方版」。防範機制：指定許可證清單／禁混合庫存承諾／流向管控／稽核——採用哪些？</li></ul></div></details>
+    <div class="ch-note">★第 1 場專家共識方向：法源應前移至計畫前段。目的與法源結合後，方能展開整個計畫。</div>
+    <details class="item"><summary><span class="item-t">1.1 試辦期法源路徑</span><span class="tag-hot">★重點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定（法律明文與定性）</b>
+          <ul>
+            <li><b>藥事法第 50 條第 2 項無排除／彈性空間：</b>「排除第 50 條」之方案逾越授權、不適用；「醫療急迫＋通訊診療」亦不符醫師法第 11 條但書急迫要件（懷孕非疾病）——此為法律專家會議之共識定性。</li>
+            <li>試辦須讓參與藥局於試辦期間處於<b>合法狀態</b>，公務員方能依法行政（法源前移之前提）。</li>
+          </ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>走向「附條件轉類」：</b>多數委員與三位學者一致指向「<b>轉類附加特定條件及期限之附款</b>」，並參考日本修法（增訂特定條件下研究計畫得用非經處方藥品）。此為本案能否啟動之最可能定案方向，惟仍待專家會議確認。</li>
+            <li><b>前例：</b>英國以 PGD（病人族群指示）賦權藥師於特定條件下供應，支持「專案授權／PGD」路徑之可行性。</li>
+          </ul>
+          <span class="intl">國際：英國以 PGD（病人族群指示）賦權藥師於特定條件下供應。</span>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★<b>法源路徑三選一：</b>(a) <b>修法</b>（特定條件下研究計畫得用非經處方藥品＋落日條款）；(b) <b>轉類附條件及期限之附款</b>；(c) <b>專案授權／行政函示／專案 PGD</b>（暫時賦權受訓藥師）。三者之合法性、時程、可逆性如何權衡？</li>
+            <li>是否須符合藥事法第 8 條與轉類查檢表之嚴格適法性論證（修法 vs 轉類附條件）？<span class="draft">〔第 1 場建議新增〕</span></li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">1.2 試辦期過渡性法律保護</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>傾向綁定「期限／落日條款」：</b>共識在「附條件轉類應設定期限、期滿視執行情形檢討是否維持」，並可設落日條款，作為試辦退場與法律可逆性之保障。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul><li>試辦期間藥師依規範執行之<b>法律保障機制</b>具體為何（責任界限、免責範圍）？</li></ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">1.3 多廠商分裂之法律工具</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定（問題定性）</b>
+          <ul><li>同成分（LNG）由多家廠商持證；若僅部分轉類，恐形成「處方版」與「指示版」雙軌並存，第一線藥師持續面臨違法風險、主管機關難落實分級管理（連動第 2 章 §2.4 多廠商一致性）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul><li>可否要求<b>同成分同步變更分類</b>？食藥署之裁量空間為何？</li></ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§1.1 試辦期法源路徑</b><ul>
+          <li><span class="era">114-12 會議</span><span class="st-neu">〔中性〕</span><span class="who">適法性會議：</span>提兩方案——方案一：公告特定範圍不適用藥事法第 50 條；方案二：以醫療急迫為前提由醫師通訊診療後藥師供藥。</li>
+          <li><span class="era">114-12 會議</span><span class="st-opp">〔反對〕</span><span class="who">李崇僖／吳全峰／陳柏菁：</span>藥事法第 50 條第 2 項無排除／彈性空間，方案一不適用；方案二亦難認屬醫療急迫（陳柏菁並指懷孕非疾病、不適用醫師法）。</li>
+          <li><span class="era">114-12 會議</span><span class="st-sup">〔支持〕</span><span class="who">衛福部法規會 陳信誠：</span>原則同意方案一，建議研析藥事法第 50 條第 2 項之法規彈性。</li>
+          <li><span class="era">114-12 會議</span><span class="st-rec">〔建議〕</span><span class="who">李崇僖／蘇嘉瑞／吳全峰：</span>建議改走「附條件轉類」，或參考日本修訂藥事法第 50 條第 2 項、增訂特定條件下研究計畫得用非經處方藥品。</li>
+          <li><span class="era">114-12 會議</span><span class="st-neu">〔中性〕</span><span class="who">會議結論：</span>多數委員認方案一逾越藥事法第 50 條授權、方案二不符醫師法第 11 條但書急迫情形，兩案皆不可行；建議透過「轉類附加特定條件及期限之附款」辦理。</li>
+        </ul></div>
+        <div class="pgroup"><b>§1.2 過渡性法律保護</b><ul>
+          <li><span class="era">114-12 會議</span><span class="st-rec">〔建議〕</span><span class="who">敏盛醫院 蘇嘉瑞：</span>附條件轉類應設定期限，期滿後視執行情形檢討是否維持。</li>
+          <li><span class="era">114-12 會議</span><span class="st-rec">〔建議〕</span><span class="who">中研院 吳全峰：</span>可考慮設置落日條款，以利試辦方案順利推動。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（5 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who conflict">陳柏菁處長：</span>法源目前列在最後，但無法源後面公務員無法依法行政；應把法源提到前面（如藥事法授權、經食藥署某行政命令），與目的結合後才能展開計畫。至於各方責任屬「法律責任」，留在後面（第 16 章）。</li>
+        <li><span class="who">許銘能顧問：</span>試辦期間法源是什麼？須以專案辦法或解釋法令方式讓這條路走得通；法律站得住腳，後面執行才無顧忌。</li>
+        <li><span class="who">鄭文柏常務理事（社區藥學會）：</span>若要執行，宜以轉類或行政函示方式，至少保障參與藥局合法。（按：之前曾有一張 LNG 轉列指示藥，後被擋下。）</li>
+        <li><span class="who">曹宜蓁處長：</span>第一線遇年輕女孩購買時該如何處理涉及法律責任，法源宜更前面。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>提出應符合藥事法第 8 條與轉類查檢表之嚴格適法性論證（修法 vs 轉類附條件）。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§1.3 多廠商分裂之法律工具</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>LNG 事後避孕藥在藥局之非法供應已長期、公開存在；若轉類採「新建 LNG 指示藥品項」而非直接轉現有處方藥，將形成「LNG 處方藥＋LNG 指示藥」雙軌並存，第一線藥師恐持續處於違法風險，主管機關亦難落實藥品分級管理。</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
-<!-- 2 -->
+<!-- 2 執行架構與試辦藥品（原第1章） -->
 <details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 2 章　藥局試辦條件與試辦區域</span><span class="badge m2">第2場</span><span class="badge m5">第5場·區域</span><span class="status">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 2 章　執行架構與試辦藥品</span><span class="badge m2">第2場</span><span class="status collected">🟢 第1場已蒐集發言・第2場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">2.1 藥局硬體空間</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>門檻訂多高——「<b>獨立諮詢室</b>」必備，或「<b>具遮蔽隔板專區</b>」即可？是否設最低規格（隔音、座位、面積、IT 終端）？</li></ul>
-      <span class="intl">國際：英國要求專屬諮詢室＋座位＋IT；澳洲、日本要求物理遮蔽／隔音專區。</span></div></details>
-    <details class="item"><summary><span class="item-t">2.2 藥局服務時段</span><span class="gate">先決：是否納入？</span></summary>
+    <details class="item"><summary><span class="item-t">2.1 執行與合作單位分工、監督小組</span><span class="tag-hot">★分歧</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>食藥署職權已釐清：</b>食藥署有藥品分級職權，惟「制定試辦方案」須<b>跨部會協作研議適法路徑</b>（114-12 會議結論）。</li>
+            <li><b>球員兼裁判之疑慮宜以監督化解：</b>針對「藥事團體主辦」之疑慮，傾向<b>設外部／第三方監督</b>（連動監督小組）。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>執行與合作單位之<b>分工</b>為何（藥師公會／社區藥學會、醫師公會／婦產科醫學會、地方衛生局、社福機構）？</li>
+            <li>★<b>食藥署角色：</b>應否納入「分工」而受計畫管控？（一方主張其為委託／主辦不宜被管控、規格過大；一方主張其為架構核心與主辦單位、須明確納入）</li>
+            <li>是否新增<b>監督小組與外部代表</b>（家長團體、青少年心理專家、外部社會監督）？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">2.2 試辦藥品範圍</span><span class="tag-hot">★分歧</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul><li><b>「先 LNG 起步」為務實交集：</b>藥師公會明示應優先開放 LNG 轉類、不應無限期擱置 2016 年已通過之政策，且與國際多數做法一致（詳下方國際註）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★<b>第一階段試辦藥品範圍——是否僅限 LNG（1.5mg 單次劑量），或一併納入 UPA？</b>（一方主張先 LNG 單一成分起步，UPA 美國仍為處方藥，且現行法規已允許同成分處方藥與指示藥並存；一方主張 LNG＋UPA 一併納入，否則 LNG 納入試辦後價格恐升至與 UPA 相近，而 UPA 效果較佳，民眾將棄合法 LNG、仍選非法 UPA——連動 §2.4 價差道德風險）</li>
+          </ul>
+        </div>
+        <span class="intl">國際：多數轉類國家以 LNG 為主；UPA 普遍管制較嚴。LNG 已 90 國列非處方、UPA 已 56 國列非處方（ECEC 資料 2023-01，更新 2025-10）。</span>
+      </div></details>
+    <details class="item"><summary><span class="item-t">2.3 包裝與廣告限制</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定（沿用 2016 配套框架）</b>
+          <ul><li>以「<b>單次事後避孕所需用量</b>」為包裝量；試辦期<b>不同意此類藥品廣告申請</b>，廣告僅就計畫藥局與衛教資訊宣導、不針對特定商品（衛福部 2016 配套）。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>高度共識、早有定案基礎：</b>補充原則為外包裝及仿單須清楚標示（含副作用注意事項），且內容<b>先經民眾閱讀測試</b>確認看得懂（閱讀測試之執行方式與標示項目清單於第 11 章衛教資源討論）。</li></ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">2.4 多廠商轉類一致性</span><span class="tag-hot">★分歧</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定（問題定性）</b>
+          <ul><li>同成分（LNG）多家持證，若僅部分轉類，試辦藥局恐同時陳列「未轉類處方版」（法律工具連動第 1 章 §1.3）。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li>說明會建言傾向<b>積極推動既有 LNG 處方品項轉類</b>（鼓勵原處方藥廠商申請），而非主要依賴新藥證進入市場，以免長期同成分雙軌管理。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★採何機制處理一致性——強制全數轉類／指定許可證清單／供應鏈管控／禁止混合庫存？</li>
+            <li>價差道德風險：指示藥價若高於處方版或 UPA，市場行為恐未改變（合法管道建立卻仍走非法）——如何防範？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">2.5 退場／停止條件（◆第1場新增）</span><span class="gate new">◆專家建議新增</span></summary>
+      <div class="item-body">
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><span class="draft">〔第 1 場建議新增〕</span>試辦宜預設<b>中止／退場機制</b>，閾值指標連動第 15 章成效與安全性評估。</li>
+            <li>是否預設退場機制？閾值如何訂定——重複使用率、未成年使用比例異常、性傳染病警訊、不良事件達閾值？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§2.1 組織分工／食藥署角色</b><ul>
+          <li><span class="era">114-12 會議</span><span class="st-neu">〔中性〕</span><span class="who">北醫 李崇僖：</span>食藥署可依職權制定藥品為處方或指示用藥（惟不適用於制定試辦方案）。</li>
+          <li><span class="era">114-12 會議</span><span class="st-rec">〔建議〕</span><span class="who">陳柏菁／會議結論：</span>建議透過跨部會協作討論，研議可行且適法之試辦方案。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">婦產科醫學會 黃建霈：</span>日本以藥事團體為主承辦、醫師團體為輔，恐有「球員兼裁判」疑慮。</li>
+        </ul></div>
+        <div class="pgroup"><b>§2.2 試辦藥品範圍（LNG／UPA）</b><ul>
+          <li><span class="era">藥師公會說帖</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>至少應儘速優先研議開放 LNG 轉類，不應無限期擱置 2016 年已通過之政策。</li>
+        </ul></div>
+        <div class="pgroup"><b>§2.3 包裝與廣告限制</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>不同意此類藥品廣告申請（避免濫用、減少使用保險套及仰賴事後避孕之心理）；以單次事後避孕所需量為包裝量。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組 黃筱彤：</span>希望藥品上有明顯標示（如副作用等注意事項）。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">臨床藥學會 孫淑慧：</span>外包裝及仿單應清楚說明，且內容須先經民眾閱讀測試確認看得懂。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（7 則・含 2 項分歧）</summary>
+      <div class="vbody"><ul>
+        <li><span class="conflict">★分歧（食藥署角色）：</span><span class="who">陳柏菁處長</span>主張食藥署為委託／主辦單位，不宜納入「分工」被計畫管控（地方衛生局亦同，規格過大）；<span class="who">許銘能顧問</span>主張食藥署必為試辦計畫之架構核心與主辦單位（含藥品追蹤角色），須明確納入組織架構。</li>
+        <li><span class="conflict">★分歧（UPA／多廠商一致性）：</span><span class="who">鄭文柏常務理事</span>主張 LNG＋UPA 並列、一次全部轉類且僅進試辦藥局，避免價差道德風險；<span class="who">孫淑慧主任</span>主張先從 LNG 單一成分起步（UPA 美國仍處方），且現行法規已允許同成分處方藥與指示藥並存，藥局同時持有應無大礙。</li>
+        <li><span class="who">鄭文柏常務理事：</span>包裝須載明「限單次所需用量」；廣告不針對特定商品，僅就計畫藥局與衛教資訊宣導。並澄清：事前、事後避孕藥目前全為處方藥。</li>
+        <li><span class="who">孫淑慧主任：</span>廣告以政策宣導方式較恰當。</li>
+        <li><span class="who">張文靜常務理事（藥師公會）：</span>LNG／UPA 各國分類數據、WHO 對 LNG 安全性看法、2016 已過成藥諮議小組（詳第 15 章發言）。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>建議 §2.1 增設監督小組與外部代表、§2.5 新增退場／停止條件；§2.2 一併評估常規避孕／LARC。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§2.2 試辦藥品範圍（LNG／UPA）</b><ul>
+          <li><span class="st-rec">〔建議〕</span>應積極推動「既有 LNG 處方藥品項轉類」（鼓勵原處方藥廠商申請轉類），而非主要依賴新藥證、新商品進入市場，以免長期同成分雙軌管理。</li>
+        </ul>
+        <b>§2.4 多廠商轉類一致性</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>若 LNG 指示藥價高於處方藥，消費者與藥師恐傾向選價低之處方藥品項（三同：同成分、同劑量、同劑型），持續非法販售；若指示藥價接近或高於 UPA（適用 5 天內、副作用較低），亦未必被選用——政策恐建了合法管道卻未改變市場行為。</li>
+        </ul>
+      </div></details>
+  </div>
+</details>
+
+<!-- 3 試辦藥局條件與試辦區域（原第2章） -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 3 章　試辦藥局條件與試辦區域</span><span class="badge m3">第3場</span><span class="status collected">🟢 第1場已蒐集發言・第3場討論</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">3.1 藥局硬體空間</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>「應有私密諮詢空間」方向明確：</b>共識走向以日本試辦藥局「私人諮詢室」為參照，傾向要求一定程度之物理遮蔽／隱私空間（連動第 7 章隱私空間），惟發言稀少、具體規格仍待釐清。</li>
+            <li>國際前例可作分級參考——較高標（英國：專屬諮詢室＋座位＋IT）與較低標（澳洲、日本：物理遮蔽／隔音專區）並存。</li>
+          </ul>
+          <span class="intl">國際：英國要求專屬諮詢室＋座位＋IT；澳洲、日本要求物理遮蔽／隔音專區。</span>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>門檻訂多高——「<b>獨立諮詢室</b>」必備，或「<b>具遮蔽隔板專區</b>」即可？是否設最低規格（隔音、座位、面積、IT 終端）？</li>
+            <li>說明會曾有疑慮：市區藥局可能無足夠空間設置獨立諮詢空間——規格如何兼顧隱私與可行性？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item skip"><summary><span class="item-t">3.2 藥局服務時段</span><span class="skip-note">（無專家附議、可略）</span></summary>
       <div class="item-body"><ul><li>是否強制夜間／週末／連假供應能力？最低時段要求？（解決假日就醫困難 vs 藥局營運負擔）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">2.3 資訊系統對接</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>藥局端是否須具備對接中央試辦管理系統之能力（即時、匿名登錄）？（系統設計與建置維運見第 10 章）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">2.4 優先試辦區域</span><span class="badge m5">第5場選定</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>①婦產科稀缺區 ②高中職或大專院校周邊 ③都會夜間醫療不足區 ④不限區域，廣徵尋求有意願之試辦單位。（區域選定留第 5 場）</li></ul></div></details>
+    <details class="item skip"><summary><span class="item-t">3.3 資訊系統對接</span><span class="skip-note">（無專家附議、可略）</span></summary>
+      <div class="item-body"><ul><li>藥局端是否須具備對接中央試辦管理系統之能力（即時、匿名登錄）？（系統設計與建置維運見第 13 章藥品追蹤）</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">3.4 優先試辦區域——具體遴選條件</span><span class="gate">承第 2 場區域方向</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>大方向已分流處理：</b>區域大方向（偏鄉聚焦／都會／不限）屬牽動全案之原則性議題，已於第 2 場跨章原則定調；本場就既定方向訂<b>具體遴選條件</b>，不再回溯大方向。</li>
+            <li>就「可近性缺口」之爭點，國際實證傾向支持——僅靠醫師處方會造成<b>週末／偏鄉延遲</b>、錯失黃金時效，弱勢與偏鄉族群更受惠於免處方（國際實證，見簡報投影片）；可作偏鄉優先論述之研判起點。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★<b>分歧＝「偏鄉是否為優先」：</b>一方主張偏鄉可取得性障礙最大、應優先保障；一方反指台灣醫療密度高、偏鄉亦有衛生所、未必有取得問題——此分歧直接牽動目的論述（可近性）是否成立（連動 §0.1／§0.2）。</li>
+            <li>若採聚焦方向，優先遴選序為——①婦產科稀缺區 ②高中職或大專院校周邊 ③都會夜間醫療不足區；若採不限，則以何條件廣徵有意願試辦單位？（連動第 4 章藥師招募與培訓）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§3.1 藥局硬體空間</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">臨床藥學會 孫淑慧：</span>日本試辦藥局設有私人諮詢室（他國作法參照）。</li>
+        </ul></div>
+        <div class="pgroup"><b>§3.2 服務時段</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">臨床藥學會 孫淑慧：</span>日本試辦藥局可於晚上或週末購買，以滿足需求（他國作法參照）。</li>
+        </ul></div>
+        <div class="pgroup"><b>§3.4 優先試辦區域</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">勵馨 曹宜蓁：</span>偏鄉孩子實際可取得性障礙最大，應思考偏鄉如何被保障。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 魏書珮：</span>台灣醫療密度高、就醫容易，未必有藥品不易取得問題；相對偏鄉（如花蓮）亦有衛生所等醫療機構。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（4 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">鄭文柏常務理事：</span>建議藥局遴選優先以已參與食藥署藥事照顧計畫之藥局為主（多具無障礙設施、獨立諮詢空間與服務熱忱）。</li>
+        <li><span class="who">曹宜蓁處長：</span>試辦於都市或較不熱鬧地區，牽動整體研擬方向，須先討論。</li>
+        <li><span class="who">鄭天立委員：</span>地點選擇應多琢磨；若偏鄉藥師不參與培訓，恐無法達成改善偏鄉可近性之初衷。</li>
+        <li><span class="who">張維君理事長：</span>藥局為此投入私密空間、問卷、追蹤、登錄等成本（含 24 小時連鎖藥局之意願）值得考量，配套宜綱要化、簡要化以免造成藥師負擔。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§3.1 藥局硬體空間</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>要求獨立諮詢空間，各縣市市區內之藥局可能沒有足夠空間可以執行。</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
-<!-- 3 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 3 章　藥師訓練</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+<!-- 4 試辦藥師資格與訓練（原第3章） -->
+<details class="chapter" data-meeting="3">
+  <summary><span class="ch-title">第 4 章　試辦藥師資格與訓練</span><span class="badge m3">第3場</span><span class="status collected">🟢 第1場已蒐集發言・第3場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">3.1 資格與認證效期</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>認證要件（藥師證書＋核心研修＋臨床模擬評核）？效期幾年、重訓時數（如 2 年／4 小時）？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">3.2 課程時數與模組</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>總時數（如 8–12 小時）？模組組成（臨床藥理／禁忌症評估／性暴力與兒少辨識／隱私與非歧視諮詢／法規系統與應急）？哪些必修、哪些選修？</li></ul>
-      <span class="intl">國際：英國 CPPE 線上課程＋能力宣告（DoC）；日本由藥劑師會＋產婦人科醫會共同研修。</span></div></details>
-    <details class="item"><summary><span class="item-t">3.3 基礎必修 vs 追加研修之分層</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>基礎必修需包含哪些課程？（STI 與長效避孕（LARC）衛教、性暴力辨識？）</li><li>追加模組（月經機制、懷孕症狀、生殖健康、特殊族群）如何定位？是否影響值班資格？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">4.1 資格與認證效期</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul><li><b>須訓練／認證後才能供藥</b>已是既成政策方向：2016 配套即要求廠商提供教材並執行藥師教育訓練（衛福部／食藥署）。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>「認證藥師、不論是否轉類皆須受訓」具高度共識：</b>藥學界與社福一致——應由通過認證之藥師供藥，且凡提供此類藥事服務之藥師皆須受訓（共識走向研判，作為討論起點）。</li>
+            <li><b>國際前例：</b>英國以能力宣告（DoC）為交付資格基礎，日本由藥劑師會與產婦人科醫會共同研修——「先受訓認證、再供藥」為國際常態。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul><li>認證之具體<b>要件</b>如何組成（藥師證書＋核心研修＋臨床模擬評核）？認證<b>效期</b>幾年、<b>重訓時數</b>如何訂（如 2 年／4 小時）？</li></ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">4.2 課程時數與模組</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>訓練須標準化、且可加速落地：</b>共識傾向制定教育訓練 SOP（台灣藥學會 高雅慧）、加強訓練計畫內容（臨床藥學會 孫淑慧）；藥師公會已規劃緊急避孕藥用藥指導之繼續教育課程，具現成課程基礎可承接（共識走向研判）。</li>
+            <li><b>國際模組要素（實證配套，國際）：</b>各國以「強制標準化衛教單張＋藥師一對一說明」釐清延遲排卵≠墮胎（日／英）；藥師受<b>兒少保護 Level 3＋兒童性剝削（CSE）辨識訓練</b>並建立法定轉介路徑（英／澳／日／美）；並要求藥師主動建議長效可逆避孕 LARC（澳／英）——可作模組設計藍本，國際數據非台灣數據。</li>
+            <li><span class="intl">國際：英國 CPPE 線上課程＋能力宣告（DoC）；日本由藥劑師會＋產婦人科醫會共同研修。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>總<b>時數</b>如何訂（如 8–12 小時）？<b>模組組成</b>（臨床藥理／禁忌症評估／性暴力與兒少辨識／隱私與非歧視諮詢／法規系統與應急）哪些<b>必修</b>、哪些<b>選修</b>？</li>
+            <li><span class="draft">〔第 1 場建議新增〕</span>模組應含<b>禁忌辨識、Level 3 兒少保護、性暴力辨識</b>（鄭威主任書面）；是否納為必修核心？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">4.3 基礎必修 vs 追加研修之分層</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul>
+            <li><b>基礎必修之核心可參酌國際配套（實證配套，國際）：</b>各國把每次交付化為衛教契機，藥師主動建議長效可逆避孕（LARC，澳／英）；並以兒少保護 Level 3＋CSE 辨識訓練、法定轉介路徑承接性暴力辨識與 STI 篩檢契機（英／澳／日／美）——可作為「基礎必修」之取材方向。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★ <b>基礎必修</b>需包含哪些課程？（STI 與長效避孕 LARC 衛教、性暴力辨識？）何者列為<b>全體必修</b>之底線？</li>
+            <li>★ <b>追加模組</b>（月經機制、懷孕症狀、生殖健康、特殊族群）如何定位？是否<b>影響值班資格</b>（如完訓追加模組者方可值班供藥）？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§4.1 資格與認證效期</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>廠商需提供藥師相關教材並執行藥師教育訓練。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">臨床藥學會 孫淑慧：</span>應由通過認證的藥師販售藥品。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">勵馨 曹宜蓁：</span>不論是否轉類，提供此類藥事服務之藥師皆須經過訓練。</li>
+        </ul></div>
+        <div class="pgroup"><b>§4.2 課程時數與模組</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">台灣藥學會 高雅慧：</span>藥師衛教過程可制定教育訓練 SOP，增加專業衛教能力。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">臨床藥學會 孫淑慧：</span>藥師部分可再加強教育訓練計畫之內容。</li>
+          <li><span class="era">藥師公會說帖</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>公會已規劃緊急避孕藥用藥指導之繼續教育課程。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（6 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>本章不只「訓練」，應含「資格」，宜為「試辦藥師之資格與訓練」。</li>
+        <li><span class="who">鄭天立委員：</span>培訓非常重要的是如何與兒少對話溝通、以兒少視角理解，先具心理輔導能力，才能評估給藥／轉介／追蹤。</li>
+        <li><span class="who">曹宜蓁處長：</span>第一線需具備法律、心理、資源等專業（話術、表情之拿捏）。</li>
+        <li><span class="who">張文靜常務理事：</span>全聯會已辦理多項相關課程，藥師認證可行；惟英國對少兒之相關訓練是較缺乏、值得引進的部分。</li>
+        <li><span class="who">鄭文柏常務理事：</span>試辦藥局可比照 HIV 友善藥局／管制藥品藥局，每家至少一位藥師完訓並做內部教育訓練。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>§4.2 模組應含禁忌辨識、Level 3 兒少保護、性暴力辨識。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 4 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 4 章　標準化評估工具</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+<!-- 5 用藥評估方式與工具（原第4章） -->
+<details class="chapter" data-meeting="4">
+  <summary><span class="ch-title">第 5 章　用藥評估方式與工具</span><span class="badge m4">第4場</span><span class="status collected">🟢 第1場已蒐集發言・第4場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">4.1 評估形式（口頭 vs 紙本）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>採<b>口頭自然對話＋藥師系統勾選</b>，或<b>紙本表單</b>？</li></ul>
-      <span class="intl">國際：澳洲 2022 指紙本表單去人性化、對性暴力倖存者造成二度傷害 → 改採口頭；日本採檢核表。</span></div></details>
-    <details class="item"><summary><span class="item-t">4.2 標準化評估工具組成</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>採哪幾份？①事前問卷諮詢表 ②服用前說明同意書（本人簽署）③藥物資訊書（民眾留存）④藥局轉介單。</li></ul>
-      <span class="intl">國際：借鏡日本四表單。</span></div></details>
-    <details class="item"><summary><span class="item-t">4.3 判定異常基準</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>懷孕可能性分級標準；異常情形（疑性侵、既往妊娠、異常出血史、重複使用）之判定門檻與對應流程？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">5.1 評估形式（口頭 vs 紙本）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+      <div class="evidence"><b>📊 已有共識可定調</b><ul><li>過去建言<b>傾向「結構化問卷＋雙方簽署」</b>：藥師公會（紙本問卷＋衛教同意書、購買人與藥師雙簽）、藥學國際協會、臨床藥學會皆主張<b>簽名留存</b>；兒少小組另補充須加<b>口頭提醒</b>（荷爾蒙影響、經期紊亂）。可能交集＝<b>結構化問卷＋口頭說明＋雙方簽署</b>（僅為討論起點）。</li></ul></div>
+      <div class="todiscuss"><b>？ 待專家會議討論</b><ul><li><b>★爭點：</b>評估採<b>口頭自然對話＋藥師系統勾選</b>，或<b>紙本表單</b>？此點與上述「紙本／結構化」共識走向、與國際口頭化趨勢之間存在張力，尚未定案。</li><li><span class="intl">國際：澳洲 2022 指紙本表單去人性化、對性暴力倖存者造成二度傷害 → 改採口頭；日本採檢核表。</span></li></ul></div></div></details>
+    <details class="item"><summary><span class="item-t">5.2 標準化評估工具組成</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+      <div class="evidence"><b>📊 已有共識可定調</b><ul><li><b>高度共識</b>：醫界與藥師公會對「該問什麼」幾乎重疊——<b>月經史／時效 72h／血栓禁忌／藥物交互作用／性侵疑慮／是否自用</b>；黃建霈另列末次月經、週期、出血特徵、避孕方式、乳癌風險等。<b>藥師公會配套問卷已涵蓋多數，可作為定稿底本</b>。</li><li><span class="intl">國際：借鏡日本四表單。</span></li></ul></div>
+      <div class="todiscuss"><b>？ 待專家會議討論</b><ul><li>正式工具組採哪幾份待定：①事前問卷諮詢表 ②服用前說明同意書（本人簽署）③藥物資訊書（民眾留存）④藥局轉介單。</li><li><span class="draft">〔第 1 場建議新增〕</span>鄭威主任（書面）：應<b>強制納入禁忌症與藥物交互作用查核</b>（子宮外孕警示見 5.3）。</li></ul></div></div></details>
+    <details class="item"><summary><span class="item-t">5.3 判定異常基準</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+      <div class="evidence"><b>📊 已有共識可定調</b><ul><li><b>共識——以「月經週期評估」為核心把關，異常即轉診</b>：醫界（黃建霈／官大弘）與藥師（孫淑慧／李懿軒／公會配套）一致認為<b>懷孕可能或血栓病史任一為「是」即轉診婦產科</b>（子宮外孕、發炎、血管栓塞病史者亦轉介）。</li></ul></div>
+      <div class="todiscuss"><b>？ 待專家會議討論</b><ul><li><b>★風險點：</b>黃建霈提醒「<b>判斷出血是否為月經，比判斷是否懷孕更困難</b>」——屬藥師端能力風險（連動第 4 章訓練）。</li><li>懷孕可能性分級標準；異常情形（疑性侵、既往妊娠、異常出血史、重複使用）之<b>判定門檻與對應流程</b>尚待定。</li><li><span class="draft">〔第 1 場建議新增〕</span>鄭威主任（書面）：異常判定應<b>強制納入子宮外孕警示</b>。</li></ul></div></div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§5.1 評估形式（口頭 vs 紙本）</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組 黃筱彤：</span>藥師於有人購買時應再做口頭提醒（如荷爾蒙影響、經期紊亂）。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">王春玉／李懿軒／孫淑慧：</span>充分衛教後由藥師與民眾雙方簽名留存（同意書交政府或藥局保存）。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>擬設計衛教單張／問卷，含 2 部分 11 大題。</li>
+          <li><span class="era">藥師公會配套</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>採紙本評估＋衛教同意書，由購買人與藥師雙方簽名／簽章。</li>
+        </ul></div>
+        <div class="pgroup"><b>§5.2 標準化評估工具組成</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥學國際發展協會 王春玉：</span>給藥前應了解過敏史與禁忌、確認是否符合適應症、詳細說明用法與副作用。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">臨床藥學會 孫淑慧：</span>同意書應詳列藥師須說明、病人須了解之事項（查檢表）。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>評估含懷孕可能性、月經延遲天數、出血異常、週期天數、近期未保護性行為、病史。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>問診應含末次月經、週期、出血特徵、末次性行為、避孕方式、特殊病史、藥物過敏、目前用藥、乳癌風險等。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>應納入事前用藥評估與完善用藥紀錄。</li>
+          <li><span class="era">藥師公會配套</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>評估問項涵蓋月經史、72h 時效、血栓禁忌、藥物交互作用、性侵疑慮、是否自用。</li>
+        </ul></div>
+        <div class="pgroup"><b>§5.3 判定異常基準</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>開立前通常詢問月經週期，避免不需服藥卻服藥破壞週期、承受副作用。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">基層醫療協會 官大弘：</span>給藥前先詢問月經週期確認是否需用藥；用後應確認月經是否來。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>有子宮外孕、發炎或血管栓塞病史者應轉介醫院。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">婦產科醫學會 黃建霈：</span>臨床上判斷出血是否為月經，比判斷是否懷孕更困難。</li>
+          <li><span class="era">藥師公會配套</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>懷孕可能或血栓病史任一為「是」即建議轉診婦產科。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（2 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>本章不只「工具」，還有評估的形式與方式，宜更名為「用藥評估之方式與工具」。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>§5.2／5.3 應強制納入子宮外孕警示、禁忌症與藥物交互作用查核。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 5 -->
-<details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 5 章　標準化給藥流程（含供應條件、販售模式、代購）</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+<!-- 6 標準化給藥流程（原第5章） -->
+<details class="chapter" data-meeting="4">
+  <summary><span class="ch-title">第 6 章　標準化給藥流程（含供應條件、販售模式、代購）</span><span class="badge m4">第4場</span><span class="status collected">🟢 第1場已蒐集發言・第4場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">5.1 供應條件（門檻）</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>時效門檻：72h 內？72–120h 如何處置（轉介評估 UPA／IUS）？</li><li>排除已知懷孕：依口頭月經史，或搭配驗孕（自費或政府補助）？</li><li>排除兒少高風險／暴力（法定通報案件）。</li><li>重複使用之處置（30 日內 &gt;1 次如何處理）見 9.1 強制轉介門檻。</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">5.2 販售模式</span><span class="gate">先決：是否納入？</span></summary>
+    <details class="item"><summary><span class="item-t">6.1 供應條件（門檻）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul><li>涉兒少高風險／性暴力者依<b>法定通報</b>義務辦理（兒少權益保障法、性侵害防治法之既有規範），非試辦得自由裁量之事項。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>供應方向可銜接：</b>逐章共識評估顯示，婦產科<b>有條件接受</b>（謹慎規劃前提下個別醫師願協助）＋藥師主張<b>專業協助下供應</b>，兩界方向傾向一致，可作為門檻設計之起點（屬研判，非定案）。</li>
+            <li><b>排除已知懷孕／重複使用之安全顧慮已有實證緩解：</b>系統性回顧顯示緊急避孕藥<b>不增加子宮外孕</b>風險；WHO 證實同一週期重複服用<b>無安全疑慮</b>。是否設驗孕關卡，宜以「防誤判、即時轉介」而非「防安全風險」為設計理由（國際實證）。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>時效門檻：72h 內？72–120h 如何處置（轉介評估 UPA／IUS）？</li>
+            <li>排除已知懷孕：依口頭月經史，或搭配驗孕（自費或政府補助）？</li>
+            <li>重複使用之處置（30 日內 &gt;1 次如何處理）見 10.1 強制轉介門檻。</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item skip"><summary><span class="item-t">6.2 販售模式</span><span class="skip-note">（無專家附議、可略）</span></summary>
       <div class="item-body"><ul><li>採<b>櫃檯後（BTC）</b>？是否允許開架陳列？</li></ul>
       <span class="intl">國際：多國採櫃檯後（BTC）模式。</span></div></details>
-    <details class="item"><summary><span class="item-t">5.3 給藥流程步驟</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>採幾步驟（如 8 步驟：提出需求 → 引導隱私空間 → 身分與年齡確認 → 藥師評估 → 衛教＋知情同意 → 交付 → 衛教單＋登錄 → 必要時轉介）？哪些可簡化以利實務？（衛教內容見第 11 章）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">5.4 當場服藥是否採用</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>正方：防轉售／代購、確保黃金期內服用。</li><li>反方：對性暴力受害者之二度傷害、侵犯隱私與自主、實務窒礙（民眾排斥、帶離爭執）。</li><li>折衷：原則當場、特定情形例外？</li></ul>
-      <span class="intl">國際：日本強制當場服用；美、澳、英不要求。</span></div></details>
-    <details class="item"><summary><span class="item-t">5.5 遠距／線上之取捨</span><span class="gate">先決：是否納入？</span></summary>
+    <details class="item"><summary><span class="item-t">6.3 給藥流程步驟</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul>
+            <li><b>流程標準化可弭平諮詢品質落差：</b>藥師諮詢確有落差，但<b>標準化可解</b>——瑞士行之逾 20 年，91% 民眾理解諮詢之必要性、78% 自評提升避孕知識（國際實證）。標準化給藥步驟之設計具實證支持。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>採幾步驟（如 8 步驟：提出需求 → 引導隱私空間 → 身分與年齡確認 → 藥師評估 → 衛教＋知情同意 → 交付 → 衛教單＋登錄 → 必要時轉介）？哪些可簡化以利實務？（衛教內容見第 11 章衛教資源）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">6.4 當場服藥是否採用</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul>
+            <li><b>藥學界傾向「當面服藥」防代購／外流：</b>逐章共識評估顯示藥學界方向一致（新光醫院要求當面服藥防假借他人名義之經驗），可作為討論起點——惟須與「拒絕帶離之處置」（見 12.5）及二度傷害爭點併看（屬研判，非定案）。</li>
+            <li><b>隱私為民眾選擇藥局之主因：</b>國際資料顯示女性於藥局取得緊急避孕藥<b>滿意度 91%</b>（高於處方 58%），隱私、保密、匿名為選擇藥局之主因——當場服藥設計須與此隱私期待權衡（國際實證）。</li>
+            <li><span class="intl">國際：日本強制當場服用；美、澳、英不要求。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>★爭點：是否採當場服藥？</b></li>
+            <li>正方：防轉售／代購、確保黃金期內服用。</li>
+            <li>反方：對性暴力受害者之<b>二度傷害</b>、侵犯隱私與自主、實務窒礙（民眾排斥、帶離爭執）。</li>
+            <li>折衷：原則當場、特定情形例外？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item skip"><summary><span class="item-t">6.5 遠距／線上之取捨</span><span class="skip-note">（無專家附議、可略）</span></summary>
       <div class="item-body"><ul><li>是否納入遠距評估，或一律本人到局？</li></ul>
       <span class="intl">國際：美、澳、英允許線上；日本限本人到局。</span></div></details>
-    <details class="item"><summary><span class="item-t">5.6 代購規範</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+    <details class="item skip"><summary><span class="item-t">6.6 代購規範</span><span class="skip-note">（無專家附議、可略）</span></summary>
       <div class="item-body"><ul><li>政策立場：<b>嚴禁</b>／<b>附條件允許</b>／<b>轉介把關</b>？</li><li>若禁止代購：本人無法到場者之替代路徑（遠距通訊診療婦產科名單，線上看診＋傳真處方）？</li><li>若附條件允許：本人意願確認、防脅迫、不符者轉介之具體機制？</li></ul>
       <span class="intl">國際：日本嚴禁（須本人到局）；澳洲允許但藥師須向代購者確認或電話聯繫本人；英國列為轉介篩檢題。</span></div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§6.1 供應條件（門檻）</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">藥師公會 李懿軒：</span>日本於特定藥局得以非處方藥（無醫師處方箋）取得（他國作法參照）。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>若謹慎規劃試辦，個別婦產科醫師可接受與協助。</li>
+          <li><span class="era">藥師公會投書</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>在藥師專業協助下提供安全、便利之用藥服務。</li>
+        </ul></div>
+        <div class="pgroup"><b>§6.2 販售模式（櫃檯後 BTC）</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>不得開架陳列，須由專業藥事人員用藥指導後方可交付。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>希主管機關於試辦範圍內容許藥師提供處方藥，以避免觸法疑慮。</li>
+        </ul></div>
+        <div class="pgroup"><b>§6.4 當場服藥</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥學國際發展協會 王春玉：</span>新光醫院要求病人當面服藥，以避免假借他人名義購買。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">臨床藥學會 孫淑慧：</span>可請民眾在藥師面前服藥，以避免藥品外流造成不正確使用。</li>
+        </ul></div>
+        <div class="pgroup"><b>§6.6 代購規範</b><ul>
+          <li><span class="era">藥師公會配套</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>以「是否為自己使用」一題作為自用／代購之把關問項。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（3 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">陳柏菁處長：</span>現為處方藥、擬以試辦指示藥方式進行，流程須修改；建議除提出新模式外，也就「現行流程之修改可行性」做比較。</li>
+        <li><span class="who">張文靜常務理事：</span>可參考日本試辦採「當場服用」之配套，此設計之意見收集相當重要（連動 6.4）。</li>
+        <li><span class="who">許銘能顧問：</span>本章架構無問題。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§6.4 當場服藥是否採用</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>以情境類比說明面前服用之壓力：若男性購買 Cialis（犀利士）並被要求在藥師面前立即服用、以證明本人購買且有需求，亦會尷尬不自在——藉此理解女性在藥師面前服用事後避孕藥所面臨之隱私與心理壓力。</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
-<!-- 6 -->
+<!-- 7 隱私保護與獨立諮詢空間（原第6章） -->
+<details class="chapter" data-meeting="4">
+  <summary><span class="ch-title">第 7 章　隱私保護與獨立諮詢空間</span><span class="badge m4">第4場</span><span class="status collected">🟢 第1場已蒐集發言・第4場討論</span></summary>
+  <div class="ch-body">
+    <div class="ch-note">物理空間規格見 3.1；本章專注非物理之隱私設計。許銘能顧問建議：「友善空間」宜擴及獨立諮詢、隱私與資源。</div>
+    <details class="item"><summary><span class="item-t">7.1 隱私原則</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>隱私是支持與反對方共同在意的交集：</b>兒少小組指出青少女正<b>因怕留紀錄／被通報、怕被父母發現</b>而低調轉向藥局，家長團體亦問如何保障隱私；隱私設計同時牽動第 13 章登錄識別（張力：管理可追溯 vs 卻步求助）。傾向以「資訊蒐集最小化＋私人諮詢空間」為共同基準。</li>
+            <li><b>隱私即藥局取得之核心價值（國際實證）：</b>跨國研究顯示<b>隱私、保密、匿名</b>正是女性選擇藥局取得之主因，藥局取得滿意度達 91%（高於處方 58%），佐證隱私友善設計與可近性同向而非相斥。<span class="intsrc">（國際實證，依據投影片 A）</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>本章隱私原則<b>是否納入</b>試辦方案、納入哪些底線？</li>
+            <li>是否明定<b>禁公開叫號／覆核品名</b>、<b>資訊蒐集最小化</b>（不無故留存身分證號／地址）？</li>
+            <li>諮詢區<b>是否禁設監視器／錄音</b>？</li>
+            <li>★<b>藥師自我保護 vs 隱私之張力：</b>藥師與民眾單獨於密閉空間討論非預期性生活，若遭指控性騷擾或感不愉快如何處理？可否裝設錄影機？錄影須告知病人、病人是否同意？此一張力待專家權衡。</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">7.2 友善機制</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>「引導至獨立諮詢空間」已有實務交集：</b>新光經驗為考量隱私、由藥師請病人至用藥指導室充分說明；傾向以「友善機制應涵蓋獨立諮詢、隱私與資源，不止於表面友善」為共同方向。</li>
+            <li><b>降低羞恥／污名為友善機制目的（國際實證）：</b>降低取得時的羞恥與污名有助可近性，與隱私為選擇藥局之主因相呼應。<span class="intsrc">（國際實證，依據投影片 A）</span></li>
+          </ul>
+          <span class="intl">國際：日本提供無聲購藥代碼（silent purchase code），讓民眾免於口頭啟齒即可表達需求。</span>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>友善機制<b>是否納入</b>試辦方案？</li>
+            <li>是否導入<b>無聲需求卡</b>、<b>數位購藥代碼／QR 預約</b>等降低羞恥感之設計？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§7.1 隱私原則</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">臨床藥學會 孫淑慧：</span>日本試辦藥局設私人諮詢室以保障購藥隱私（他國作法參照）。</li>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">兒少權益推動小組：</span>兒少擔心留紀錄、被通報、怕被父母發現，故低調至藥局購買。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 魏書珮：</span>如何保障民眾個人隱私。</li>
+        </ul></div>
+        <div class="pgroup"><b>§7.2 友善機制</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥學國際發展協會 王春玉：</span>新光醫院考量隱私，由藥師請病人至用藥指導室充分說明。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（3 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>由醫師（隱密診間）轉藥師（開放藥局空間）落差大，對受服務者是很大的感受問題；應有獨立諮詢空間，並涵蓋隱私與資源，不只「友善」。</li>
+        <li><span class="who">陳柏菁處長：</span>個資與隱私權保障極受重視；除填寫個資外，蒐集後要做什麼動作、空間如何安排以真正達到保護目的，須多琢磨。</li>
+        <li><span class="who">曹宜蓁處長：</span>創傷個案（疑性侵、家暴）傾向不進婦產科系統，更需隱私保障與可取得之緊急醫療。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§7.1 隱私原則</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>藥師與民眾單獨在房間內討論非預期性生活，若被指控性騷擾、感覺不愉快如何處理？可否裝設錄影機？但錄影須告知病人，病人是否會同意？（藥師自我保護 vs 隱私之張力）</li>
+        </ul>
+      </div></details>
+  </div>
+</details>
+
+<!-- 8 用藥年齡限制（原第7章） -->
+<details class="chapter" data-meeting="4">
+  <summary><span class="ch-title">第 8 章　用藥年齡限制</span><span class="badge m4">第4場</span><span class="status collected">🟢 第1場已蒐集發言・第4場討論</span></summary>
+  <div class="ch-body">
+    <details class="item"><summary><span class="item-t">8.1 最低年齡門檻</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul><li><b>2016 配套政策已定「17 歲以上」：</b>衛福部／食藥署 2016 配套規劃限制使用年齡為 17 歲以上；藥師公會說帖亦援引沿用。此為過去唯一具體浮現過的年齡數字。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>共識傾向「保留年齡門檻」：</b>過去各界傾向設門檻，醫界／兒科並不反對設限，但對「16–18 歲未成年之納入」要求謹慎評估與配套。可收斂方向為<b>保留門檻、以 17 歲為起點討論，並搭配未成年配套（轉介、最佳利益）</b>。</li>
+            <li><b>實證不支持「降低門檻即助長危險行為」：</b>國際資料顯示放寬取得後，青少女性伴侶數、保險套使用等行為模式無顯著差異，32 國 24 年資料無有害濫用跡象；整體墮胎率未上升（歐洲 15 年後青少女降 40%）。<span class="intl">國際實證（放寬取得後行為無顯著差異、32 國 24 年無有害濫用跡象），非台灣數據。</span></li>
+            <li><span class="intl">國際年齡做法：英國 Fraser 逐案評估；日本 2026 取消年齡與家長同意（家長同意曾成「巨大現實障礙」）；美國全面開放、無年齡限制；WHO 主張不應以年齡作為取得障礙。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★<b>門檻數字之分歧：</b>選項為<b>以 16 歲為界</b>（接軌刑法性自主年齡）／<b>17 歲</b>（沿用 2016 政策）／<b>英國 Fraser 逐案評估能力</b>／<b>不設年齡限制</b>。核心張力：保護未成年 vs 避免將最需要的弱勢拒於門外。</li>
+            <li>是否如兒少小組建議，<b>試辦前先以問卷調查</b>釐清年齡觀念差異及城鄉醫療差異，再定門檻？</li>
+            <li><span class="draft">〔第 1 場建議新增〕</span>是否採鄭威主任書面之「保護地板」框架——以國際最高標準（Fraser、低齡絕對門檻、強制通報、家長同意／陪同）作為未成年保護下限？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">8.2 未滿門檻者之處置</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>共識——不應直接排除，而應轉介：</b>社福與兒科一致認為，年齡不符者（尤 16 歲以下）應轉介合適機關、以「孩子最佳利益」為念，而非拒於門外（連動第 10 章轉介、§12.6 性侵應急）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul><li>未滿門檻者之具體處置：是否拒絕直接給藥、啟動保護轉介（對接婦產科／兒少保護責任醫院）？轉介對象與銜接流程如何訂定，以兼顧可近性與安全性？</li></ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">8.3 兒少高風險強制通報</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul><li><b>國際以制度配套處理兒少高風險：</b>英國要求藥師受兒少保護 Level 3＋兒童性剝削（CSE）辨識訓練並建立法定轉介路徑；日本對 13 歲以下啟動兒少保護程序。可作為我國 SOP 設計之參照。<span class="intl">英／日，國際做法。</span></li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>疑性侵／性剝削／家暴／脅迫之 SOP（安全隔離、勿盥洗保全證據、24h 內通報 113、對接一站式中心）哪些列為必備？（連動第 12 章應急、第 10 章轉介）</li>
+            <li>★<b>通報之嚇阻疑慮：</b>有意見指強制通報恐產生嚇阻、反使最需要者卻步——如何在「兒少保護」與「不嚇阻就醫」間取得平衡？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">8.4 家長同意／陪同</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul><li><b>國際趨勢在「鬆綁家長同意」：</b>日本試辦曾要求 16–17 歲家長陪同，實務造成遭拒障礙，2026 正式版已取消年齡與家長同意之要求；此前例可作為研判家長角色之依據。<span class="intl">日本，國際做法。</span></li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★<b>是否要求家長同意／陪同？</b>過去各界較少具名表態，實質爭點在於：青少女選擇藥局正為隱私，若須家長知情恐使最需要者卻步；對成年女性則較無爭議。</li>
+            <li>如設家長同意／陪同要求，如何避免重蹈日本「遭拒障礙」之實務問題？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（2016 配套規劃・食藥署歷次會議）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§8.1 最低年齡門檻</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span>限制使用年齡為 17 歲以上。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">兒科醫學會 彭純芝：</span>執行初期即涵蓋 16–18 歲未成年者須謹慎評估。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組：</span>建議試辦前先問卷調查，確認年齡觀念差異及城鄉醫療差異。</li>
+          <li><span class="era">藥師公會說帖</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會全聯會：</span>援引 2016 年政策，開放 17 歲以上婦女至藥局購買 LNG，並在藥事人員指導下使用。</li>
+        </ul></div>
+        <div class="pgroup"><b>§8.2 未滿門檻者之處置</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">勵馨 曹宜蓁：</span>年齡不符者（尤其 16 歲以下）應研議轉介下一個合適機關，而非直接排除在外。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">兒科醫學會 彭純芝：</span>應著重未成年但有性行為孩子之最佳利益，平衡可近性與安全性。</li>
+        </ul></div>
+        <div class="pgroup"><b>§8.4 家長同意／陪同</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">臨床藥學會 孫淑慧：</span>日本開放 16 歲以上青少年取得父母同意、由父母陪同購買（他國作法參照）。</li>
+        </ul></div>
+      </div></details>
+    <details class="voices"><summary>第 1 場專家發言（5 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">陳柏菁處長：</span>年齡分界宜由醫療專業判斷，輔以民法成年 18 歲即可；勿將民法（18 歲）與刑法（性自主 16 歲）混為一談；給藥與追究法律責任是兩回事。</li>
+        <li><span class="who">鄭天立委員：</span>質疑家長陪同／同意之必要——青少女選擇藥局正為隱私，若須家長知情，已告知者多會直接就醫；爭議核心在家長角色之界定，對成年女性則較無爭議。</li>
+        <li><span class="who">張維君理事長：</span>日本今年才取消 16、17 歲須家長帶同之規定。</li>
+        <li><span class="who">張甫軒常務理事：</span>未成年保護宜更周全（如疫苗政策已及於男生）；並以韓國少女平均初次性經驗約 15 歲為背景示警（自陳缺我國對應數據）。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>未成年保護以國際最高標準為「保護地板」（Fraser、低齡絕對門檻、強制通報、家長同意／陪同）。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§8.3 兒少高風險強制通報</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>未成年人購買還要被通報、與其性交的人違法，他們應該也不會來買——通報恐產生嚇阻、反使最需要者卻步。</li>
+        </ul>
+        <b>§8.4 家長同意／陪同</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>未成年不能購買、還需要家長同意，這一群高風險的人，大概就不會買了——門檻恐使最需要者卻步。</li>
+        </ul>
+      </div></details>
+  </div>
+</details>
+
+<!-- 9 醫療團隊協作模式（原第8章） -->
 <details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 6 章　隱私保護與友善空間</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 9 章　醫療團隊協作模式</span><span class="badge m2">第2場</span><span class="status collected">🟢 第1場已蒐集發言・第2場討論</span></summary>
   <div class="ch-body">
-    <div class="ch-note">物理空間規格見 2.1；本章專注非物理之隱私設計。</div>
-    <details class="item"><summary><span class="item-t">6.1 隱私原則</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>禁公開叫號／覆核品名、資訊蒐集最小化（不無故留存身分證號／地址）、諮詢區是否禁監視器／錄音？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">6.2 友善機制</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否導入無聲需求卡、數位購藥代碼／QR 預約（降低羞恥感）？</li></ul>
-      <span class="intl">國際：日本提供無聲購藥代碼。</span></div></details>
+    <details class="item"><summary><span class="item-t">9.1 協作模式</span><span class="gate info">說明</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>共識在「醫藥合作」：</b>醫師、藥師、社福各方皆樂見醫藥專業共同合作，並皆推日本「區域聯防」為範本。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>三種協作模式（討論基礎）：
+              <div class="models">
+                <div><b>模式一</b>：婦產科院內＋院所之藥局</div>
+                <div><b>模式二</b>：診所處方＋藥局協作（雙向合作）</div>
+                <div><b>模式三</b>：社區藥局主導、無需處方（試辦研議重點）</div>
+              </div>
+            </li>
+            <li>★<b>主從與比例之分歧：</b>婦產科路徑（模式一、二）應為主要途徑（婦產科普及、不限偏鄉、可超音波評估更保障安全）vs 聚焦模式三（模式一、二已既定、不必全部重看）；並須訂醫藥比例（建議 1 婦產科 : 3–4 藥局，以免醫院承接負擔過大）。</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">9.2 跨模式一致性設計</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li>宜<b>先釐清婦產科診所遇此類病人之現行 SOP</b>，作為各協作模式間流程一致性與銜接設計之基礎。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>邀請婦產科醫學會分享「婦產科診所遇此類病人之現行 SOP」</b>，作為各協作模式間流程一致性與銜接設計之基礎。</li>
+            <li>三模式之<b>訓練、評估工具、衛教、通報機制</b>哪些<b>要求一致</b>（以利跨模式成效比較）、哪些可因模式調整？婦產科處方與院內購買是否依同一 SOP？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">9.3 高風險個案承接轉介</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>強共識——高風險／不符適應症即轉婦產科：</b>連對轉類持反對之醫師亦認同藥師轉介機制；高風險個案（疑不完全流產、子宮外孕）宜由婦產科經超音波評估。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>高風險個案承接轉介機制如何設計</b>，以回應「移除醫師監督後特殊情況風險」之婦產科顧慮？疑性侵／禁忌症／超時等個案之具體承接轉介流程（連動第 10 章）。</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§9.1 協作模式（模式一／二／三）</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>可比照日本診所與藥局合作、簽署同意書、藥師面談與回診機制。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>可學習日本地方醫院／醫師與藥局／藥師之區域聯防策略。</li>
+          <li><span class="era">114-04 會議</span><span class="st-sup">〔支持〕</span><span class="who">勵馨 曹宜蓁：</span>非常樂見醫療專業與藥品專業共同合作。</li>
+        </ul></div>
+        <div class="pgroup"><b>§9.3 高風險個案承接轉介</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 張必正：</span>非婦產科醫師多會轉介至婦產科；建議病人用藥前先至附近婦產科檢查。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>病人涉刑民法年齡或不符適應症時，藥師可轉介至附近婦產科診所。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">醫師公會 鄭英傑：</span>醫藥合作需考量比例，日本東京 20 藥局僅 3 醫院造成負擔過大；建議維持 1 婦產科診所對 3–4 藥局之合理比例。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（6 則・含 1 項分歧）</summary>
+      <div class="vbody"><ul>
+        <li><span class="conflict">★分歧（模式一、二 vs 模式三）：</span><span class="who">張維君理事長、張甫軒常務理事</span>主張婦產科路徑（模式一、二）應為主要途徑——我國婦產科診所普及、不限偏鄉、週一至週日可就醫，事後藥之風險與併發症（不完全流產、子宮外孕）宜經婦產科超音波評估，較藥局取藥更保障病人安全；<span class="who">孫淑慧主任</span>則建議聚焦模式三（藥局以指示藥方式提供），模式一、二已為既定良好合作模式，不必全部重看。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>主張保留醫師參與之模式一、二為主要路徑，模式三設責任鏈與利益迴避。</li>
+        <li><span class="who">許銘能顧問：</span>「協作模式」宜明確主詞為「醫療團隊的協作模式」。</li>
+        <li><span class="who">張文靜常務理事：</span>建議先釐清婦產科診所遇此類病人之現行 SOP，作為各協作模式間流程一致性與銜接設計之基礎（連動 9.2）。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§9.2 跨模式一致性設計</b><ul>
+          <li><span class="st-neu">〔疑問〕</span>婦產科診所處方與院內購買，是否也依照同樣的 SOP？（跨模式流程一致性之疑問）</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
-<!-- 7 -->
+<!-- 10 醫療與社福轉介機制（原第9章） -->
 <details class="chapter" data-meeting="2">
-  <summary><span class="ch-title">第 7 章　年齡限制</span><span class="badge m2">第2場</span><span class="status">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 10 章　醫療與社福轉介機制</span><span class="badge m2">第2場</span><span class="status collected">🟢 第1場已蒐集發言・第2場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">7.1 最低年齡門檻</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>選項：<b>以 16 歲為界</b>（接軌刑法性自主年齡）／<b>英國 Fraser 逐案評估能力</b>／<b>不設年齡限制</b>。</li><li>核心張力：保護未成年 vs 避免將最需要的弱勢拒於門外。</li></ul>
-      <span class="intl">國際：英國 Fraser 逐案評估；日本 2026 取消年齡與家長同意（家長同意曾成「巨大現實障礙」）；美國全面開放、無年齡限制；WHO 主張不應以年齡作為取得障礙。</span></div></details>
-    <details class="item"><summary><span class="item-t">7.2 未滿門檻者之處置</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否拒絕直接給藥、啟動保護轉介（對接婦產科／兒少保護責任醫院）？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">7.3 兒少高風險強制通報</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>疑性侵／性剝削／家暴／脅迫之 SOP（安全隔離、勿盥洗保全證據、24h 內通報 113、對接一站式中心）？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">7.4 家長同意／陪同</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否要求家長同意／陪同？</li></ul>
-      <span class="intl">國際：日本試辦曾要求 16–17 歲家長陪同 → 實務造成遭拒障礙。</span></div></details>
+    <details class="item"><summary><span class="item-t">10.1 強制轉介門檻</span><span class="tag-hot">★重點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>共識「藥局須具資源連結與轉介機制」</b>（婦女團體與醫師公會皆主張）；高風險個案（疑不完全流產、子宮外孕）宜由婦產科經超音波評估。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>四類轉介門檻（討論基礎）：①超時 72–120h（LNG 失效）②臨床風險（劇烈腹痛、疑既往妊娠、3 週內異常大出血）③頻繁重複（30 日內 &gt;1 次）④法律社會保護（未滿年齡門檻、家暴／性侵／性剝削 → 轉社工／婦援／社會局）。</li>
+            <li>各門檻屬<b>「強制轉介」或「建議轉介」</b>？藥師裁量空間多大？</li>
+            <li>超時是否<b>強制</b>轉介評估 UPA／IUS？頻繁重複是否<b>拒絕給藥</b>並轉婦產科建立常規避孕／LARC？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">10.2 轉介工具與雙向回報</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>標準化轉介單（紙本＋電子）</b>之格式為何？是否要求<b>雙向回報</b>（確認個案完成轉介）？MOU 範本由誰制定？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§10.1 強制轉介門檻</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦女團體全國聯合會 宋順蓮：</span>社區藥局應具資源連結及轉介，及時提供專業團體或醫療資源。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>應納入轉介機制（搭配事前評估、用藥紀錄、衛教與安全性行為）。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（3 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">鄭文柏常務理事：</span>試辦藥局務必與鄰近婦產科診所密切結合，遇高風險個案應即時轉介。</li>
+        <li><span class="who">張甫軒常務理事：</span>高風險個案（疑不完全流產、子宮外孕等）應由婦產科經超音波評估，較就近藥局取藥安全（其與張維君理事長主張婦產科路徑為主之論點詳第 9 章）。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>性侵／性剝削之性侵害責任醫院（一站式服務）轉介與強制轉介把關。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 8 -->
+<!-- 11 衛教資源（原第11章，維持） -->
 <details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 8 章　協作模式架構</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
-  <div class="ch-body">
-    <details class="item"><summary><span class="item-t">8.1 協作模式</span><span class="gate info">說明</span></summary>
-      <div class="item-body"><div class="models">
-        <div><b>模式一</b>：婦產科院內＋院所之藥局</div>
-        <div><b>模式二</b>：診所處方＋藥局協作（試辦計劃雙向合作）</div>
-        <div><b>模式三</b>：社區藥局主導、無需處方（試辦計劃研議重點）</div>
-      </div></div></details>
-    <details class="item"><summary><span class="item-t">8.2 跨模式一致性設計</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>三模式之訓練、評估工具、衛教、通報機制是否要求一致（以利跨模式成效比較）？哪些可因模式調整？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">8.3 高風險個案承接轉介</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>疑性侵／禁忌症／超時等個案之承接轉介機制如何設計，以回應婦產科顧慮？（連動第 9 章）</li></ul></div></details>
-  </div>
-</details>
-
-<!-- 9 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 9 章　醫療與社福轉介機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
-  <div class="ch-body">
-    <details class="item"><summary><span class="item-t">9.1 強制轉介門檻</span><span class="tag-hot">★重點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>超時：72–120h（LNG 失效）→ 是否強制轉介評估 UPA／IUS？</li><li>臨床風險：劇烈腹痛、疑既往妊娠、3 週內異常大出血 → 轉介基準與話術。</li><li>頻繁重複：30 日內 &gt;1 次 → 是否拒絕給藥並轉婦產科建立常規避孕／LARC？</li><li>法律社會保護：未滿年齡門檻、家暴／性侵／性剝削 → 轉社工／婦援／社會局。</li><li>各門檻是「強制轉介」或「建議轉介」？藥師裁量空間多大？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">9.2 轉介工具與雙向回報</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>標準化轉介單（紙本＋電子）格式？是否要求雙向回報（確認個案完成轉介）？MOU 範本由誰制定？</li></ul></div></details>
-  </div>
-</details>
-
-<!-- 10 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 10 章　藥品追蹤追溯</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
-  <div class="ch-body">
-    <details class="item"><summary><span class="item-t">10.1 登錄識別方式（隱私 vs 防濫用）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>選項：①<b>完全匿名碼</b>（最大隱私，難防跨店重複）；②<b>健保卡雜湊值</b>（可跨店比對防囤積，涉個資）；③藥局／藥師代碼＋年齡層等去識別欄位。</li><li>核心張力：與第 6 章「資訊蒐集最小化／隱私友善」直接衝突。</li></ul><span class="intl">註：「健保卡雜湊值」＝將卡號<b>單向加密</b>成不可還原的固定代碼；同一張卡每次算出同一串碼，故可比對「同一人重複購買」卻不留存卡號本身，屬<b>去識別</b>而非完全匿名。</span></div></details>
-    <details class="item"><summary><span class="item-t">10.2 登錄欄位與時限</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>登錄哪些欄位（藥局／藥師代碼、購藥者年齡層、行為後投藥時間、是否當場服藥／簽同意書、處置結果）？時限（如 24h 內）？平台由誰建置維運（如「Pharm-Taiwan」）？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">10.3 防轉售／跨店濫用</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>重複購買警示規則（如同碼／健保卡雜湊 30 日內 &gt;1 次 → 紅燈）、每次限單次劑量、系統聯網防跨店囤積——採用哪些？（連動 9.1、5.6 代購）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">10.4 供應鏈與定價透明</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>採購、庫存、效期控管；建議售價是否公開；缺貨防範與「多廠商一致性」流向管控（連動第 1 章）？</li></ul>
-      <span class="intl">國際：日本建議售價 7,480 日圓、透明定價。</span></div></details>
-  </div>
-</details>
-
-<!-- 11 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 11 章　衛教資源</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+  <summary><span class="ch-title">第 11 章　衛教資源</span><span class="badge m3">第3場</span><span class="status collected">🟢 第1場已蒐集發言・第3場討論</span></summary>
   <div class="ch-body">
     <details class="item"><summary><span class="item-t">11.1 個案當下衛教</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>交付時之解說資料、口頭標準話術、書面單張，三者是否皆須標準化？</li><li>衛教內容是否涵蓋雙重避孕（常規避孕＋保險套）、STI、LARC？</li></ul></div></details>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul><li>衛福部 2016（105-12）配套既定：<b>須由藥事人員提供衛教單張後方可交付藥品</b>——「先衛教、後交付」為既有政策基準。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>全場最高共識之一——衛教是核心配套、應標準化</b>：醫界、藥師、家長、社福一致認同須告知<b>非 100% 有效／不防性病／正確用法／雙重避孕</b>；連對轉類有疑慮之醫師亦同意「衛教應做，惟藥局較難達醫師宣導之深度」。傾向以<b>藥師公會配套之告知清單</b>為定稿基礎（含藥物交互作用、性侵通報、不良反應、理解度回饋）。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>交付時之解說資料、口頭標準話術、書面單張，<b>三者是否皆須標準化</b>？（連動第 6 章給藥流程）</li>
+            <li>衛教內容是否涵蓋<b>雙重避孕（常規避孕＋保險套）、STI、LARC、兩性責任</b>？範圍界線為何？</li>
+          </ul>
+        </div>
+      </div></details>
     <details class="item"><summary><span class="item-t">11.2 對外衛教素材定位</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否以「<b>生殖健康／月經週期</b>」為主軸、強調<b>緊急避孕非常規避孕</b>（避免以「避孕」為主標）？（呼應啟動會議結論）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">11.3 多語與上架通路</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識／前例可定調</b>
+          <ul>
+            <li><b>共識——衛教導向應強調「ECP ≠ 常規避孕」、與性教育及性病防治政策整合，並以衛教取代禁止</b>：兒少、家長、藥學、社福一致；多方更主張延伸至<b>學校性教育與跨部會推動</b>（小學至大學）。</li>
+            <li><b>國際前例</b>：針對「誤認為墮胎藥」之認知疑慮，日／英以<b>標準化衛教單張＋藥師一對一說明</b>釐清「延遲排卵 ≠ 墮胎」（日本服用前說明同意書、英國 PGD 諮詢）。<span class="intl">國際數字／作法，非台灣現況。</span></li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>是否以「<b>生殖健康／月經週期</b>」為主軸、強調<b>緊急避孕非常規避孕（補救≠常規、常規優先）</b>（避免以「避孕」為主標）？（呼應啟動會議結論）</li>
+            <li>包裝／仿單／衛教素材之文字是否<b>先經民眾閱讀測試</b>確認看得懂？<b>標示項目清單（含副作用注意事項）</b>為何？<span class="psrc">（自 §2.3 包裝與廣告移入討論）</span></li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item skip"><summary><span class="item-t">11.3 多語與上架通路</span><span class="skip-note">（無專家附議、可略）</span></summary>
       <div class="item-body"><ul><li>是否提供多語版本（新住民，涵蓋諮詢服務與衛教素材）？上架通路（藥局、醫療院所、校園、社福、網站）涵蓋範圍？</li></ul></div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§11.1 個案當下衛教</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>須由藥事人員提供衛教單張後方可交付藥品。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>醫師於就診取藥時可宣導避孕、生殖健康及健檢（如抹片），此部分藥局難達成。</li>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 鄭威：</span>實務上已可於藥局購買，但藥師並未實際提供衛教。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>可近性討論應首重民眾衛生教育（含常規避孕藥及保險套）。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會 李懿軒：</span>用藥指導含「非 100% 有效」、藥物交互作用、不防性病、性侵通報、不良反應、理解度回饋。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>用藥前明確告知服藥後可能不良反應及應注意事項。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">家長聯盟 魏書珮：</span>若倡導偏鄉可近性，應落實安全性行為衛教與性觀念導正。</li>
+          <li><span class="era">藥師公會配套</span><span class="st-rec">〔建議〕</span><span class="who">藥師公會全聯會：</span>藥師須告知非 100% 有效、不防性病／HIV、正確使用方式。</li>
+        </ul></div>
+        <div class="pgroup"><b>§11.2 對外衛教素材定位</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組 戴瑀如：</span>應透過衛教宣導 ECP 風險及與事前藥、墮胎藥之差異，而非以禁止轉類處理。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">家長聯盟 鄭威：</span>須提供更完善 ECP 衛教資料，並與性傳染病及未成年懷孕政策統一。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組 鄭天立：</span>學校端應有足夠性教育與避孕藥知識，並關注非學校型態實驗教育學生之取得管道。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">台灣藥學會 高雅慧：</span>性教育需政府跨部會推動（小學至大學課程設計）。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">勵馨 曹宜蓁：</span>相關藥之辨別與使用應納入國人性教育（醫、藥、司法、社福、教育五面向）。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（4 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>衛教範疇甚廣，不應僅限「用藥」，宜涵蓋給予個案之相關措施。</li>
+        <li><span class="who">鄭天立委員：</span>教育至關重要——學校健康教育落實程度難評估、青少年相關知識不足；應從性教育與兒少視角著手。</li>
+        <li><span class="who">曹宜蓁處長：</span>衛教與教育是專業，涉法律、心理、資源（連動第 4 章藥師培訓）。</li>
+        <li><span class="who written">鄭威主任（書面、家長立場）：</span>衛教完整性——補救≠常規、常規避孕優先、性病防治、兩性責任、重複使用風險。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 12 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 12 章　服藥者追蹤機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+<!-- 12 服藥者追蹤與服藥後應急處理（★原第12章前移＋原第13章應急部分） -->
+<details class="chapter" data-meeting="5">
+  <summary><span class="ch-title">第 12 章　服藥者追蹤與服藥後應急處理</span><span class="badge m5">第5場</span><span class="status collected">🟢 第1場已蒐集發言・第5場討論</span></summary>
   <div class="ch-body">
+    <div class="ch-note">★第 1 場調整：依「個案導向」思路，服藥者（病人）追蹤前移至藥品追蹤之前；並將原稽核章之「應急機制」併入本章（用藥後風險之處理）。</div>
     <details class="item"><summary><span class="item-t">12.1 第 21 天追蹤是否「強制」</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>選項：①<b>強制</b>第 21 天衛教自行驗孕或回婦產科確認；②<b>主動關懷但非強制</b>（簡訊／LINE 提醒，回填自願）；③僅提供衛教指引、不主動追蹤。</li><li>核心張力：化解婦產科「移除醫師後漏診異位妊娠」疑慮 vs 追蹤可行性與隱私。</li></ul>
-      <span class="intl">國際：日本訂有 3 週後追蹤規範。</span></div></details>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul>
+            <li>國際前例支持「設追蹤時點」：<b>日本訂有 3 週後追蹤規範</b>，可作試辦追蹤架構之參照。<span class="intl">國際：日本訂有 3 週後追蹤規範。</span></li>
+            <li>婦產科「漏診異位妊娠」之核心疑慮，國際以<b>非醫師端紅旗指標評估＋即時轉介</b>處理（藥局須持可對接之婦產科名單；日本經驗）——須留意此為「無醫師時漏診之偵測」問題，與「轉類是否增加子宮外孕<b>發生率</b>」係不同提問（系統性回顧顯示轉類不增子宮外孕發生率〔國際實證〕，惟不能取代漏診之偵測機制）。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：第 21 天追蹤是否納入？</b>若納入，採何強制程度——①<b>強制</b>第 21 天衛教自行驗孕或回婦產科確認；②<b>主動關懷但非強制</b>（簡訊／LINE 提醒，回填自願）；③僅提供衛教指引、不主動追蹤？</li>
+            <li>★爭點：化解婦產科<b>漏診異位妊娠</b>疑慮 vs 追蹤<b>可行性與隱私</b>之張力——強制性愈高愈能化解漏診疑慮，但恐衝擊隱私與可近性、且完成率未必提升（連動 §12.3 完成率難題）。</li>
+          </ul>
+        </div>
+      </div></details>
     <details class="item"><summary><span class="item-t">12.2 追蹤時點與措施</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否採三階段（48h 內衛教指引／第 7–14 天匿名簡訊確認異常／第 21 天驗孕或回診）？各階段措施？</li></ul></div></details>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>「用藥後須追蹤」方向一致</b>（醫師公會、製藥工業公會皆強調事後追蹤之重要）——共識在「應追蹤」，惟細部時點與措施待設計（研判，討論起點）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>是否採三階段——48h 內衛教指引／第 7–14 天匿名簡訊確認異常／第 21 天驗孕或回診？各階段具體措施與分工為何？</li>
+          </ul>
+        </div>
+      </div></details>
     <details class="item"><summary><span class="item-t">12.3 追蹤工具與指標</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>工具（簡訊／官方 LINE 連結填表）、追蹤完成率、回診率、不良事件通報路徑？（可借鏡疫苗線上申報模式）</li></ul></div></details>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li><b>追蹤內容方向一致</b>：宜含月經週期／出血量變化、是否避孕失敗、若懷孕之後續處理（婦產科醫學會）——指標清單可循此收斂。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>採何工具（簡訊／官方 LINE 連結填表，可借鏡疫苗線上申報模式）？訂哪些指標（追蹤完成率、回診率、不良事件通報路徑）？</li>
+            <li>★待解難題——<b>完成率與強制性</b>：兒科以<b>日本「約 8 成未做後續檢查／諮詢」</b>示警，全面販售後用藥情況恐難掌控；追蹤如何設計才能兼顧完成率與非強制？（連動 §12.1 是否強制）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">12.4 服藥後特殊情形通報清單（◆併自原稽核章）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有前例可定調</b>
+          <ul><li>國際前例提供現成清單基礎：可<b>借鏡日本 12 類通報事件</b>（過敏、嚴重嘔吐、暈厥、確認懷孕、異位妊娠疑慮、異常出血、情緒危機、年齡特殊、疑遭脅迫、未完成諮詢即販售、連續多次購買、其他）作為起點。<span class="intl">國際：借鏡日本 12 類通報事件。</span></li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>若採日本 12 類為基礎，<b>增刪哪些類別</b>？通報之路徑、權責與時限為何？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">12.5 拒絕當場服藥之處置（◆併自原稽核章）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li>藥學界以<b>「當面服藥」防代購／外流</b>之方向一致（新光經驗）——本節之處置須與此防外流取向併看（連動 6.4 當場服藥決議）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>本節以 6.4 議定採「當場服藥」為前提。</li>
+            <li>★爭點：充分溝通後仍<b>堅持帶離</b>者 → 是否<b>拒絕交付</b>？或<b>允許帶離但登錄列管</b>？（連動 6.4、6.6 代購、13.3）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">12.6 暴力／脅迫／疑性侵應急 SOP（◆併自原稽核章）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li>社福與兒少一致：<b>性侵情境女性更需及時可取得 ECP</b>，並主張<b>結合社福團體支持、推廣家暴及性侵害主動通報</b>——可收斂為將藥局列為<b>性暴力防治前端＋主動通報 SOP</b>（研判，連動第 8 章兒少通報、第 10 章轉介）。</li>
+            <li>國際前例佐證配套方向：英／澳／日／美均要求藥師受<b>兒少保護與性剝削辨識訓練</b>並建立<b>法定轉介路徑</b>（如 SARC／1800RESPECT；國際配套）。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>哪些項目列為<b>必備 SOP</b>——單獨引導入室、一鍵無聲報警、防治單張／113、對接性侵害責任醫院、保全證據（勿盥洗）？（連動第 8 章）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§12.2 追蹤時點與措施</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">醫師公會 鄭英傑：</span>應納入事後調查追蹤。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">製藥工業公會 蘇美惠：</span>用藥後之後續追蹤亦非常重要。</li>
+        </ul></div>
+        <div class="pgroup"><b>§12.3 追蹤工具與指標</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>服藥後追蹤應含月經週期／出血量變化、是否避孕失敗、若懷孕之後續處理。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">兒科醫學會 彭純芝：</span>日本約 8 成未做後續檢查／諮詢，全面販售後用藥情況恐難掌控。</li>
+        </ul></div>
+        <div class="pgroup"><b>§12.6 暴力／脅迫／疑性侵應急 SOP</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">勵馨 曹宜蓁：</span>受性侵女性事發當下憂面對司法，可能更需於藥局取得 ECP 進行緊急避孕。</li>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">兒少權益推動小組：</span>女性發生非自願性行為時，希望能及時取得 ECP。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">勵馨 曹宜蓁：</span>可納入社福團體支持，推廣家暴及性侵害之主動通報。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（4 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>服藥者（病人）追蹤宜放在藥品追蹤之前（個案導向）；應急機制宜與追蹤同列（追蹤過程中產生之應急處理）。</li>
+        <li><span class="who">陳柏菁處長：</span>應急是用藥後發生風險之處理，宜與「稽核」脫鉤、獨立呈現。</li>
+        <li><span class="who">張甫軒常務理事：</span>臨床上少女可能因不完全流產誤認月經、或子宮外孕，服藥後之警覺與追蹤格外重要。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>服藥後追蹤（子宮外孕延誤、心理困擾）；暴力／脅迫／疑性侵 SOP 與通報。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 13 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 13 章　稽核與應急機制</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+<!-- 13 藥品追蹤追溯（★原第10章後移） -->
+<details class="chapter" data-meeting="5">
+  <summary><span class="ch-title">第 13 章　藥品追蹤追溯</span><span class="badge m5">第5場</span><span class="status collected">🟢 第1場已蒐集發言・第5場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">13.1 特殊情形通報清單</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否採日本 12 類事件為基礎（過敏、嚴重嘔吐、暈厥、確認懷孕、異位妊娠疑慮、異常出血、情緒危機、年齡特殊、疑遭脅迫、未完成諮詢即販售、連續多次購買、其他）？增刪哪些？</li></ul>
-      <span class="intl">國際：借鏡日本 12 類通報事件。</span></div></details>
-    <details class="item"><summary><span class="item-t">13.2 拒絕當場服藥之處置</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>若 5.4 議定採「當場服藥」，則充分溝通後仍堅持帶離者 → 是否拒絕交付？或允許帶離但登錄列管？（連動 5.4、5.6 代購、10.3）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">13.3 暴力／脅迫／疑性侵 SOP</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>單獨引導入室、一鍵無聲報警、防治單張／113、對接性侵害責任醫院、保全證據（勿盥洗）——哪些列為必備 SOP？（連動第 7 章）</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">13.4 稽核分工</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>三方分工是否為——食藥署制定規則／地方衛生局現場稽查／藥師公會自律通報？稽查頻率與罰則？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">13.1 登錄識別方式（隱私 vs 防濫用）</span><span class="tag-hot">★爭點</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>「身分確認」被多方認定為最大難關：</b>家長團體、兒科均憂無法正確確認身分（日本檢討亦點出），共識傾向此為登錄設計之根本張力——<b>管理可追溯性 vs 隱私友善與可近性</b>，須在兩者間權衡。</li>
+            <li><b>隱私正是藥局取得之優勢（國際實證）：</b>國際研究顯示藥局取得女性滿意度達 <b>91%</b>（高於處方途徑 58%），且「隱私、保密、匿名」即為民眾選擇藥局之主因——過度登錄恐使重視隱私之青少女卻步。傾向採去識別、欄位精簡設計。〔國際實證〕</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入登錄識別？</b>若納入，採何種識別方式——①<b>完全匿名碼</b>（最大隱私，難防跨店重複）；②<b>健保卡雜湊值</b>（可跨店比對防囤積，涉個資）；③藥局／藥師代碼＋年齡層等去識別欄位？</li>
+            <li>★<b>爭點——核心張力：</b>登錄識別與第 7 章「資訊蒐集最小化／隱私友善」直接衝突，如何取捨？</li>
+            <li>★製藥界提案「<b>由醫師開立釋出處方以確立身分</b>」是否採納？（須注意此實質回到處方藥模式，與轉類核心目的相悖）</li>
+          </ul>
+          <span class="intl">註：「健保卡雜湊值」＝將卡號<b>單向加密</b>成不可還原的固定代碼；同一張卡每次算出同一串碼，故可比對「同一人重複購買」卻不留存卡號本身，屬<b>去識別</b>而非完全匿名。</span>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">13.2 登錄欄位與時限</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>登錄須結合既有制度：</b>藥事法已有登錄平台與制度，共識傾向若以類指示藥方式處理，登錄設計應<b>結合既有平台一併設計</b>，而非另起爐灶。</li>
+            <li><b>「未納健保致用藥資訊難掌握」為實務缺口：</b>藥師公會指未納健保藥物僅能詢問記錄；兒科主張身分與用藥資訊應可供後續診治醫師查詢——惟此須與隱私去識別需求權衡。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>登錄哪些欄位（藥局／藥師代碼、購藥者年齡層、行為後投藥時間、是否當場服藥／簽同意書、處置結果）？</li>
+            <li>登錄<b>時限</b>（如 24h 內）為何？平台由誰<b>建置維運</b>（如「Pharm-Taiwan」）？</li>
+            <li><span class="draft">〔第 1 場建議新增〕</span>給藥登錄是否<b>上傳雲端以利後續治療參考</b>？（鄭威主任書面提案；須與去識別、隱私權衡）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">13.3 防轉售／跨店濫用</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul>
+            <li><b>2016 配套既定防濫用基礎：</b>衛福部／食藥署 2016 年規劃以<b>單次所需量為包裝量</b>，並加強<b>查核／監測</b>使用情形（防囤積、濫用）。〔衛福部 105-12 焦點新聞〕</li>
+          </ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>「當面服藥防外流」為藥學界共識走向：</b>傾向以藥師面前服藥避免假借他人名義購買、藥品外流（連動 6.4 當場服藥）。</li>
+            <li><b>國際實證：無有害濫用跡象。</b>32 國 24 年資料顯示放寬取得後無有害濫用跡象；<b>頻繁使用宜視為「需長效避孕」之轉介訊號</b>，而非單純濫用。〔國際實證〕</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：是否納入？</b>採用哪些防濫用機制——重複購買<b>警示規則</b>（如同碼／健保卡雜湊 30 日內 &gt;1 次 → 紅燈）、每次限單次劑量、系統<b>聯網防跨店囤積</b>？（連動 10.1、6.6 代購）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item skip"><summary><span class="item-t">13.4 供應鏈與定價透明</span><span class="skip-note">（無專家附議、可略）</span></summary>
+      <div class="item-body"><ul><li>採購、庫存、效期控管；建議售價是否公開；缺貨防範與「多廠商一致性」流向管控（連動第 2 章）？</li></ul>
+      <span class="intl">國際：日本建議售價 7,480 日圓、透明定價。</span></div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§13.1 登錄識別方式</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">家長聯盟 魏書珮：</span>如何正確確認民眾身分。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">兒科醫學會 彭純芝：</span>有需求者之「身分確認」是一大難關（日本檢討亦有說明）。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">製藥工業公會 蘇美惠：</span>可納入醫藥分業重點品項，由醫師開立釋出處方，使病人身分確立、用藥資訊更精準。</li>
+        </ul></div>
+        <div class="pgroup"><b>§13.2 登錄欄位與時限</b><ul>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">藥師公會 李懿軒：</span>未納健保藥物難掌握用藥情形，僅能詢問記錄，建議研議其他機制。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">兒科醫學會 彭純芝：</span>身分與用藥資訊應讓後續診治醫師查詢取得，以正確判斷病情。</li>
+        </ul></div>
+        <div class="pgroup"><b>§13.3 防轉售／跨店濫用</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>以單次所需量為包裝量、加強查核／監測使用情形（防囤積、濫用）。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">王春玉／孫淑慧：</span>當面／藥師面前服藥，以避免假借他人名義購買、藥品外流。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（3 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">陳柏菁處長：</span>藥事法已有登錄平台與制度（當年食藥署做過很多宣導），若以類指示藥方式處理，須結合既有制度一併設計。</li>
+        <li><span class="who">張維君理事長：</span>登錄／追蹤恐使重視隱私之青少女卻步、求助無門；登錄設計（去識別、欄位精簡）須在可近性與管理需求間權衡（連動第 7 章隱私）。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>給藥登錄上傳雲端，以利後續治療參考。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§13.4 供應鏈與定價透明</b><ul>
+          <li><span class="st-rec">〔建議〕</span>應建立藥師諮詢給付或補助制度，避免將諮詢成本全反映在藥價上；若 LNG 指示藥價明顯高於處方藥，將削弱藥師與民眾選擇合法品項之誘因。</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
-<!-- 14 -->
-<details class="chapter" data-meeting="3">
-  <summary><span class="ch-title">第 14 章　滿意度與成效評估</span><span class="badge m3">第3場</span><span class="status">🟡 待議</span></summary>
+<!-- 14 服務稽核機制（★原第13章「稽核」部分，與應急脫鉤） -->
+<details class="chapter" data-meeting="5">
+  <summary><span class="ch-title">第 14 章　服務稽核機制</span><span class="badge m5">第5場</span><span class="status collected">🟢 第1場已蒐集發言・第5場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">14.1 成效評估指標（四大維度，含滿意度）</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul>
-        <li>①<b>安全性與循證</b>：不良反應通報率、3 週後異常出血／子宮外孕漏診率、追蹤完成率。</li>
-        <li>②<b>可近性與公衛時效</b>：黃金投藥時間縮短、夜間／假日／偏鄉使用占比。</li>
-        <li>③<b>社會安全與人權防護</b>：高風險未成年轉介件數、性暴力辨識轉介成功率、重複囤藥攔阻率。</li>
-        <li>④<b>制度可行性與滿意度</b>：醫藥合作滿意度、民眾隱私尊嚴滿意度（調查方式如衛教單 QR Code、第 21 天簡訊連結）。</li>
-        <li>哪些為必蒐核心指標、哪些為加分項？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">14.2 跨模式比較與對照組</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>是否設計三模式跨模式成效比較？是否納入與現行處方途徑對照組（含「判斷不需給藥」之比例與依據）？</li></ul></div></details>
+    <div class="ch-note">★第 1 場調整：稽核（政府／管理單位對服務是否依規範執行之查核）與「應急機制」脫鉤；應急已併入第 12 章。</div>
+    <details class="item"><summary><span class="item-t">14.1 稽核分工</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>稽核定位已界定：</b>傾向將「稽核」明確定義為<b>政府／管理單位對服務「是否依示範計畫規範執行」之查核</b>，與個案層面之「應急機制」角度不同（第 1 場一致）。</li>
+            <li><b>稽核與應急脫鉤：</b>共識在<b>將稽核與應急分章處理</b>，應急已併入第 12 章，本章專留行政層面之服務稽核。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li><b>先決：服務稽核是否納入試辦方案？</b></li>
+            <li>三方分工是否為——<b>食藥署制定規則／地方衛生局現場稽查／藥師公會自律通報</b>？各方權責如何劃分？</li>
+            <li>稽查<b>頻率</b>為何？查核不符規範時之<b>罰則／處置</b>如何設計？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="voices"><summary>第 1 場專家發言（2 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">陳柏菁處長：</span>稽核宜做明確定義、與應急脫鉤；稽核是政府／管理單位對服務之稽核。</li>
+        <li><span class="who">許銘能顧問：</span>稽核係政府部門或管理單位對服務之稽核（其是否依示範計畫規範執行），與應急機制角度不同，不應放在一起。</li>
+      </ul></div></details>
   </div>
 </details>
 
-<!-- 15 -->
-<details class="chapter" data-meeting="4">
-  <summary><span class="ch-title">第 15 章　法規適法性與藥師責任</span><span class="badge m4">第4場</span><span class="status">🟡 待議</span></summary>
+<!-- 15 安全性、滿意度與成效評估（原第14章） -->
+<details class="chapter" data-meeting="5">
+  <summary><span class="ch-title">第 15 章　安全性、滿意度與成效評估</span><span class="badge m5">第5場</span><span class="status collected">🟢 第1場已蒐集發言・第5場討論</span></summary>
   <div class="ch-body">
-    <details class="item"><summary><span class="item-t">15.1 法源路徑</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>三選一比較：(a) <b>修法</b>（特定條件下研究計畫得用非經處方藥品＋落日條款）；(b) <b>轉類附條件及期限之附款</b>；(c) <b>專案授權／專案 PGD</b>（官方臨床指引暫時賦權受訓藥師）。比較合法性、時程、可逆性。</li></ul>
-      <span class="intl">國際：英國以 PGD（病人族群指示）賦權藥師於特定條件下供應。</span></div></details>
-    <details class="item"><summary><span class="item-t">15.2 試辦期過渡性法律保護</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>試辦期間藥師依規範執行之法律保障機制為何？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">15.3 藥師責任歸屬</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>給藥後不良事件之民／刑事責任歸屬？遵循標準化 SOP 之責任限縮效果？補償或保險機制？</li></ul></div></details>
-    <details class="item"><summary><span class="item-t">15.4 多廠商分裂之法律工具</span><span class="gate">先決：是否納入？</span></summary>
-      <div class="item-body"><ul><li>可否要求同成分同步變更分類？食藥署之裁量空間？</li></ul></div></details>
+    <details class="item"><summary><span class="item-t">15.1 安全性與風險評估（◆第1場新增）</span><span class="gate new">◆專家建議新增</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定</b>
+          <ul>
+            <li><b>上市後監測為既定框架：</b>2016 配套即規劃「加強查核／監測此類藥品實際使用情形」，安全性監測屬既成政策方向。</li>
+          </ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識／國際實證可定調</b>
+          <ul>
+            <li><b>共識傾向「成效評估須含客觀安全終點，不能只靠滿意度」：</b>藥學界以高安全性主張為主、婦產科要求客觀安全指標把關，二者可收斂為「滿意度＋客觀安全終點並列」。</li>
+            <li><b>安全性已有跨國實證背書（國際數據）：</b>WHO 證實高度安全、副作用短暫，同一週期重複服用無安全疑慮、不增血栓〔投影片 A〕；系統性回顧顯示不增加子宮外孕風險〔投影片 A〕；整體墮胎率未上升（歐洲 15 年後成年女性降 14%、青少女降 40%）〔投影片 A〕。可作為「風險可接受」研判之討論起點。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>成效評估除成效與滿意度外，須交代<b>風險高低與是否可接受</b>，作為未來擴大辦理之依據——具體納入哪些客觀安全終點？（候選：不良反應通報率、3 週後異常出血／子宮外孕漏診率、追蹤完成率）</li>
+            <li>各安全終點之<b>可接受閾值</b>如何界定？非醫師難鑑別異常出血者，如何以紅旗指標＋即時轉介涵蓋於評估？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">15.2 成效評估指標（四大維度，含滿意度）</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>共識「指標須超越滿意度」：</b>傾向採<b>多維指標</b>——安全＋行為改變＋理解度＋可近性，而非單靠滿意度調查。</li>
+            <li><b>具體作法已有前例可借鏡（國際數據）：</b>可借鏡疫苗線上申報＋測驗題檢核理解；日本問卷顯示 8 成願再到藥局、9 成滿意諮詢、99.8% 理解用藥說明〔投影片 A／日本經驗〕，可作為理解度／滿意度指標設計之參照。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>四大維度是否定調為評估架構？<ul>
+              <li>①<b>安全性與循證</b>：不良反應通報率、3 週後異常出血／子宮外孕漏診率、追蹤完成率。</li>
+              <li>②<b>可近性與公衛時效</b>：黃金投藥時間縮短、夜間／假日／偏鄉使用占比。</li>
+              <li>③<b>社會安全與人權防護</b>：高風險未成年轉介件數、性暴力辨識轉介成功率、重複囤藥攔阻率。</li>
+              <li>④<b>制度可行性與滿意度</b>：醫藥合作滿意度、民眾隱私尊嚴滿意度（調查方式如衛教單 QR Code、第 21 天簡訊連結）。</li>
+            </ul></li>
+            <li>哪些為<b>必蒐核心指標</b>、哪些為加分項？是否納入「判斷不必給藥之比例與依據」、以及<b>行為改變</b>（危險性行為而非重複使用）、性觀念是否更正確？</li>
+            <li>★<b>客觀終點界定難題：</b>我國缺懷孕率／墮胎率統計（人工流產率僅能由 RU486 管制藥領取數推估），客觀成效終點如何界定？</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="item"><summary><span class="item-t">15.3 跨模式比較與對照組</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul>
+            <li><b>共識「應做開放前後／對照比較」：</b>傾向蒐集先進國家開放前後比較（副作用／併發症、人工流產變動），並以現行處方藥規範與試辦成果比對，作為評估設計之方法學基礎。</li>
+            <li><b>須控制干擾因素：</b>研判須納入掛號付費差異、集體加入、城鄉醫療品質與使用者素質差異等干擾因素。</li>
+          </ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>是否設計<b>三模式跨模式成效比較</b>？是否納入與現行處方途徑之<b>對照組</b>（含「判斷不需給藥」之比例與依據）？</li>
+            <li><span class="draft">〔第 1 場建議新增〕</span>是否採<b>人群層級終點＋對照組設計</b>、資料定期公開、接受外部檢視？（鄭威主任書面提案）</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§15.1 安全性與風險評估</b><ul>
+          <li><span class="era">2016 配套</span><span class="st-rec">〔規劃〕</span><span class="who">衛福部／食藥署：</span>加強查核／監測此類藥品實際使用情形（上市後監測）。<span class="psrc">（衛福部 105-12 焦點新聞）</span></li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">藥學國際發展協會 王春玉：</span>仿單已載副作用發生率，若屬少見(rare)未必要因此特別限制。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會 李懿軒：</span>WHO 2021 Fact Sheet 表示該藥具高安全性、低危險性。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">臨床藥學會 孫淑慧：</span>依 2025 ECEC guideline，重覆多次使用未致異位妊娠或影響生育，惟可能經期紊亂。</li>
+          <li><span class="era">114-03 會議</span><span class="st-neu">〔中性〕</span><span class="who">兒少權益推動小組 戴瑀如：</span>德國轉類後，原先所擔憂之事都未發生。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">婦產科醫學會 黃建霈：</span>滿意度調查通常不會不滿意，應另有客觀指標如使用者安全性評估。</li>
+        </ul></div>
+        <div class="pgroup"><b>§15.2 成效評估指標（四維）</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">藥師公會 李懿軒：</span>日本試辦自 2017 醞釀、2021 實施，成效良好並減輕婦產科負擔。</li>
+          <li><span class="era">114-03 會議</span><span class="st-sup">〔支持〕</span><span class="who">臨床藥學會 孫淑慧：</span>日本問卷約 8 成願日後直接到藥局購買、9 成以上滿意諮詢、99.8% 理解用藥說明。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>應統計醫師／藥師判斷不必給藥之成果（含依據與用藥比例）；可參考疫苗作法以簡訊連結表單收集數據並設測驗題檢核理解；最在意使用後是否改變危險行為而非重複使用。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組：</span>執行過程與後續追蹤成果重要（含用藥需求次數、性觀念是否更正確）。</li>
+        </ul></div>
+        <div class="pgroup"><b>§15.3 跨模式比較與對照組</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">兒少權益推動小組 黃璟隆：</span>建議蒐集先進國家開放前後比較資料（副作用／併發症是否增加、人工流產是否減少），並彙整不用此藥之影響與替代方式。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">婦產科醫學會 黃建霈：</span>可採現行處方藥規範與試辦計畫成果比對，並納入掛號付費、集體加入等干擾因素。</li>
+          <li><span class="era">114-04 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">製藥工業公會 蘇美惠：</span>城鄉醫療品質與使用者素質之差異存在，須納入考量。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（4 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">許銘能顧問：</span>成效評估少了「安全性」；不能只談成效與滿意度，須交代風險高低與是否可接受。</li>
+        <li><span class="who">曹宜蓁處長：</span>我國未統計懷孕率、難收墮胎率（人工流產率僅能由 RU486 管制藥領取數推估），客觀成效指標如何界定值得思考。</li>
+        <li><span class="who">孫淑慧主任：</span>日本經試辦顯示民眾滿意度相對高、安全性無太大顧慮，可資參考。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>採人群層級終點＋對照組設計、資料定期公開、接受外部檢視。</li>
+      </ul></div></details>
+  </div>
+</details>
+
+<!-- 16 藥師法律責任（★原第15章「責任」部分；法源已前移至第1章） -->
+<details class="chapter" data-meeting="5">
+  <summary><span class="ch-title">第 16 章　藥師法律責任</span><span class="badge m5">第5場</span><span class="status collected">🟢 第1場已蒐集發言・第5場討論</span></summary>
+  <div class="ch-body">
+    <div class="ch-note">★第 1 場調整：法源已前移至第 1 章；本章專留試辦各環節之法律責任。</div>
+    <details class="item"><summary><span class="item-t">16.1 藥師責任歸屬</span><span class="gate">先決：是否納入？</span></summary>
+      <div class="item-body">
+        <div class="settled"><b>✓ 已確定（章節定位）</b>
+          <ul><li>第 1 場已定章節重排：<b>法源前移至第 1 章</b>（先講「為什麼可以做」），<b>各環節法律責任留本章</b>於後段討論——本章專處理試辦各環節之責任歸屬（連動第 1 章 §1.1）。</li></ul>
+        </div>
+        <div class="evidence"><b>📊 已有共識可定調</b>
+          <ul><li>過去三場會議與第 1 場意見<b>傾向「責任須明確界定」</b>：醫界憂究責對象不明、藥事品質協會主張明定專業責任與判斷能力、製藥明言「謹慎完善配套則不反對開放」。共識走向指向<b>「責任歸屬清楚＋配套完善」為換取醫界／製藥支持的關鍵條件</b>（討論起點，非定案）。</li></ul>
+        </div>
+        <div class="todiscuss"><b>？ 待專家會議討論</b>
+          <ul>
+            <li>★給藥後不良事件之<b>民／刑事責任歸屬</b>如何認定？遵循標準化 SOP 之<b>責任限縮</b>效果為何？</li>
+            <li>是否設<b>補償或保險機制</b>分攤風險？</li>
+            <li>試辦計畫中各環節（<b>藥師、藥局、醫師</b>）之法律責任如何劃分？醫界可近性（如 72h 內診察）如何承接轉介責任？</li>
+            <li><span class="draft">〔第 1 場建議新增〕</span>★模式三之<b>結構性利益衝突與利益迴避設計</b>——藥師責任歸屬須一併釐清（鄭威主任書面）。</li>
+          </ul>
+        </div>
+      </div></details>
+    <details class="past"><summary>過去建言（食藥署 114 年三場會議・藥師公會・2016 配套）</summary>
+      <div class="pbody">
+        <div class="pgroup"><b>§16.1 藥師責任歸屬</b><ul>
+          <li><span class="era">114-03 會議</span><span class="st-doubt">〔疑慮〕</span><span class="who">醫師公會 張必正：</span>併發症發生時究責對象不明（自行購買者或販售藥師）。</li>
+          <li><span class="era">114-03 會議</span><span class="st-rec">〔建議〕</span><span class="who">藥事品質改革協會 余萬能：</span>應明確界定指示藥專業人員之專業責任、轉類所需專業判斷能力（排卵及受孕）；醫界宜建立 72h 內診察之可近性。</li>
+          <li><span class="era">114-04 會議</span><span class="st-rec">〔建議〕</span><span class="who">製藥工業公會 蘇美惠：</span>用藥指導之詢問、說明與診斷判斷正確性，應依不同情境研擬配套措施。</li>
+          <li><span class="era">114-04 會議</span><span class="st-sup">〔支持〕</span><span class="who">製藥工業公會 蘇美惠：</span>謹慎完善研擬配套措施，則個人不反對開放。</li>
+        </ul></div>
+      </div></details>
+        <details class="voices"><summary>第 1 場專家發言（2 則）</summary>
+      <div class="vbody"><ul>
+        <li><span class="who">陳柏菁處長：</span>適法性指試辦計畫中各環節、各方之法律責任；法源則應拉到最前面先講「為什麼可以做」，責任問題留到最後討論。</li>
+        <li><span class="who written">鄭威主任（書面）：</span>藥師責任歸屬、模式三之結構性利益衝突與利益迴避設計。</li>
+      </ul></div></details>
+    <details class="survey"><summary>說明會與會者建言（第 1 場說明會意見調查表）</summary>
+      <div class="sbody">
+        <b>§16.1 藥師責任歸屬</b><ul>
+          <li><span class="st-doubt">〔疑慮〕</span>所有醫療、法律責任都由藥師負責，藥師負擔太大。</li>
+        </ul>
+      </div></details>
   </div>
 </details>
 
@@ -394,8 +1492,10 @@
   <div class="row"><b>場次徽章：</b>
     <span class="badge m1">第1場</span><span class="badge m2">第2場</span><span class="badge m3">第3場</span>
     <span class="badge m4">第4場</span><span class="badge m5">第5場</span><span class="badge m6">第6場</span></div>
-  <div class="row"><b>狀態：</b><span class="status">🟡 待議</span> 尚未議定（議定後改為 ✅ 已定案＋日期）</div>
-  <div class="row"><b><span class="tag-hot">★爭點</span></b> 重大爭點，建議優先聚焦　·　<b>先決：是否納入？</b> 每項先決定納入與否，納入者再討論其下問題。</div>
+  <div class="row"><b>狀態：</b><span class="status">🟡 待議</span> 尚未蒐集發言　·　<span class="status collected">🟢 第1場已蒐集發言</span> 已收錄第1場專家發言、細節於對應場次續議</div>
+  <div class="row"><b><span class="tag-hot">★爭點／分歧</span></b> 重大爭點或委員間不同見解，建議優先聚焦　·　<b><span class="gate new" style="display:inline">◆專家建議新增</span></b> 第1場專家建議新增之項目　·　<b>💬 第1場專家發言</b> 點開可見各委員對該章發言要點</div>
+  <div class="row"><b>🕑 過去建言</b> 本議題過去各界曾表達之具名立場（依次章節 §X.Y 歸納，便於逐項做結論）。來源：<span class="era">2016 配套</span>衛福部 105-12 LNG 變更指示藥配套、<span class="era">114-03／04／12 會議</span>食藥署三場專家會議、<span class="era">藥師公會</span>說帖／配套建議／投書、<span class="era">民調</span>台灣女人連線。立場色標：<span class="st-sup">〔支持〕</span><span class="st-opp">〔反對〕</span><span class="st-rec">〔建議／規劃〕</span><span class="st-doubt">〔疑慮〕</span><span class="st-neu">〔中性〕</span></div>
+  <div class="row"><b>🗳 說明會與會者建言</b> 第 1 場公開說明會與會者於意見調查表所留之建言／疑慮（匿名，多為實務藥師觀點），依次章節 §X.Y 歸納，置於各章專家發言之後。</div>
 </div>
 
 <!-- ============ 更新紀錄 ============ -->
@@ -403,7 +1503,7 @@
 <table class="log">
   <thead><tr><th>日期</th><th>場次</th><th>更新內容</th></tr></thead>
   <tbody>
-    <tr><td class="date">2026-06</td><td>—</td><td>初版框架上線（供第 1 場會前預讀）。後續各場專家會議定案後，將於此記錄更新日期與內容。</td></tr>
+    <tr><td class="date">2026-06-19</td><td>—</td><td>相對 2026-06-17（第 1 場後）版本之差異：①各章次標題改採「三色塊」聚焦呈現——<b>✓ 已確定／📊 已有共識可定調／？ 待專家會議討論</b>，便於快速辨識各議題之定案程度與待決焦點；②各章新增「🕑 過去建言」與「🗳 說明會與會者建言」兩折疊區，依 §X.Y 歸納過去各界具名立場及第 1 場說明會建言；③第 0 章補強試辦目的・風險・正當性之實證聚焦，第 2／9／10 章（第 2 場討論章節）完成議題收斂；④排定第 3–6 場會議日期與地點（第 3 場 07-08、第 4 場 08-07、第 5 場 08-26、第 6 場 11-27；場地移至 TCCC 新北板橋館 B405）。<br><b>※ 目前人工僅核對將於第 2 場討論之章節（第 0、2、9、10 章）；其餘場次之章節內容仍在調整中。</b></td></tr>
   </tbody>
 </table>
 
