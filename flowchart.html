@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>藥局判斷流程圖：民眾可否購買緊急事後避孕藥</title>
+<style>
+  :root{
+    --ink:#1f2933; --sub:#64748b; --line:#cbd5e1;
+    --red:#dc2626; --red-bg:#fef2f2; --red-line:#fca5a5;
+    --amb:#b45309; --amb-bg:#fffbeb; --amb-line:#fcd34d;
+    --grn:#15803d; --grn-bg:#f0fdf4; --grn-line:#86efac;
+    --gry:#475569; --gry-bg:#f8fafc; --gry-line:#cbd5e1;
+    --blu:#1d4ed8; --blu-bg:#eff6ff; --blu-line:#bfdbfe;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    color:var(--ink);margin:0;background:#eef2f7;line-height:1.55}
+  .page{max-width:880px;margin:18px auto;background:#fff;padding:30px 36px 26px;
+    box-shadow:0 1px 8px rgba(0,0,0,.08);border-radius:8px}
+  h1{font-size:1.25rem;margin:0 0 2px;text-align:center}
+  .sub{text-align:center;color:var(--sub);font-size:.82rem;margin-bottom:14px}
+  .legend{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    font-size:.8rem;margin-bottom:18px;align-items:center}
+  .legend span{padding:2px 10px;border-radius:20px;border:1px solid}
+  .lg-r{color:var(--red);background:var(--red-bg);border-color:var(--red-line)}
+  .lg-a{color:var(--amb);background:var(--amb-bg);border-color:var(--amb-line)}
+  .lg-g{color:var(--grn);background:var(--grn-bg);border-color:var(--grn-line)}
+
+  .row{display:flex;gap:14px;align-items:stretch}
+  .step{flex:1 1 56%;border:1.5px solid var(--line);border-radius:10px;padding:12px 16px;background:#fff}
+  .step .st-t{font-weight:700;font-size:.95rem;margin-bottom:6px}
+  .step ol{margin:4px 0 2px;padding-left:22px;font-size:.88rem}
+  .step ol li{margin:4px 0}
+  .step ol ul{margin:4px 0 2px;padding-left:18px;list-style:disc}
+  .step ol ul li{margin:3px 0;font-size:.85rem}
+  .step .hint{font-size:.78rem;color:var(--sub);margin-top:6px}
+  .outcome{flex:1 1 44%;border-radius:10px;padding:12px 14px;font-size:.85rem;position:relative}
+  .outcome .oc-t{font-weight:800;font-size:.95rem;margin-bottom:5px}
+  .outcome ul{margin:4px 0 2px;padding-left:18px}
+  .outcome li{margin:4px 0}
+  .oc-r{background:var(--red-bg);border:1.5px solid var(--red-line)} .oc-r .oc-t{color:var(--red)}
+  .oc-a{background:var(--amb-bg);border:1.5px solid var(--amb-line)} .oc-a .oc-t{color:var(--amb)}
+  .oc-g{background:var(--grn-bg);border:1.5px solid var(--grn-line)} .oc-g .oc-t{color:var(--grn)}
+  .oc-gry{background:var(--gry-bg);border:1.5px solid var(--gry-line)} .oc-gry .oc-t{color:var(--gry)}
+  .start{background:var(--blu-bg);border:1.5px solid var(--blu-line)}
+  .start .st-t{color:var(--blu)}
+
+  .yes-arrow{display:flex;align-items:center;color:var(--sub);font-size:.75rem;
+    flex:0 0 60px;justify-content:center;text-align:center;flex-direction:column;gap:2px}
+  .yes-arrow .ar{font-size:1.3rem;line-height:1;color:var(--ink)}
+
+  .down{display:flex;flex-direction:column;align-items:flex-start;margin:2px 0 2px 26%;
+    color:var(--sub);font-size:.78rem}
+  .down .bar{width:2px;height:14px;background:var(--ink);margin-left:34px}
+  .down .lbl{margin-left:14px;background:#fff;padding:0 4px}
+  .down .tip{width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;
+    border-top:8px solid var(--ink);margin-left:30px}
+
+  .note{border-left:4px solid var(--amb-line);background:var(--amb-bg);padding:8px 12px;
+    font-size:.8rem;border-radius:0 8px 8px 0;margin:10px 0}
+  .clarify{border-left:4px solid var(--grn-line);background:var(--grn-bg);padding:8px 12px;
+    font-size:.8rem;border-radius:0 8px 8px 0;margin:10px 0;color:#065f46}
+  .foot{margin-top:16px;border-top:1px solid var(--line);padding-top:10px;
+    font-size:.74rem;color:var(--sub)}
+  .foot p{margin:4px 0}
+  b.q{color:var(--ink)}
+  .propose{display:inline-block;font-size:.66rem;font-weight:700;color:#6d28d9;background:#f5f3ff;
+    border:1px solid #ddd6fe;border-radius:10px;padding:0 6px;margin-left:4px;vertical-align:middle}
+  .pbox{background:#faf5ff;border:1px dashed #c4b5fd;border-radius:6px;padding:6px 10px;
+    margin-top:5px;font-size:.79rem;color:#5b21b6;line-height:1.5}
+  .pbox b{color:#6d28d9}
+  .defbox{background:#f8fafc;border:1px solid var(--line);border-radius:6px;padding:6px 10px;
+    margin-top:5px;font-size:.79rem;color:#334155;line-height:1.5}
+  .phase{border-radius:8px;padding:9px 15px;font-size:.92rem;font-weight:700;color:#fff;margin:16px 0 11px}
+  .phase .p-sub{display:block;font-weight:400;font-size:.77rem;color:#e5e7eb;margin-top:3px;line-height:1.5}
+  .phase.online{background:#1d4ed8}
+  .phase.onsite{background:#0f766e}
+  .passnote{background:#ecfdf5;border:1px solid #6ee7b7;border-radius:8px;padding:8px 12px;
+    font-size:.84rem;color:#047857;margin:2px 0 4px;text-align:center;font-weight:600}
+  .walkin{background:#eff6ff;border:1px solid var(--blu-line);border-radius:8px;padding:9px 13px;
+    font-size:.82rem;color:#1e40af;margin:14px 0 4px}
+  @media print{
+    body{background:#fff} .page{box-shadow:none;margin:0;max-width:100%;border-radius:0;padding:10mm 12mm}
+    .row,.outcome,.step{break-inside:avoid}
+  }
+  @media (max-width:640px){ .row{flex-direction:column} .yes-arrow{flex-direction:row;flex:none;padding:2px 0}
+    .down{margin-left:8%} }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>民眾可否於社區藥局購買緊急事後避孕藥（ECP）？——藥局判斷流程圖</h1>
+  <div class="sub">依科學證據（WHO／ACOG／FSRH／ICEC）＋日本厚勞省銷售核對表繪製，依第 3 場專家會議決議（2026-07-08）調整之初版草案｜試辦藥品：Levonorgestrel（LNG）｜2026-07-18 修訂</div>
+  <div class="legend">
+    <span class="lg-r">🔴 不供藥、直接轉介</span>
+    <span class="lg-a">🟡 先給藥＋衛教＋轉介／通報</span>
+    <span class="lg-g">🟢 可供藥</span>
+  </div>
+  <div class="sub" style="margin-bottom:16px"><b>提第4場議題①–⑧</b>＝依科學證據建議、與第 3 場決議不同、待第 4 場專家確認之項目（圖中各 🟣 項標「議題N」，編號對照《第4場_流程表待拍板清單》）</div>
+  <div class="defbox" style="margin:0 0 16px"><b>📋 本圖提第 4 場議題一覽（對照《第4場_流程表待拍板清單》同編號）：</b><br>議題1　血栓／子宮外孕病史／PID（確認非禁忌、歸 🟡 先給藥＋衛教＋醫療轉介）<br>議題2　懷孕評估驗孕嚴格度／3 週閘門／不願驗孕是否改先給藥<br>議題3　異常出血（非急性）是否改 🟡 先給藥＋當日轉介<br>議題4　逾時 72–96h 是否改 🟡 告知效果下降仍給藥＋轉介<br>議題5　體重／BMI 是否收集資料及處置<br>議題6　哺乳衛教仿單文字（可繼續哺乳 vs 暫停 24h）<br>議題7　肝酵素誘導劑劑量調整可行性<br>議題8　嘔吐補服處理流程（快速通道、與防重複領藥之銜接）</div>
+
+  <!-- 階段一 banner -->
+  <div class="phase online">🖥️ 階段一・民眾線上評估（自行上網填寫，尚未到藥局）
+    <span class="p-sub">於填問卷過程即完成篩選：命中 🔴 者線上直接導引就醫、<b style="color:#fff">不產生購藥條碼</b>，不必白跑藥局；通過者才產生 QR Code、指引可購藥之試辦藥局。</span>
+  </div>
+
+  <!-- ❶ 禁忌檢核 -->
+  <div class="row">
+    <div class="step" style="border-color:var(--red-line)">
+      <div class="st-t" style="color:var(--red)">❶ 仿單禁忌檢核（任一「是」即不給藥）</div>
+      <ol>
+        <li>對 <b class="q">LNG 成分過敏</b>？（本試辦無替代品項）</li>
+        <li><b class="q">嚴重肝功能障礙</b>？<div class="defbox">「嚴重肝功能障礙」指<b>肝硬化、肝衰竭、黃疸、腹水</b>；<b>B 肝帶原、輕度肝功能異常、脂肪肝不屬此列、可正常給藥</b>。</div></li>
+      </ol>
+    </div>
+    <div class="yes-arrow"><span>任一「是」</span><span class="ar">→</span></div>
+    <div class="outcome oc-r">
+      <div class="oc-t">🔴 不給藥、直接轉介婦產科</div>
+      <ul>
+        <li><b>線上即告知</b>不適合於藥局購買之原因，導引<b>直接前往婦產科就診</b>；<b>不產生購藥條碼</b></li>
+        <li>提供就醫指引（科別、附近婦產科、就醫會經歷什麼，降低就醫顧慮）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="clarify"><b>非禁忌、勿誤擋（先給藥再衛教）：</b>血栓病史（VTE）／子宮外孕<b>病史</b>／骨盆腔發炎（PID）——四份國際指引均認定<b>非 LNG 禁忌</b>，正常供藥；此類病史者於階段二歸 🟡（先給藥＋衛教＋醫療轉介，強化子宮外孕警訊）；<b>僅疑似急性現症</b>（如下 ❸）才轉介。<span class="propose">議題1</span></div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">皆「否」，續問懷孕可能性</div></div>
+
+  <!-- ❷ 懷孕可能性 -->
+  <div class="row">
+    <div class="step" style="border-color:var(--red-line)">
+      <div class="st-t" style="color:var(--red)">❷ 懷孕可能性評估（判斷「需不需要驗孕」）<span class="propose">議題2</span></div>
+      <ol>
+        <li><b class="q">不需驗孕、直接續行給藥</b>——符合下列任一：<br>①<b>無懷孕徵兆</b>（週期規則、末次月經確定在週期內）；<br>②雖有懷孕徵兆，但<b>僅近 3 週內</b>曾有無防護性行為（此刻驗孕過早、無意義；服用前追加「不排除本次之前懷孕之可能」說明）。</li>
+        <li><b class="q">需驗孕</b>——<b>同時符合 A＋B</b> 者使用驗孕棒（此族群可能已從舊性行為<b>既存懷孕</b>、ECP 無效）：
+          <ul>
+            <li><b>A. 有下列任一懷孕徵兆：</b>①月經週期不規則；②末次月經已逾應來週期（月經遲來）；③末次月經不確定（經量偏少、週期偏短）；④產後或流產後、月經尚未恢復。</li>
+            <li><b>B. 且距今「3 週以前」曾有無防護性行為</b>（時間夠長，若已受孕此刻才驗得出來）。</li>
+          </ul>
+        </li>
+        <li>驗孕結果：<b class="q">陽性 → 🔴 轉介</b>（疑已懷孕，確認位置、排除子宮外孕）；<b class="q">不願驗孕 → 🟣</b>（議題2：可討論改「先給藥＋強化 3 週驗孕＋轉介」）；<b class="q">陰性 → 續行</b>。</li>
+      </ol>
+      <div class="pbox"><b>Q：國際指引不是說不需驗孕嗎？為何這裡要驗孕？</b><br>A：正確——ACOG／FSRH／WHO 均主張供藥前<b>不需常規驗孕</b>（ECP 對已懷孕者無害、不應為驗孕而扣藥）。本流程<b>只對上述窄族群</b>（有徵兆＋3 週前曾性行為＝可能<b>已既存懷孕</b>）設驗孕，理由是「ECP 對已成立懷孕<b>無效</b>、且須及早發現懷孕／子宮外孕」——屬<b>診斷把關</b>，非用藥安全。此為忠實還原<b>日本核對表</b>（國際唯一設驗孕關卡者）之做法，故標 🟣 提第 4 場確認驗孕之嚴格度。〔厚労省令和6年度版核對表〕</div>
+    </div>
+    <div class="yes-arrow"><span>驗孕陽性</span><span class="ar">→</span></div>
+    <div class="outcome oc-r">
+      <div class="oc-t">🔴 不給藥、轉介</div>
+      <ul><li>驗孕陽性者疑已懷孕 → 轉介婦產科（確認懷孕位置、排除子宮外孕、產檢）</li></ul>
+    </div>
+  </div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">無徵兆／3週內／陰性／不願驗孕（🟣續行）→ 續問出血</div></div>
+
+  <!-- ❸ 異常陰道出血 -->
+  <div class="row">
+    <div class="step" style="border-color:var(--red-line)">
+      <div class="st-t" style="color:var(--red)">❸ 異常陰道出血評估（兩問法）<span class="propose">議題3・可改🟡</span></div>
+      <ol>
+        <li>問①：<b class="q">最後一次月經</b>什麼時候？</li>
+        <li>問②：該次出血與平常月經<b class="q">有無不同</b>（量、天數、顏色）？</li>
+        <li>判定：與平常<b class="q">不同、說不清楚、或當下正在出血且無法判斷是否為月經</b> → 屬異常；否則續行</li>
+        <li><b class="q">合併單側下腹劇痛、面色蒼白冒冷汗</b> → 疑急性子宮外孕、視為急診</li>
+      </ol>
+      <div class="pbox">實證檢視：出血個案<b>給 LNG 本身安全</b>，轉介是「診斷把關」（排除子宮外孕／病灶）。建議討論改列 🟡「<b>先給藥（保時效）＋當日轉介查因</b>」；<b>僅合併急性子宮外孕徵象維持 🔴 急診</b>。</div>
+    </div>
+    <div class="yes-arrow"><span>異常／<br>不明</span><span class="ar">→</span></div>
+    <div class="outcome oc-r">
+      <div class="oc-t">🔴 轉介（急性外孕徵象→急診）</div>
+      <ul><li>不給藥、轉介婦產科查出血原因</li><li>疑急性子宮外孕者逕送有婦產科之急診</li></ul>
+    </div>
+  </div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">無異常，續問時效</div></div>
+
+  <!-- ❹ 時效窗口 -->
+  <div class="row">
+    <div class="step start" style="border-color:var(--blu-line)">
+      <div class="st-t" style="color:var(--blu)">❹ 時效窗口確認（<b class="q">距最近一次「未採取保護措施之性行為」之時數</b>）</div>
+      <ol>
+        <li><b class="q">72 小時內</b> → 通過線上篩選（時效題於到場當下再重算）</li>
+        <li><b class="q">72–96 小時</b> → LNG 屬 off-label、效果下降但仍可能有效<span class="propose">議題4・可改🟡</span></li>
+        <li><b class="q">超過 96 小時</b> → LNG 已無效</li>
+      </ol>
+      <div class="hint">※ 此為「效果」而非「安全」判斷準則。逾 96h 線上即導引就醫、不產生條碼；72h 內者時效題於到場當下重算（防填答與到場時間差）。</div>
+    </div>
+    <div class="yes-arrow"><span>逾 72h</span><span class="ar">→</span></div>
+    <div class="outcome oc-a">
+      <div class="oc-t">🟡／轉介（依時數）</div>
+      <ul>
+        <li><b>72–96 小時：</b><span class="propose">議題4</span>建議改「告知效果下降後仍給 LNG＋衛教＋轉介評估更有效方式」。</li>
+        <li><b>逾 96 小時：</b>LNG 無效，轉介婦產科取 <b>UPA（≤120h）／含銅子宮內避孕器（≤5 日）</b>，告知剩餘時數急迫性。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">72 小時內，通過線上篩選</div></div>
+
+  <div class="passnote">✅ 通過線上篩選 → 系統產生 QR Code（購藥條碼）＋顯示附近可購藥之試辦藥局</div>
+
+  <!-- 階段二 banner -->
+  <div class="phase onsite">🏥 階段二・社區藥局現場（本人持 QR Code 到局，由藥師確認）
+    <span class="p-sub">身分核對與現場評估後供藥；系統依填答自動帶出個人化衛教清單。</span>
+  </div>
+
+  <!-- ❺ 身分核對 -->
+  <div class="row">
+    <div class="step start">
+      <div class="st-t">❺ 前置確認（到局身分核對）</div>
+      <ol>
+        <li>掃碼調閱線上填答；核對<b class="q">到場者＝線上填答者＝證件本人</b>（不可代購）</li>
+        <li>確認<b class="q">個人資料蒐集同意</b>（線上已簽署）</li>
+        <li><b class="q">時效題以到場當下重算</b>；如已逾時或新增出血 → 回 ❹／❸ 對應處置</li>
+      </ol>
+    </div>
+    <div class="yes-arrow"><span>不符</span><span class="ar">→</span></div>
+    <div class="outcome oc-gry">
+      <div class="oc-t">⚪ 不供藥</div>
+      <ul><li>不符本人親領要件（代購／身分不符），本試辦不予供應</li><li>得依現行程序至醫療院所就醫取得</li></ul>
+    </div>
+  </div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">核對相符、仍在時效內，續問是否需轉介／通報</div></div>
+
+  <!-- ❻-社政 -->
+  <div class="row">
+    <div class="step" style="border-color:var(--amb-line)">
+      <div class="st-t" style="color:var(--amb)">❻-A 需<b>社政</b>轉介／通報？（給藥不受影響，預防懷孕優先）</div>
+      <ol>
+        <li>疑似<b class="q">性暴力／性侵害</b>？</li>
+      </ol>
+      <div class="hint">※ 藥師為責任通報人員：先給藥，再依法通報並銜接社政。</div>
+    </div>
+    <div class="yes-arrow"><span>是</span><span class="ar">→</span></div>
+    <div class="outcome oc-a">
+      <div class="oc-t">🟡 先給藥＋衛教＋<b>社政轉介／通報</b></div>
+      <ul>
+        <li><b>先給藥</b>（確保時效）＋完成服藥衛教</li>
+        <li>依法 <b>113 通報</b>（單一窗口），由社工陪同至<b>具社工之醫院</b>（一站式）就醫採證，避免重複陳述</li>
+        <li>非通報之社會風險個案（脆弱家庭等）→ 提供社福資源 QR、鼓勵自主聯繫（不強制轉介）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">否，續問是否需醫療轉介</div></div>
+
+  <!-- ❻-醫療 -->
+  <div class="row">
+    <div class="step" style="border-color:var(--amb-line)">
+      <div class="st-t" style="color:var(--amb)">❻-B 需<b>醫療</b>轉介？（給藥不受影響，預防懷孕優先）</div>
+      <ol>
+        <li><b class="q">性傳染病風險</b>？（伴侶已知感染、新／陌生伴侶且無套、本人有症狀、多重性伴侶）</li>
+        <li><b class="q">短期重複使用</b>？（如 30 日內再次購買）</li>
+        <li><b class="q">血栓病史／子宮外孕病史／PID</b>？<span class="propose">議題1</span>（非禁忌，先給藥＋強化衛教）</li>
+        <li><b class="q">體重過重</b>（&gt;70kg／BMI&gt;26）？<span class="propose">議題5</span>（是否收集體重資料待確認）</li>
+        <li>（階段一帶入）<b class="q">異常出血非急性</b> <span class="propose">🟣</span>／<b class="q">逾時 72–96h</b> <span class="propose">🟣</span></li>
+      </ol>
+    </div>
+    <div class="yes-arrow"><span>任一「是」</span><span class="ar">→</span></div>
+    <div class="outcome oc-a">
+      <div class="oc-t">🟡 先給藥＋衛教＋<b>醫療轉介（婦產科）</b></div>
+      <ul>
+        <li><b>先給藥</b>（確保時效）＋完成服藥衛教</li>
+        <li><b>性病風險：</b>衛教並轉介婦產科篩檢</li>
+        <li><b>重複使用：</b>加強常規避孕衛教、說明月經紊亂，轉介並納入追蹤</li>
+        <li><b>血栓／外孕病史／PID：</b>正常給藥＋強化子宮外孕警訊衛教；有疑慮再轉介</li>
+        <li><b>異常出血非急性／72–96h：</b>先給藥、當日轉介／告知效果下降</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note"><b>加強衛教（給藥、不一定轉介）：</b><b>哺乳中</b>——照常給藥；哺乳衛教依國內仿單，仿單有載「暫停 24 小時」則從仿單、無載則依國際指引「可繼續哺乳」<span class="propose">議題6</span>。<b>服用肝酵素誘導劑</b>（部分抗癲癇藥、聖約翰草等）——先給藥＋告知效果可能下降，詳細諮詢用藥／保健食品〔劑量調整之處置・議題7，待第 4 場確認〕。</div>
+  <div class="down"><div class="bar"></div><div class="tip"></div><div class="lbl">皆「否」</div></div>
+
+  <!-- 🟢 -->
+  <div class="row">
+    <div class="outcome oc-g" style="flex:1 1 100%">
+      <div class="oc-t">🟢 可供藥＋一般服藥衛教與常規避孕衛教（系統自動帶出個人化衛教清單，藥師逐項確認）</div>
+      <ul>
+        <li><b>服藥衛教：</b>盡速服用、越早越好（不強制當場服用）；服藥後 2–3 小時內嘔吐須補服；常見副作用為月經提前／延後、點狀出血、噁心、頭痛</li>
+        <li><b>常規避孕衛教：</b>ECP 為補救、非常規避孕；說明常規與雙重避孕之銜接</li>
+        <li><b>後續自我照護：</b>服藥後約 <b>3 週驗孕</b>（或月經如期且經量正常即確認避孕成功）；月經延遲逾 1 週應驗孕；<b>下腹劇痛或異常出血應立即就醫</b>（子宮外孕警訊）</li>
+        <li><b>結案：</b>衛教單附社福資源 QR Code；系統完成給藥紀錄並結案（防跨店重複領藥）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="note" style="border-left-color:#c4b5fd;background:#faf5ff;color:#5b21b6"><b style="color:#6d28d9">🟣 提第 4 場討論——嘔吐補服處理流程：</b>服藥後 <b>2–3 小時內嘔吐須補服一劑</b>；惟系統「給藥結案、防跨店重複領藥」會擋住補服、且回店恐被誤判為「短期重複使用」。建議訂定<b>嘔吐補服快速通道</b>——如結案後 24 小時內憑原條碼、藥師確認情節後以「補服代碼」記錄、免重評、不計入重複使用、跨店亦適用。<span class="propose">議題8</span></div>
+
+  <div class="walkin">📌 <b>民眾未經線上評估、直接到藥局怎麼辦？</b>藥師提供<b>線上評估表網址</b>（或現場掃 QR、平板），請民眾<b>先完成線上評估</b>，通過後再依上述階段二流程供藥；系統異常時改用紙本核對表備援。</div>
+
+  
+  <div class="foot">
+    <p><b>依據：</b>①科學證據（WHO 醫學適用標準第 5 版、ACOG CO 707／PB 152、FSRH 緊急避孕指引、ICEC/FIGO）——LNG 唯一絕對禁忌為「成分過敏」；②日本厚勞省銷售核對表與懷孕可能性判斷流程；③第 3 場專家會議決議（2026-07-08）。詳《第4場_流程表待拍板清單》四方對照與附錄。</p>
+    <p><b>待後續場次確認：</b>未成年之供藥條件與處置（第 4 場・第 8 章）；追蹤機制與登錄細節（第 5 場・第 12、13 章）；性暴力法定通報管道與 113 之關係（俟第 4 場確認所有轉介情境後一併函詢衛福部保護司）。</p>
+    <p>初版草案（2026-07-18）｜「115 年度提升處方藥可近性試辦計畫」計畫團隊整理，供專家會議討論用，非正式定稿。</p>
+  </div>
+</div>
+</body>
+</html>
