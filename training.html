@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試辦藥師 8 小時教育訓練課程表（草案）</title>
+<style>
+  :root{
+    --ink:#1f2933; --sub:#64748b; --line:#cbd5e1;
+    --blu:#1d4ed8; --blu-bg:#eff6ff; --blu-line:#bfdbfe;
+    --tea:#0f766e; --tea-bg:#f0fdfa; --tea-line:#99f6e4;
+    --amb:#b45309; --amb-bg:#fffbeb; --amb-line:#fcd34d;
+    --grn:#15803d; --grn-bg:#f0fdf4; --grn-line:#86efac;
+  }
+  *{box-sizing:border-box}
+  body{font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+    color:var(--ink);margin:0;background:#eef2f7;line-height:1.55}
+  .page{max-width:880px;margin:18px auto;background:#fff;padding:30px 36px 26px;
+    box-shadow:0 1px 8px rgba(0,0,0,.08);border-radius:8px}
+  h1{font-size:1.28rem;margin:0 0 4px;text-align:center}
+  .sub{text-align:center;color:var(--sub);font-size:.82rem;margin-bottom:6px;line-height:1.6}
+  .coop{text-align:center;font-size:.85rem;color:var(--tea);font-weight:700;margin:4px 0 16px}
+
+  .principles{background:var(--grn-bg);border:1px solid var(--grn-line);border-radius:10px;
+    padding:12px 18px;margin:0 0 20px;font-size:.85rem}
+  .principles .ph{font-weight:700;color:var(--grn);margin-bottom:6px}
+  .principles ol{margin:4px 0 2px;padding-left:20px}
+  .principles ol li{margin:5px 0}
+
+  .phase{border-radius:8px;padding:10px 16px;font-size:.98rem;font-weight:700;color:#fff;margin:22px 0 0}
+  .phase .p-sub{display:block;font-weight:400;font-size:.78rem;color:#eef2f7;margin-top:3px;line-height:1.5}
+  .phase.online{background:var(--blu)}
+  .phase.onsite{background:var(--tea)}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:.87rem}
+  th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
+  thead th{background:#f1f5f9;font-weight:700;font-size:.83rem;white-space:nowrap}
+  td.no{text-align:center;font-weight:700;color:var(--sub);width:34px;white-space:nowrap}
+  td.time{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;width:64px;color:var(--ink)}
+  td.tutor{white-space:nowrap;color:var(--sub);font-size:.82rem;width:150px}
+  .topic-t{font-weight:600}
+  .topic-d{color:var(--sub);font-size:.82rem;margin-top:3px;line-height:1.5}
+  tr.test td{background:var(--amb-bg)}
+  tr.test .topic-t{color:var(--amb)}
+  tr.plus td{background:#faf5ff}
+
+  .subtotal{text-align:right;font-size:.85rem;color:var(--sub);margin:2px 2px 4px;font-weight:600}
+  .total{background:var(--grn-bg);border:1.5px solid var(--grn-line);border-radius:10px;
+    padding:12px 16px;margin:20px 0 8px;text-align:center;font-size:.98rem;font-weight:700;color:var(--grn)}
+  .total span{display:block;font-weight:400;font-size:.82rem;color:#047857;margin-top:4px}
+  .gate{background:var(--blu-bg);border:1px solid var(--blu-line);border-radius:8px;
+    padding:8px 13px;font-size:.83rem;color:#1e40af;margin:10px 0 2px}
+
+  .note{border-left:4px solid var(--amb-line);background:var(--amb-bg);padding:10px 14px;
+    font-size:.83rem;border-radius:0 8px 8px 0;margin:18px 0 4px}
+  .note .nh{font-weight:700;color:var(--amb);margin-bottom:4px}
+  .note ol{margin:4px 0 2px;padding-left:20px}
+
+  .foot{margin-top:18px;border-top:1px solid var(--line);padding-top:10px;font-size:.75rem;color:var(--sub)}
+  .foot p{margin:4px 0}
+  .badge{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;background:var(--tea);
+    border-radius:12px;padding:1px 9px;margin-left:6px;vertical-align:middle}
+  @media print{
+    body{background:#fff} .page{box-shadow:none;margin:0;max-width:100%;border-radius:0;padding:8mm 10mm}
+    tr,.phase,.total,.note{break-inside:avoid}
+  }
+  @media (max-width:640px){
+    .page{padding:20px 16px} td.tutor{white-space:normal;width:auto}
+    thead th:last-child{display:none} td.tutor{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>試辦藥師 8 小時教育訓練課程表（草案）</h1>
+  <div class="sub">依據第 3 場專家會議決議（2026-07-08）擬定　·　用途：第 4 場會議提出確認　·　整理：2026-07-16</div>
+  <div class="coop">合作單位：中華民國藥師公會全國聯合會（全聯會）</div>
+
+  <div class="principles">
+    <div class="ph">設計原則（第 3 場決議 ✅）</div>
+    <ol>
+      <li>台灣模式、總時數 <b>8 小時</b>。</li>
+      <li>以藥師公會全聯會既有 8 小時課程為基礎，刪除 1 小時「國際趨勢」。</li>
+      <li>新增四模組：兒少與非自主性行為辨識、轉介互動與就醫心理準備（含示範影片）、性騷擾防治與藥師自我保護、溝通話術與案例演練。</li>
+      <li><b>兩階段</b>——學理與影片觀摩課程採非同步線上＋通過測驗；<b>溝通類課程須即時互動</b>（實體或視訊直播，不得僅看錄影）。</li>
+      <li>測驗須具鑑別度，輔以前測／後測。</li>
+    </ol>
+  </div>
+
+  <!-- 第一階段 -->
+  <div class="phase online">🖥️ 第一階段　學理與影片觀摩線上課程（非同步）
+    <span class="p-sub">計 5 小時 30 分（授課 5 小時 15 分＋線上測驗 15 分）</span>
+  </div>
+  <div class="gate">完成全部模組並<b>通過線上測驗</b>，方可報名第二階段。</div>
+  <table>
+    <thead><tr><th>#</th><th>主題</th><th>時間</th><th>講師</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="no">1</td>
+        <td><div class="topic-t">法律觀點與案例解析</div><div class="topic-d">試辦計畫法源定位、藥師供藥之法律責任、通報義務（113／性侵害犯罪防治法／兒少權益保障法）</div></td>
+        <td class="time">60 分</td><td class="tutor">〔法律專家・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">2</td>
+        <td><div class="topic-t">婦女權益與生育自主</div><div class="topic-d">CEDAW、生殖健康權、去污名</div></td>
+        <td class="time">30 分</td><td class="tutor">〔婦女團體代表／學者・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">3</td>
+        <td><div class="topic-t">避孕措施與藥物</div><div class="topic-d">常規避孕方法、長效可逆避孕（LARC）、雙重避孕、銜接轉介</div></td>
+        <td class="time">60 分</td><td class="tutor">〔婦產科醫師・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">4</td>
+        <td><div class="topic-t">緊急避孕藥臨床應用與民眾迷思衛教</div><div class="topic-d">LNG（Levonorgestrel）藥理與時效、副作用、延遲排卵≠墮胎、常見迷思破解、國內仿單</div></td>
+        <td class="time">60 分</td><td class="tutor">〔臨床藥師・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">5</td>
+        <td><div class="topic-t">標準化評估與轉介實務</div><div class="topic-d">線上評估問卷、《藥局供應評估與轉介流程表》🔴🟡🟢 分流、個人化衛教清單、資訊系統操作與給藥紀錄結案</div></td>
+        <td class="time">60 分</td><td class="tutor">〔計畫團隊＋藥師公會・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">6</td>
+        <td><div class="topic-t">轉介互動流程與民眾就醫心理準備</div><div class="topic-d"><b>婦產科看診流程示範影片</b>＋性侵一站式服務流程——使藥師能向民眾說明就醫會經歷什麼、提高就診意願；屬影片觀摩、無即時互動，故列非同步</div></td>
+        <td class="time">45 分</td><td class="tutor">〔婦產科醫學會・待定〕</td>
+      </tr>
+      <tr class="test">
+        <td class="no">—</td>
+        <td><div class="topic-t">線上測驗</div><div class="topic-d">通過後始得報名第二階段；具鑑別度，輔以前測／後測</div></td>
+        <td class="time">15 分</td><td class="tutor">—</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="subtotal">第一階段小計：5 小時 30 分（授課 5 小時 15 分＋線上測驗 15 分）</div>
+
+  <!-- 第二階段 -->
+  <div class="phase onsite">🧑‍🏫 第二階段　即時互動課程（實體或視訊 real-time）
+    <span class="p-sub">授課 2 小時 30 分</span>
+  </div>
+  <table>
+    <thead><tr><th>#</th><th>主題</th><th>時間</th><th>講師</th></tr></thead>
+    <tbody>
+      <tr class="plus">
+        <td class="no">7</td>
+        <td><div class="topic-t">兒少與非自主性行為之辨識與溝通＋兒少服務加值<span class="badge">加值</span></div><div class="topic-d">性侵、脆弱處境、性剝削徵兆（含反覆購買）、以兒少能理解之語言溝通；Fraser 式能力評估操作化（含 Gillick 能力確認、評估留紀錄）、年齡分層作業規則</div></td>
+        <td class="time">75 分</td><td class="tutor">〔社工／性暴力防治專家・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">8</td>
+        <td><div class="topic-t">性騷擾防治與藥師自我保護</div><div class="topic-d">言行界線、避免熱心反受指控、半隱私空間下之應對</div></td>
+        <td class="time">30 分</td><td class="tutor">〔性別平等／法律專家・待定〕</td>
+      </tr>
+      <tr>
+        <td class="no">9</td>
+        <td><div class="topic-t">溝通話術與案例演練</div><div class="topic-d">判斷案例示範</div></td>
+        <td class="time">45 分</td><td class="tutor">〔社工＋資深藥師・待定〕</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="subtotal">第二階段小計：授課 2 小時 30 分</div>
+
+  <div class="total">訓練時數總計：8 小時
+    <span>第一階段 5 小時 30 分（含線上測驗 15 分）＋第二階段 2 小時 30 分——符合第 3 場「訓練 8 小時」原則</span>
+  </div>
+
+  <div class="note">
+    <div class="nh">📌 待第 4 場確認事項</div>
+    <ol>
+      <li>模組 7 暫時納入「兒少服務加值」（Fraser 式能力評估操作化〔含 Gillick 能力確認〕、年齡分層作業規則）；其<b>具體年齡門檻與分層數字待第 8 章年齡限制決議後定版</b>，詳《第4場_兒少服務加值訓練模組_英國Fraser參考》。</li>
+    </ol>
+  </div>
+
+  <div class="foot">
+    <p><b>縮寫：</b>LNG＝Levonorgestrel（本試辦品項，單方黃體素）｜LARC＝Long-Acting Reversible Contraception（長效可逆避孕）｜CEDAW＝消除對婦女一切形式歧視公約｜Fraser／Gillick＝英國未成年醫療同意能力評估原則。</p>
+    <p>草案（2026-07-16）｜「115 年度提升處方藥可近性試辦計畫」計畫團隊整理，供第 4 場專家會議討論用，非正式定稿。</p>
+  </div>
+</div>
+</body>
+</html>
