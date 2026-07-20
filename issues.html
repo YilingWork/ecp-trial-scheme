@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>ECP 試辦計畫議題快查</title>
+<style>
+  :root{
+    --bg:#f6f7f9; --card:#fff; --ink:#1f2933; --sub:#52606d; --line:#e4e7eb;
+    --m1:#2563eb; --intl:#0369a1;
+    --done:#15803d; --donebg:#dcfce7; --part:#0e7490; --partbg:#cffafe;
+    --todo:#a21caf; --todobg:#fae8ff; --info:#475569; --infobg:#e2e8f0;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;-webkit-text-size-adjust:100%}
+  .wrap{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  header.top{padding:8px 0 18px;border-bottom:2px solid var(--line);margin-bottom:18px}
+  header.top h1{font-size:1.4rem;margin:.2em 0 .3em;line-height:1.4}
+  .meta{color:var(--sub);font-size:.9rem}
+  .meta b{color:var(--ink)}
+  .intro{background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.92rem}
+  .intro strong{color:#92400e}
+  /* 搜尋 */
+  .searchbox{display:flex;gap:8px;margin:18px 0 8px}
+  .searchbox input{flex:1;font:inherit;font-size:1rem;padding:12px 16px;border-radius:12px;
+    border:2px solid #c7d2fe;outline:none}
+  .searchbox input:focus{border-color:var(--m1)}
+  .searchbox button{font:inherit;font-size:1rem;padding:0 22px;border-radius:12px;border:none;
+    background:var(--m1);color:#fff;cursor:pointer}
+  .hint{font-size:.84rem;color:var(--sub);margin:2px 4px 10px}
+  .chips{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 18px}
+  .chips button{font:inherit;font-size:.83rem;cursor:pointer;border:1px solid var(--line);
+    background:#fff;border-radius:20px;padding:4px 13px;color:var(--sub)}
+  .chips button:hover{background:#eef2ff;color:var(--m1);border-color:#c7d2fe}
+  /* 結果卡片 */
+  .result-note{font-size:.9rem;color:var(--sub);margin:6px 2px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px 18px;margin:12px 0;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+  .card h3{margin:0 0 6px;font-size:1.05rem;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tag{font-size:.72rem;padding:2px 9px;border-radius:12px;white-space:nowrap;font-weight:600}
+  .tag.ch{background:#e0e7ff;color:#3730a3}
+  .tag.done{background:var(--donebg);color:var(--done)}
+  .tag.part{background:var(--partbg);color:var(--part)}
+  .tag.todo{background:var(--todobg);color:var(--todo)}
+  .tag.info{background:var(--infobg);color:var(--info)}
+  .blk{margin:9px 0}
+  .blk>b{display:block;font-size:.85rem;font-weight:700;margin:0 0 3px;padding-left:8px;border-left:3px solid}
+  .blk.prog>b{color:var(--done);border-color:#22c55e}
+  .blk.intl>b{color:var(--intl);border-color:#7dd3fc}
+  .blk.ev>b{color:#b45309;border-color:#f59e0b}
+  .blk div{font-size:.92rem}
+  .src{font-size:.8rem;color:var(--sub);margin-top:8px;padding-top:6px;border-top:1px dashed var(--line)}
+  .nores{background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:16px 18px;margin:12px 0;font-size:.93rem}
+  .nores b{color:#b91c1c}
+  footer{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-size:.82rem;color:var(--sub)}
+  a{color:var(--m1)}
+  /* 密碼閘 */
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;
+    justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:var(--m1);color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+</style>
+</head>
+<body>
+
+<!-- ====== 密碼閘（前端，弱保護；未來開放民眾查詢時移除本區塊即可） ====== -->
+<div id="gate">
+  <h2>🔒 ECP 試辦計畫議題快查（試用版）</h2>
+  <p>本頁內容為政策研議中資料，僅供食藥署與受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+
+<div id="content"><div class="wrap">
+
+<header class="top">
+  <h1>🔎 緊急事後避孕藥試辦計畫｜議題快查</h1>
+  <div class="meta">輸入議題關鍵字，自動查出：<b>對應章節・研議進度・國際做法・科學實證</b></div>
+  <div class="meta">最後更新：<b>2026-07-20</b>　·　網站維護：國立臺北護理健康大學 蔡懿玲助理教授研究團隊</div>
+</header>
+
+<div class="intro">
+  <strong>試用版說明：</strong>本頁供食藥署同仁快速回應輿情與各界詢問；內容彙整自試辦方案專家會議決議、研析報告與國際實證文獻。<strong>決議文字以食藥署核定之會議紀錄為準</strong>；標「待議」者為尚未定案事項，回應對外詢問時請勿當作結論引用。未來試辦計畫上線後，本頁可調整為民眾友善版開放查詢。
+</div>
+
+<div class="searchbox">
+  <input id="q" placeholder="輸入議題，例如：未成年、性病、副作用、家長同意、追蹤追溯…">
+  <button onclick="search()">查詢</button>
+</div>
+<div class="hint">💡 支援關鍵字比對；也可直接點下方常見議題。</div>
+<div class="chips" id="chips"></div>
+
+<div id="results"></div>
+
+<footer>
+  資料來源：試辦方案專家會議紀錄（第 1–3 場；待食藥署核定）、《研析報告（台灣與國際政策及實施成效）》、《世界各國事後避孕藥管理規範》、台灣 LNG 仿單（衛署藥製字第 046441 號等四張）、WHO／Cochrane／BMJ Open 等同儕審查文獻。<br>
+  本頁為研究團隊彙整之參考工具，非官方正式文件；如需完整依據與文獻編號，請洽計畫團隊。
+</footer>
+
+</div></div><!-- /#content -->
+
+<script>
+// ====== 前端密碼閘（弱保護） ======
+// 預設密碼：ECP2026（與平台其他頁面相同）
+const HASH = "918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
+}
+async function checkPw(){
+  const v = document.getElementById("pw").value;
+  if(await sha256(v) === HASH){ sessionStorage.setItem("ok","1"); reveal(); }
+  else { document.getElementById("err").textContent = "密碼錯誤，請再試一次。"; }
+}
+function reveal(){
+  document.getElementById("gate").style.display="none";
+  document.getElementById("content").style.display="block";
+}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{ if(e.key==="Enter") checkPw(); });
+
+// ====== 議題資料庫 ======
+// st: done=已決議 part=部分決議 todo=待議 info=非本方案範疇/背景
+const DB = [
+{q:"未成年年齡限制（最低購買年齡）",kw:["未成年","年齡","門檻","16歲","青少年","青少女","國中","高中","限制","兒少","小孩","孩子","兒童","女兒","學生"],ch:"第 8 章 §8.1",st:"todo",stTxt:"🟣 待議（第 4 場 8/7）",
+ prog:"第 4 場（8/7）討論三案：①16 歲為界 ②英國 Fraser 逐案評估能力 ③不設限；併同討論未滿門檻者之處置。尚未定案。",
+ intl:"美國：無年齡限制（2013 年聯邦法院裁定年齡與證件限制無科學依據，命 FDA 全面開放）。日本：2026 年正式開放時取消年齡限制。英國：無法定下限，未滿 16 歲以 Fraser 準則逐案評估同意能力。澳洲：無全國下限（Gillick 能力評估）。國際趨勢＝能力評估取代硬性門檻。",
+ ev:"WHO 明示緊急避孕藥無年齡限制、適用所有育齡女性（含青少女）；日本試辦期間 16 歲以下大量求助案例為其取消年齡限制之實證依據。",
+ src:"研析報告〔R1,R23,R63,R71,R74〕；第四場議程"},
+{q:"家長同意／家長陪同",kw:["家長","監護人","同意","陪同","父母","家長同意"],ch:"第 8 章 §8.4",st:"todo",stTxt:"🟣 待議（第 4 場 8/7）",
+ prog:"第 4 場（8/7）討論是否要求家長同意／陪同。尚未定案。家長團體書面意見（2026-06/27–07/07 調查，n=88）已列入會議參考。",
+ intl:"美、澳、英、日、韓五國均不要求家長同意。日本 2023–2025 試辦原要求 16–17 歲家長同意，2026 年正式上市時明文取消（試辦顯示家長同意成為未成年取得協助之現實障礙）。英國以專業人員能力評估＋兒少保護通報取代家長把關，13 歲以下啟動兒少保護程序。",
+ ev:"日本厚生勞働省試辦檢討報告：16–17 歲因無法取得家長同意而遭拒之案例頻繁發生，證明家長同意權形成障礙。",
+ src:"研析報告〔R7,R63,R71,R74〕；家長意見對照文件"},
+{q:"未成年知情同意能力",kw:["知情同意","同意能力","心智","成熟","判斷能力","自主"],ch:"第 8 章",st:"todo",stTxt:"🟣 待議（第 4 場 8/7）",
+ prog:"與年齡門檻、家長同意併同於第 4 場（8/7）討論。會前資料已備妥「兒少服務加值訓練模組（英國 Fraser 參考）」。",
+ intl:"英國 Fraser Guidelines／澳洲 Gillick 原則：由受訓專業人員逐案評估理解能力，而非以年齡一刀切；13 歲以下另啟動兒少保護程序。",
+ ev:"英國行之多年之 Fraser 能力評估為國際主要模式；美國 2013 年法院認定 LNG「對各年齡層皆安全且易於自行服用」。",
+ src:"研析報告〔R23,R63〕；第 4 場會前資料 05"},
+{q:"開放會不會鼓勵性行為／影響青少年性觀念",kw:["鼓勵性行為","性觀念","性責任","婚前","性行為增加","未保護","危險性行為","放縱"],ch:"第 8 章＋第 11 章",st:"part",stTxt:"🟨 實證明確・配套第 4 場討論",
+ prog:"衛教配套於第 4 場（8/7）討論。另須對照現況：我國 ECP 雖為處方藥，實務上已存在藥局無處方販售情事（無衛教、無評估、無追蹤）；試辦是把既存的無配套取得導入有配套管道，並非「從嚴管變方便」。",
+ intl:"各國均將交付現場作為衛教契機；澳、英要求藥師主動建議長效可逆避孕（LARC）。",
+ ev:"系統性回顧（78 篇研究，BMJ Open 2022）：放寬取得後性伴侶數、保險套使用無顯著差異；Cochrane 系統回顧（8 篇 RCT、6,389 人）：事前提供未增加無防護性行為。",
+ src:"研析報告〔R84,R141〕；台灣ECP用量與避孕現況資料盤點"},
+{q:"開放會不會增加性病（STI）",kw:["性病","性傳染病","STI","淋病","梅毒","HIV","B肝","感染"],ch:"第 8 章＋第 11 章＋第 15 章",st:"part",stTxt:"🟨 實證明確・指標納成效評估",
+ prog:"性病相關疑慮之衛教回應於第 4 場討論；成效評估指標（第 15 章）於第 6 場（8/26）確認。",
+ intl:"32 個歐洲國家開放經驗未見性病指標惡化；藥師於交付時提供性病篩檢建議與轉介（我國流程表已納入：性傳染病風險者供藥＋建議婦產科篩檢）。",
+ ev:"跨國政策分析（歐洲 32 國、1998–2021 年，歐洲疾病預防暨控制中心資料）：放寬取得後淋病、B 型肝炎、HIV、梅毒指標均無顯著變化；Cochrane 系統回顧亦未見性傳染病增加。",
+ src:"研析報告〔R89,R90,R141〕"},
+{q:"濫用、重複購買、囤積",kw:["濫用","重複","囤積","重複購買","跨店","一直買","上癮"],ch:"第 13 章 §13.3",st:"part",stTxt:"🟨 部分決議・第 5 場續議",
+ prog:"第 3 場已決議：給藥完成後於系統結案，防止跨店重複購買。第 5 場（8/12）討論防轉售／跨店濫用警示規格。第 2 場已決議：不得以重複使用率作為停辦指標。",
+ intl:"日本：嚴禁代購＋限名單制受訓藥局。各國將頻繁使用視為「需要長效常規避孕」之轉介訊號，而非濫用。",
+ ev:"涵蓋 32 國、24 年（1998–2021）之大型跨國分析：無任何跡象顯示容易取得會導致有害濫用。",
+ src:"研析報告〔R80,R89〕；第3場會議紀錄"},
+{q:"副作用與用藥安全（血栓、大出血、傷身）",kw:["副作用","安全","血栓","出血","傷身","身體","危險","荷爾蒙","高劑量","噁心"],ch:"第 5 章＋第 15 章 §15.1",st:"part",stTxt:"🟨 實證明確・評估工具第 4 場確認",
+ prog:"線上評估問卷（過濾禁忌）草案已備妥、第 4 場（8/7）確認；安全性監測指標於第 6 場（8/26）確認。",
+ intl:"WHO 將 LNG 列為高度安全藥品；全球約 90 國以非處方供應。",
+ ev:"WHO：LNG 副作用少且短暫（輕至中度噁心、頭痛、經期改變），可自行緩解，不增加靜脈血栓；同一月經週期重複服用亦無安全疑慮。台灣四張 LNG 仿單之唯一絕對禁忌為成分過敏；血栓病史、子宮外孕病史、骨盆腔發炎均非禁忌。",
+ src:"研析報告〔R1,R87〕；台灣 LNG 仿單四張"},
+{q:"子宮外孕誤判／延誤",kw:["子宮外孕","異位妊娠","輸卵管","誤判","延誤","漏診","異常出血"],ch:"第 5 章＋第 12 章",st:"part",stTxt:"🟨 部分決議・第 4、5 場續議",
+ prog:"第 3 場已決議：異常陰道出血（與平常月經不同或說不清楚）→不供藥、直接轉介；合併急性子宮外孕徵象→急診。第 4 場待拍板是否改「先給藥＋當日轉介查因」；第 5 場討論第 21 天追蹤是否強制（化解漏診疑慮）。",
+ intl:"日本：藥師依紅旗指標評估＋藥局須與至少一家婦產科書面合作、即時轉介。",
+ ev:"系統性回顧（Obstet Gynecol 2010）：使用 LNG 不增加子宮外孕風險，發生率甚至低於一般懷孕族群；LNG 透過減少非預期懷孕反而降低子宮外孕總體風險。",
+ src:"研析報告〔R7,R71,R88〕；第3場會議紀錄"},
+{q:"已懷孕者誤用",kw:["已懷孕","懷孕","驗孕","孕婦","妊娠"],ch:"第 5 章＋流程表",st:"part",stTxt:"🟨 部分決議・第 4 場確認判斷準則",
+ prog:"第 3 場已決議：疑似或確認懷孕（驗孕陽性或不願驗孕）→不供藥、直接轉介婦產科。第 4 場確認評估方式與驗孕判斷準則。",
+ intl:"國際指引（英國 FSRH、美國 ACOG）：供應前不需內診或驗孕、不得因體重拒絕供應——以問診篩檢即可。",
+ ev:"LNG 對已確立之妊娠無效但無致害實證；懷孕非仿單禁忌。WHO 證實 LNG 不誘發流產、不損生育力。",
+ src:"研析報告〔R1〕；第3場會議紀錄；FSRH／ACOG 指引"},
+{q:"是不是墮胎藥？",kw:["墮胎","墮胎藥","RU486","流產","終止妊娠","殺胚胎"],ch:"第 11 章 衛教資源",st:"part",stTxt:"🟨 實證明確・衛教內容第 4 場討論",
+ prog:"衛教素材將明確釐清機轉；內容於第 4 場（8/7）討論。",
+ intl:"日本服用前說明同意書、英國 PGD 諮詢均強制向民眾釐清「延遲排卵 ≠ 墮胎」。",
+ ev:"LNG 作用機轉為延遲或抑制排卵，無法終止已著床之妊娠，與墮胎藥（RU486／mifepristone）完全不同；WHO 證實不誘發流產、不損生育力。",
+ src:"研析報告〔R1,R56,R71〕"},
+{q:"對墮胎率的影響",kw:["墮胎率","人工流產","流產率","中止懷孕"],ch:"背景論述（非單一章節）",st:"info",stTxt:"ℹ️ 實證背景",
+ prog:"本計畫不以「降低墮胎率」為核心訴求（族群層級證據不一致、台灣無本土實證），定位為可能之附帶效益。",
+ intl:"歐洲 26 國比較：開放 15 年後成年女性墮胎率平均降 14%、青少女降 40%；智利免費提供後流產相關住院下降；波蘭 2017 年改回處方藥後使用率大減近半。",
+ ev:"惟多數「藥局取得 vs 處方」研究未發現整體懷孕率或墮胎率顯著改變（BMJ Open 2022 系統性回顧），證據須誠實界定。",
+ src:"研析報告〔R84,R89,R91,R92〕"},
+{q:"性侵害個案處置",kw:["性侵","性暴力","強制","強暴","受害","113","通報","脅迫","保護"],ch:"第 8 章（併原 §12.6 SOP）",st:"part",stTxt:"🟨 部分決議・SOP 第 4 場討論",
+ prog:"第 3 場已決議：疑似性暴力→先供藥（預防懷孕優先）＋113 通報＋優先轉介具社工之醫院。第 4 場（8/7）討論應急 SOP 細節：24 小時通報主管機關、一站式中心對接、保全證據勿盥洗（已有現行法源可引用）。",
+ intl:"WHO／聯合國人口基金將緊急避孕列為性侵後照護標準必要項（72 小時內、最遲 120 小時）。日本 #8891 專線＋一站式支援中心；英國 SARC 法定轉介；澳洲藥師敏感觀察轉介。",
+ ev:"國際共識：性侵後緊急避孕屬標準醫療照護，不應設取得障礙；藥局可成為性暴力防治網絡之前端辨識站點。",
+ src:"研析報告〔R7,R50,R64,R71〕；WHO/UNFPA 臨床處置指引；第3場會議紀錄"},
+{q:"藥品追蹤追溯管理（LNG／UPA 納入公告）",kw:["追蹤追溯","追溯追蹤","追溯","流向","6/25","預告","公告","納入管理"],ch:"藥政公告（非試辦章節）；試辦端對應第 13 章",st:"info",stTxt:"ℹ️ 食藥署藥政作業",
+ prog:"食藥署 2026-06-25 預告將 LNG／UPA 納入藥品追蹤追溯管理，屬藥政作業、非專家會議決議事項。試辦端藥品流向於第 5 場（8/12）討論：防轉售警示規格、健保雲端註記之跨部會協調。",
+ intl:"日本以名單制受訓藥局＋嚴禁代購管控供應端流向；本計畫各國盤點未見對 ECP 另設藥品專屬追溯追蹤之先例（美國 OTC 開架、澳英一般藥局供應）。",
+ ev:"追溯追蹤可補供應端統計缺口，但無法追到「藥局最後賣給誰」，不等於解決非法販售問題（國內藥界評論）。",
+ src:"食藥署預告公告；台灣ECP用量與避孕現況資料盤點；世界各國管理規範報告"},
+{q:"購買者登錄與個資保護",kw:["登錄","個資","身分證","實名","隱私資料","紀錄","資料保存"],ch:"第 13 章 §13.1–13.2",st:"part",stTxt:"🟨 部分決議・第 5 場確認細節",
+ prog:"第 3 場已決議：線上簽署個資提供同意書後，後台記錄姓名、出生年月日、身分證字號全碼；各藥局僅能去識別檢核是否重複領用、無法反查個人紀錄；不同意者不納入試辦供藥。第 5 場（8/12）確認欄位、時限與保存年限。",
+ intl:"日本強制核實身分＋簽署同意書；英美不要求身分登錄（美國 2013 年撤除證件查核）。我國後台全碼登錄屬國際少見之強管理設計。",
+ ev:"—",
+ src:"第3場會議紀錄；研析報告〔R23,R71〕"},
+{q:"藥師訓練與資格",kw:["藥師訓練","訓練","課程","資格","認證","教育訓練","繼續教育","複訓"],ch:"第 4 章",st:"done",stTxt:"✅ 第 3 場已決議",
+ prog:"訓練總時數 8 小時（以藥師公會全聯會既有課程為基礎），加入：①兒少與非自主性行為辨識與溝通 ②轉介互動流程與就醫心理準備（含婦產科看診流程示範影片）③性騷擾防治與藥師自我保護 ④溝通話術（案例演練）。學理課程可非同步線上＋測驗；溝通類課程須即時互動。未依流程執行者退出試辦；複訓與效期留待試辦後檢討。",
+ intl:"英國：CPPE 課程（緊急避孕約 3 小時＋藥局性健康約 6 小時）＋分級兒少保護訓練＋能力宣告約 3 年複訓。日本：JPEC 統一線上課約 154 分鐘、六模組。澳洲：藥學會（PSA）主導、高度重視溝通技巧。",
+ ev:"瑞士「免處方＋強制藥師諮詢」行之逾 20 年：91% 女性理解諮詢必要性、78% 提升避孕知識——標準化訓練與指引可解決諮詢品質落差。",
+ src:"第3場會議紀錄；研析報告〔R44,R94,R96,R122,R123〕"},
+{q:"隱私保護與諮詢空間",kw:["隱私","諮詢空間","獨立","諮詢室","私密","尷尬","標籤"],ch:"第 7 章",st:"done",stTxt:"✅ 第 3 場已決議",
+ prog:"不設強制之獨立諮詢室，採半隱私空間（隔板、背景音樂、櫃檯動線區隔等），參考愛滋指定藥局經驗；避免刻意引導至小房間造成標籤化，並兼顧藥師自我保護。",
+ intl:"澳、英、日均強制私密諮詢空間（日本個室非強制、隔板等替代）；美國 OTC 不強制。我國採半隱私設計係在地考量（去標籤化＋藥師安全），與澳英日寬嚴不同。",
+ ev:"國際回顧：各國藥局隱私落差大（帶至私密空間比例 0–90%）；缺乏隱私會使使用者焦慮、隱瞞真實狀況，影響用藥安全。",
+ src:"第3場會議紀錄；研析報告〔R71,R86,R94,R96〕"},
+{q:"給藥流程（如何買到）",kw:["給藥流程","購買流程","怎麼買","流程","評估問卷","QR","條碼","兩階段"],ch:"第 6 章",st:"done",stTxt:"✅ 第 3 場已決議",
+ prog:"兩階段評估：①線上填寫評估問卷，有禁忌症或高風險者由系統直接導引至婦產科、不產生購藥條碼；通過者取得 QR Code 並可查詢附近試辦藥局。②到局後藥師掃碼調閱填答、核對本人身分、補問必要問題後決定供藥或轉介；系統自動產出個人化衛教清單，藥師逐項執行；完成給藥紀錄結案、防跨店重複購買。",
+ intl:"澳英日均為「藥師指示＋強制諮詢」模式；英國採強制數位諮詢表、日本採質問票＋同意書、澳洲採口頭對話（2022 年廢書面檢核表以免二度傷害）。",
+ ev:"僅靠醫師處方會造成週末／偏鄉延遲，錯失黃金時效（LNG 每延遲約 12 小時有效性約減半）。",
+ src:"第3場會議紀錄；研析報告〔R44,R71,R138〕"},
+{q:"需不需要當場吞藥（面前服用）",kw:["當場服用","面前服用","當場吞","監督服藥","現場服藥"],ch:"第 6 章 §6.4",st:"done",stTxt:"✅ 第 3 場已決議：不強制",
+ prog:"不強制當場服用，惟衛教盡速服用。第 5 場（8/12）確認不當場服藥之防外流配套。",
+ intl:"日本「藥師面前服用」為國際唯一要件、爭議最大（有取得障礙與再創傷疑慮，防濫用效益缺乏公開實證）；其他國家均無此要求。",
+ ev:"—",
+ src:"第3場會議紀錄；研析報告（對台啟示第六點）"},
+{q:"可不可以代購（幫別人買）",kw:["代購","代買","幫買","男友","女友","伴侶買","家人買","幫女友買","幫男友買","幫朋友買","幫別人買","代領"],ch:"第 6 章 §6.6",st:"done",stTxt:"✅ 第 3 場已決議：不可代購",
+ prog:"須本人（女性）到場，不可代購。",
+ intl:"日本：嚴格禁止代購。澳洲：允許代購但藥師須確認本人意願。英國：諮詢須與本人進行。美國：無限制。",
+ ev:"—",
+ src:"第3場會議紀錄；世界各國管理規範報告"},
+{q:"轉介機制（藥局→醫療院所）",kw:["轉介","轉診","婦產科","就醫","轉介單","合作"],ch:"第 6 章＋第 9、10 章",st:"part",stTxt:"🟨 框架已決議・細節第 4、5 場",
+ prog:"第 3 場已決議兩類轉介：🔴不供藥直接轉介（疑似懷孕、異常出血、嚴重肝功能障礙、成分過敏）；🟡先供藥＋衛教＋轉介或通報（疑性暴力、性病風險、短期重複使用）。第 4 場確認流程表與轉介單欄位；第 5 場確認轉介連動通知後端院所是否納入資訊系統。",
+ intl:"日本：藥局須與至少一家婦產科書面合作＋受診勸奨（惟就診率不到一半，我國規劃以資訊系統補強）。英國 SARC、澳洲 1800RESPECT 法定轉介路徑。",
+ ev:"藥師可於諮詢中提供轉介與篩檢建議，使藥局成為醫療網絡前端節點。",
+ src:"第3場會議紀錄；研析報告〔R7,R50,R64,R71,R80,R93〕"},
+{q:"衛教配套",kw:["衛教","教育","單張","說明","避孕知識","性教育","宣導"],ch:"第 11 章",st:"part",stTxt:"🟨 部分決議・內容第 4 場討論",
+ prog:"第 3 場已決議：系統依線上填答自動產出個人化衛教清單，藥師逐項執行並於系統確認。衛教資源清單與內容大綱已備妥，第 4 場（8/7）討論。",
+ intl:"各國將每次交付化為衛教契機：澳、英要求主動建議長效可逆避孕（LARC）；瑞士 ieNK 標準化交付文件（含避孕選項、性病資訊、必要時轉介）。韓國醫師調查 79% 認為避孕衛教是防濫用最重要配套。",
+ ev:"瑞士模式：91% 理解諮詢必要性、78% 提升避孕知識。性教育與開放取得為並行配套、非互斥選項。",
+ src:"第3場會議紀錄；研析報告〔R44,R60,R77,R96〕"},
+{q:"服藥後追蹤",kw:["追蹤","21天","三週","驗孕追蹤","後續","關懷"],ch:"第 12 章",st:"todo",stTxt:"🟣 待議（第 5 場 8/12）",
+ prog:"第 3 場流程表已納「約 3 週驗孕」衛教項。第 5 場（8/12）討論：第 21 天追蹤是否強制（化解漏診子宮外孕疑慮 vs 可行性與隱私）、三階段追蹤措施、轉介後就診率提升設計。",
+ intl:"日本設 3 週後受診勸奨，惟就診率不到一半；歐美多數國家無強制追蹤，以衛教告知警訊症狀替代。我國規劃以資訊系統補強。",
+ ev:"—",
+ src:"第五場議程；研析報告〔R7〕"},
+{q:"稽核與退場機制",kw:["稽核","查核","退場","違規","罰則","監督藥局"],ch:"第 14 章",st:"todo",stTxt:"🟣 待議（第 5 場 8/12）",
+ prog:"第 5 場（8/12）討論：三方稽核分工（食藥署制定規則／衛生局現場稽查／藥師公會自律通報）、頻率與罰則、藥局層級退場檢核（未依流程執行即退出）。訓練面已於第 3 場決議「未依流程執行者退出試辦」。",
+ intl:"日本以名單制藥局（不合格即除名）管理；英國以能力宣告與定期複訓維持品質。",
+ ev:"—",
+ src:"第五場議程；第3場會議紀錄"},
+{q:"法源依據（適法性）",kw:["法源","適法","法律依據","藥事法","合法","授權","行政"],ch:"第 1 章",st:"done",stTxt:"✅ 第 3 場已決議",
+ prog:"本試辦計畫屬食藥署轉類公告前之行政準備（行政事實行為），依行政裁量權辦理即具適法性，不以轉類公告為前提。試辦藥品由符合條件之廠商申請後納為試辦計畫專用藥品（類似試驗用藥概念）。另確認：以行政程序法第 93 條附款附加藥局銷售條件不可行；藥事法第 48 條之 2 專案核准亦不適用。",
+ intl:"英國以病人族群指示（PGD）制度賦予藥師供應權；日本以「要指導醫藥品」行政核准路徑；美國由法院判決排除政治干預。",
+ ev:"—",
+ src:"第3場會議紀錄；研析報告〔R22,R54,R69〕"},
+{q:"藥師法律責任",kw:["法律責任","責任","賠償","民事","刑事","保險","究責"],ch:"第 16 章",st:"todo",stTxt:"🟣 待議（第 6 場 8/26）",
+ prog:"第 6 場（8/26）討論：給藥後不良事件之民／刑事責任歸屬、遵循標準作業流程之責任限縮、補償／保險機制、藥師／藥局／醫師責任劃分。",
+ intl:"英國 PGD 制度下藥師依規範供應即受制度保障；各國以標準化流程作為責任限縮基礎。",
+ ev:"—",
+ src:"第六場議程"},
+{q:"成效評估與停辦條件",kw:["成效","評估","KPI","指標","停辦","滿意度"],ch:"第 15 章",st:"part",stTxt:"🟨 部分決議・第 6 場確認",
+ prog:"第 2 場已決議：不得以重複使用率／未成年使用率作為停辦指標。第 6 場（8/26）確認四大維度指標（安全循證／可近性時效／社會安全人權／制度滿意度）、KPI 與檢核點、跨模式比較與對照組。",
+ intl:"英國藥局取得滿意度 91%（高於處方取得 58%）為可參考之滿意度評估先例。",
+ ev:"國際系統性回顧指出，現階段仍缺「正確使用、自我效能、賦權」等面向之比較實證，我國試辦宜設計本土資料蒐集補足。",
+ src:"第六場議程；研析報告〔R84〕"},
+{q:"避孕責任都推給女性？",kw:["責任","女性","推給女性","伴侶","男性","性別","共同承擔"],ch:"第 11 章（衛教之性別設計）",st:"todo",stTxt:"🟣 建議納入討論",
+ prog:"媒體新論點（信傳媒 2026-07-20），尚未排入議程；建議於第 4 場衛教資源段或第 6 場整合時納入回應。本計畫另有性別影響評估文件。",
+ intl:"美國猶他州免看診計畫：申請者 10% 為法定男性、3.2% 為跨性別／非二元——支持性別包容、伴侶共同承擔之設計。（澳洲允許伴侶代購；我國已決議不可代購，宜改以衛教設計回應）",
+ ev:"緊急避孕之可近性提升「女性在避孕失敗當下的自救選項」，與「事前避孕之伴侶共同責任」屬不同層次；衛教素材可同時強調保險套與共同避孕責任。",
+ src:"研析報告〔R99〕；性別影響評估文件"},
+{q:"現在藥局是不是已經買得到？",kw:["買得到","現況","無處方","非法","違規販售","地下","黑市"],ch:"背景現況",st:"info",stTxt:"ℹ️ 現況背景",
+ prog:"我國 ECP 現為處方藥，但實務上存在藥局無處方販售之明確情事（媒體多方報導；食藥署 6/25 預告修法之直接導火線即「疑似非法販售違規情事」）。此類無處方取得無衛教、無評估、無追蹤轉介、無紀錄。試辦計畫是把既存的無配套取得導入衛教、評估、追蹤與轉介之有配套管道，並非「從嚴管變方便」。",
+ intl:"處方管制未阻絕無處方取得之現象亦見於他國轉類前經驗；轉類＋配套是將灰色地帶制度化的國際常見路徑。",
+ ev:"非法流通使任何以合規處方紀錄為基礎的用量統計系統性低估實際使用量；追溯追蹤只能追供應端申報量，追不到藥局最後賣給誰。",
+ src:"台灣ECP用量與避孕現況資料盤點；網路輿論分析"},
+{q:"醫療可近性已經夠了、不需要開放？",kw:["可近性","偏鄉","看診","方便","醫療足夠","健保","婦產科不足","黃金時效"],ch:"第 0 章＋第 3 章",st:"part",stTxt:"🟨 實證明確・試辦區域第 4 場討論",
+ prog:"優先試辦區域（含偏鄉考量）於第 4 場（8/7）討論；已備城鄉分級與偏鄉定義、試辦區域基礎資料。",
+ intl:"僅靠醫師處方造成週末／偏鄉延遲；美國研究顯示非處方避孕藥較常被未保險者、青少年、農村居民使用——免處方最受惠者正是醫療可近性較低的族群。",
+ ev:"LNG 每延遲約 12 小時有效性約減半（WHO 四試驗合併分析）；全台 159 鄉鎮無婦產科、婦產科診所約 965 家 vs 健保特約藥局約 8,887 家；15–19 歲生育率花蓮 8‰、臺東 7‰ 為全台最高，佐證偏鄉落差。",
+ src:"研析報告〔R84,R97,R138,R139〕；內政部戶政司統計"},
+{q:"為什麼韓國沒有開放？",kw:["韓國","南韓","轉類失敗","國外反例"],ch:"背景（國際比較）",st:"info",stTxt:"ℹ️ 國際背景",
+ prog:"—",
+ intl:"韓國 2012 年提案轉類失敗、2016 年確認維持處方至今，主因為醫藥利益衝突、宗教／保守力量反對與性教育配套不足之政治化過程，與台灣脈絡差異顯著。可取之教訓：79% 韓國醫師認為避孕衛教是防濫用最重要配套（支持衛教並行）；「社會共識」須與藥政審查並行經營。",
+ ev:"韓國研究：非自願性行為後赴急診就診時間顯著延遲（P<.001）——處方制的實際代價。",
+ src:"研析報告〔R76,R77,R100,R130〕"},
+{q:"試辦藥品範圍（LNG？UPA？）",kw:["UPA","LNG","藥品範圍","品項","哪些藥","ella","成分"],ch:"第 2 章 §2.2",st:"done",stTxt:"✅ 已結案：僅納 LNG",
+ prog:"試辦藥品範圍已定案僅納入 Levonorgestrel（LNG）；Ulipristal acetate（UPA）不在本次試辦範圍。試辦藥品由符合條件之廠商申請後納為試辦計畫專用藥品。",
+ intl:"日本亦僅開放 LNG（UPA 未核准）；澳英兩者皆為藥師指示藥；美國 LNG 為 OTC、UPA 維持處方。",
+ ev:"LNG 為第二代黃體素、臨床應用數十年之成熟藥品；72 小時內服用（越早越好），全球約 90 國列非處方。",
+ src:"專家會議決議；研析報告〔R85〕；世界各國管理規範報告"},
+{q:"線上購買／遠距取得",kw:["線上","網購","遠距","郵寄","宅配","網路買"],ch:"第 6 章（線上評估＋實體領藥）",st:"done",stTxt:"✅ 第 3 場已決議：線上評估＋本人到局",
+ prog:"評估問卷於線上填寫（第一階段），但須本人到試辦藥局完成第二階段評估後領藥；不開放郵寄。",
+ intl:"英國 NHS 遠距為即時語音／視訊＋另有私營數位問卷平台；日本可線上看診但本人須赴藥局領藥；韓國明令禁止遠距開立；美國線上郵寄普及。我國設計近於日本模式。",
+ ev:"—",
+ src:"第3場會議紀錄；世界各國管理規範報告"},
+{q:"試辦藥局條件與區域",kw:["試辦藥局","藥局條件","區域","哪些藥局","據點","涵蓋"],ch:"第 3 章",st:"todo",stTxt:"🟣 待議（第 4 場 8/7）",
+ prog:"第 4 場（8/7）討論試辦藥局條件與優先試辦區域；已備城鄉分級與偏鄉定義、試辦區域基礎資料、可近性需求優先矩陣分析。",
+ intl:"日本採名單制（受訓合格藥局公告名單）；英國約 1 萬家 NHS 藥局參與。",
+ ev:"空間分析顯示偏鄉婦產科可近性落差大，優先區域選定宜納入需求矩陣。",
+ src:"第四場議程；空間分析報告"}
+];
+
+// ====== 搜尋 ======
+const chipsTopics = ["未成年年齡","家長同意","鼓勵性行為？","性病","副作用","子宮外孕","是墮胎藥嗎？","性侵處置","追蹤追溯","個資登錄","藥師訓練","隱私空間","購買流程","代購","轉介","衛教","法律責任","偏鄉可近性","韓國經驗","現況已買得到？"];
+const chipMap = {"未成年年齡":"未成年","家長同意":"家長同意","鼓勵性行為？":"鼓勵性行為","性病":"性病","副作用":"副作用","子宮外孕":"子宮外孕","是墮胎藥嗎？":"墮胎","性侵處置":"性侵","追蹤追溯":"追溯","個資登錄":"登錄","藥師訓練":"藥師訓練","隱私空間":"隱私","購買流程":"流程","代購":"代購","轉介":"轉介","衛教":"衛教","法律責任":"法律責任","偏鄉可近性":"偏鄉","韓國經驗":"韓國","現況已買得到？":"買得到"};
+const chipsEl = document.getElementById("chips");
+chipsTopics.forEach(t=>{
+  const b=document.createElement("button"); b.textContent=t;
+  b.onclick=()=>{ document.getElementById("q").value=chipMap[t]; search(); };
+  chipsEl.appendChild(b);
+});
+
+function norm(s){ return (s||"").toLowerCase().replace(/[\s，,。.？?！!／/]/g,""); }
+function score(entry,qn){
+  let sc=0;
+  if(norm(entry.q).includes(qn)) sc+=5;
+  entry.kw.forEach(k=>{
+    const kn=norm(k);
+    if(qn===kn) sc+=6;
+    else if(qn.includes(kn)) sc+=3;
+    else if(kn.includes(qn)&&qn.length>=2) sc+=2;
+  });
+  return sc;
+}
+function card(e){
+  return `<div class="card">
+    <h3>${e.q} <span class="tag ch">${e.ch}</span> <span class="tag ${e.st}">${e.stTxt}</span></h3>
+    <div class="blk prog"><b>📌 研議進度</b><div>${e.prog}</div></div>
+    <div class="blk intl"><b>🌏 國際做法</b><div>${e.intl}</div></div>
+    ${e.ev&&e.ev!=="—"?`<div class="blk ev"><b>🔬 科學實證</b><div>${e.ev}</div></div>`:""}
+    <div class="src">📎 依據：${e.src}</div>
+  </div>`;
+}
+function search(){
+  const qn = norm(document.getElementById("q").value);
+  const res = document.getElementById("results");
+  if(!qn){ res.innerHTML='<div class="result-note">請輸入關鍵字，或點選上方常見議題。</div>'; return; }
+  const hits = DB.map(e=>({e,s:score(e,qn)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  if(hits.length===0){
+    res.innerHTML = `<div class="nores"><b>查無涵蓋此關鍵字的議題。</b><br>
+      本資料庫涵蓋 ${DB.length} 項常見議題；若您的議題未列入，可能是：①用詞不同（請換關鍵字，如「小孩」→「未成年」）②屬新議題尚未彙整。<br>
+      新議題請洽計畫團隊（國立臺北護理健康大學 蔡懿玲助理教授研究團隊），將於查證後補入。</div>`
+      + '<div class="result-note">以下為全部議題清單：</div>' + DB.map(card).join("");
+    return;
+  }
+  res.innerHTML = `<div class="result-note">找到 ${hits.length} 項相關議題（依相關度排序）：</div>` + hits.map(x=>card(x.e)).join("");
+}
+document.getElementById("q").addEventListener("keydown",e=>{ if(e.key==="Enter") search(); });
+</script>
+</body>
+</html>
