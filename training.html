@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>試辦藥師 8 小時教育訓練課程表（草案）</title>
+<title>試辦藥師教育訓練課程表（第 5 場決議修正版・7 小時）</title>
 <style>
   :root{
     --ink:#1f2933; --sub:#64748b; --line:#cbd5e1;
@@ -31,18 +31,20 @@
   .phase .p-sub{display:block;font-weight:400;font-size:.78rem;color:#eef2f7;margin-top:3px;line-height:1.5}
   .phase.online{background:var(--blu)}
   .phase.onsite{background:var(--tea)}
+  .phase.day{background:#334155}
 
   table{width:100%;border-collapse:collapse;margin:12px 0 4px;font-size:.87rem}
   th,td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;text-align:left}
   thead th{background:#f1f5f9;font-weight:700;font-size:.83rem;white-space:nowrap}
   td.no{text-align:center;font-weight:700;color:var(--sub);width:34px;white-space:nowrap}
   td.time{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;width:64px;color:var(--ink)}
-  td.tutor{white-space:nowrap;color:var(--sub);font-size:.82rem;width:150px}
+  td.clock{text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums;width:100px;color:var(--ink)}
+  td.tutor{color:var(--sub);font-size:.82rem;width:170px}
   .topic-t{font-weight:600}
   .topic-d{color:var(--sub);font-size:.82rem;margin-top:3px;line-height:1.5}
+  tr.break td{background:#f8fafc;color:var(--sub)}
   tr.test td{background:var(--amb-bg)}
   tr.test .topic-t{color:var(--amb)}
-  tr.plus td{background:#faf5ff}
 
   .subtotal{text-align:right;font-size:.85rem;color:var(--sub);margin:2px 2px 4px;font-weight:600}
   .total{background:var(--grn-bg);border:1.5px solid var(--grn-line);border-radius:10px;
@@ -65,7 +67,7 @@
     tr,.phase,.total,.note{break-inside:avoid}
   }
   @media (max-width:640px){
-    .page{padding:20px 16px} td.tutor{white-space:normal;width:auto}
+    .page{padding:20px 16px}
     thead th:last-child{display:none} td.tutor{display:none}
   }
   /* 密碼閘 */
@@ -88,108 +90,120 @@
   <div class="err" id="err"></div>
 </div>
 <div class="page" id="content">
-  <h1>試辦藥師 8 小時教育訓練課程表（草案）</h1>
-  <div class="sub">依據第 3 場專家會議決議（2026-07-08）擬定　·　用途：第 4 場會議提出確認　·　整理：2026-07-16</div>
+  <h1>試辦藥師教育訓練課程表（第 5 場決議修正版・7 小時）</h1>
+  <div class="sub">依第 5 場專家會議決議（2026-08-12）修正　·　2026-08-17 依曹宜蓁處長提供之課程五、六課程大綱更新　·　提第 6 場專家會議（2026-08-26）備查</div>
   <div class="coop">合作單位：中華民國藥師公會全國聯合會（全聯會）</div>
 
   <div class="principles">
-    <div class="ph">設計原則（第 3 場決議 ✅）</div>
+    <div class="ph">設計要點（第 5 場決議 ✅）</div>
     <ol>
-      <li>台灣模式、總時數 <b>8 小時</b>。</li>
-      <li>以藥師公會全聯會既有 8 小時課程為基礎，刪除 1 小時「國際趨勢」。</li>
-      <li>新增四模組：兒少與非自主性行為辨識、轉介互動與就醫心理準備（含示範影片）、性騷擾防治與藥師自我保護、溝通話術與案例演練。</li>
-      <li><b>兩階段</b>——學理與影片觀摩課程採非同步線上＋通過測驗；<b>溝通類課程須即時互動</b>（實體或視訊直播，不得僅看錄影）。</li>
-      <li>測驗須具鑑別度，輔以前測／後測。</li>
+      <li>場次定案：<b>10/3（六）、11/15（日）</b>全日各 1 場（全聯會協辦）；第一場僅於臺北市辦理，與 10/2 說明會經確認不衝突，8/20 全聯會理事長會議報告並邀外縣市藥師參加。</li>
+      <li>課程六由 120 分改 <b>90 分（合併一堂，法律知識＋演練連貫不中斷）</b>；全日授課由 450 分調整為 <b>420 分（7 小時）</b>，17:35 結束（較原草案提早 40 分鐘）。</li>
+      <li>休息安排（授權主席調整）：<b>連上兩堂再休息 15 分鐘</b>，連堂間 3–5 分鐘彈性換場（含於課程時間內）。</li>
+      <li>課程一〜五另提供<b>線上非同步補課</b>；課程六演練可採<b>線上分組即時演練</b>。課後線上測驗於課後完成，不占當日時程。</li>
+      <li>第一、二階段<b>可分別完成、不設先後順序</b>；最終檢核兩階段均完成者，列入試辦藥師名單。</li>
     </ol>
   </div>
 
-  <!-- 第一階段 -->
-  <div class="phase online">🖥️ 第一階段　學理與影片觀摩線上課程（非同步）
-    <span class="p-sub">計 5 小時 30 分（授課 5 小時 15 分＋線上測驗 15 分）</span>
+  <!-- 全日議程 -->
+  <div class="phase day">📅 全日課程議程（10/3、11/15 兩場次適用）
+    <span class="p-sub">09:00 開始、17:35 結束｜授課 420 分＋報到 20 分＋休息 45 分＋午餐 50 分</span>
   </div>
-  <div class="gate">完成全部模組並<b>通過線上測驗</b>，方可報名第二階段。</div>
+  <table>
+    <thead><tr><th>時間</th><th>時長</th><th>內容</th><th>講師</th></tr></thead>
+    <tbody>
+      <tr class="break"><td class="clock">08:40–09:00</td><td class="time">20 分</td><td>報到</td><td class="tutor">—</td></tr>
+      <tr><td class="clock">09:00–10:00</td><td class="time">60 分</td><td><b>課程一　試辦計畫與藥師的法律位置</b>（三段式）</td><td class="tutor">食藥署＋計畫主持人＋張文靜藥師（會後確認）</td></tr>
+      <tr><td class="clock">10:00–11:00</td><td class="time">60 分</td><td><b>課程二Ａ　緊急事後避孕藥用藥評估</b>（醫師＋藥師搭配、指定教材）</td><td class="tutor">婦產科醫學會講師＋藥師（搭配示範）</td></tr>
+      <tr class="break"><td class="clock">11:00–11:15</td><td class="time">15 分</td><td>休息</td><td class="tutor">—</td></tr>
+      <tr><td class="clock">11:15–12:15</td><td class="time">60 分</td><td><b>課程二Ｂ　常規避孕銜接</b></td><td class="tutor">楊乙真醫師（原講師，優先邀請）</td></tr>
+      <tr class="break"><td class="clock">12:15–13:05</td><td class="time">50 分</td><td>午餐休息</td><td class="tutor">—</td></tr>
+      <tr><td class="clock">13:05–13:50</td><td class="time">45 分</td><td><b>課程三　轉介溝通與就醫準備</b>（話術＋看診流程影片）</td><td class="tutor">社區藥學會推薦藥師講師；影片由婦產科醫學會拍攝</td></tr>
+      <tr><td class="clock">13:50–14:35</td><td class="time">45 分</td><td><b>課程四　資訊系統操作與紀錄填寫</b></td><td class="tutor">李懿軒藥師（暫定，藥師視角）＋系統廠商列席</td></tr>
+      <tr class="break"><td class="clock">14:35–14:50</td><td class="time">15 分</td><td>休息</td><td class="tutor">—</td></tr>
+      <tr><td class="clock">14:50–15:50</td><td class="time">60 分</td><td><b>課程五　生育自主、性別與友善藥事服務</b></td><td class="tutor">郭育吟處長（勵馨推薦，待邀請確認）</td></tr>
+      <tr class="break"><td class="clock">15:50–16:05</td><td class="time">15 分</td><td>休息</td><td class="tutor">—</td></tr>
+      <tr><td class="clock">16:05–17:35</td><td class="time">90 分</td><td><b>課程六　性侵害辨識與兒少保護：辨識、回應與行動</b>（知識＋演練，合併一堂）</td><td class="tutor">楊菁惠主任（勵馨推薦，待邀請確認）＋分組培訓員</td></tr>
+      <tr class="break"><td class="clock">17:35</td><td class="time">—</td><td>賦歸</td><td class="tutor">—</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 第一階段 -->
+  <div class="phase online">🖥️ 第一階段　課程一〜五（實體及線上，接受非同步錄影補課）
+    <span class="p-sub">授課 330 分（5 小時 30 分）｜課後線上測驗於課後完成</span>
+  </div>
   <table>
     <thead><tr><th>#</th><th>主題</th><th>時間</th><th>講師</th></tr></thead>
     <tbody>
       <tr>
-        <td class="no">1</td>
-        <td><div class="topic-t">法律觀點與案例解析</div><div class="topic-d">試辦計畫法源定位、藥師供藥之法律責任、通報義務（113／性侵害犯罪防治法／兒少權益保障法）</div></td>
-        <td class="time">60 分</td><td class="tutor">〔法律專家・待定〕</td>
+        <td class="no">一</td>
+        <td><div class="topic-t">試辦計畫與藥師的法律位置（三段式）</div><div class="topic-d">①食藥署開場：政策緣起與法源定位 → ②計畫主持人：示範計畫細節與兩階段給藥流程 → ③藥師公會：藥師三項責任（給藥、衛教、依法通報）、<b>通報與轉介之區別</b>（通報＝法定義務、轉介＝醫療銜接）、<b>責任界線</b>（通報完成後義務即已履行，後續由家防中心開案、社工介入）、供藥之法律責任與案例解析</div></td>
+        <td class="time">60 分</td><td class="tutor">食藥署＋計畫主持人＋張文靜藥師（會後確認）</td>
       </tr>
       <tr>
-        <td class="no">2</td>
-        <td><div class="topic-t">婦女權益與生育自主</div><div class="topic-d">CEDAW、生殖健康權、去污名</div></td>
-        <td class="time">30 分</td><td class="tutor">〔婦女團體代表／學者・待定〕</td>
+        <td class="no">二Ａ</td>
+        <td><div class="topic-t">緊急事後避孕藥用藥評估（醫師＋藥師搭配授課）</div><div class="topic-d">操作《評估與轉介流程表》完成完整用藥評估（時效計算、禁忌檢核）；何時應轉介（異常出血問法、驗孕陽性、逾 72 小時、急性警訊）與 🔴🟡🟢 分流；不願驗孕四項告知、嘔吐補服、體重與病史衛教。<b>《評估與轉介流程表》《藥師現場檢核表》＝本計畫指定教材</b>；醫師補充評估背後之臨床原因、藥師示範流程表實際操作</div></td>
+        <td class="time">60 分</td><td class="tutor">婦產科醫學會講師＋藥師（搭配示範）</td>
       </tr>
       <tr>
-        <td class="no">3</td>
-        <td><div class="topic-t">避孕措施與藥物</div><div class="topic-d">常規避孕方法、長效可逆避孕（LARC）、雙重避孕、銜接轉介</div></td>
-        <td class="time">60 分</td><td class="tutor">〔婦產科醫師・待定〕</td>
+        <td class="no">二Ｂ</td>
+        <td><div class="topic-t">常規避孕銜接</div><div class="topic-d">常規避孕方法總覽與長效可逆避孕（LARC）、雙重避孕；常見迷思破解（含仿單資訊之正確引用）；哺乳、肝酵素誘導劑之衛教點；服藥後約 3 週驗孕與追蹤；個人化衛教清單之使用</div></td>
+        <td class="time">60 分</td><td class="tutor">楊乙真醫師（原講師，優先邀請）</td>
       </tr>
       <tr>
-        <td class="no">4</td>
-        <td><div class="topic-t">緊急避孕藥臨床應用與民眾迷思衛教</div><div class="topic-d">LNG（Levonorgestrel）藥理與時效、副作用、延遲排卵≠墮胎、常見迷思破解、國內仿單</div></td>
-        <td class="time">60 分</td><td class="tutor">〔臨床藥師・待定〕</td>
+        <td class="no">三</td>
+        <td><div class="topic-t">轉介溝通與就醫準備（話術＋看診流程影片）</div><div class="topic-d"><b>婦產科看診流程示範影片</b>（婦產科醫學會拍攝、黃建霈秘書長監製，含性侵一站式服務流程）；轉介單交付與說明要領；五種情境之標準轉介話術示範（不願驗孕四項告知、補服 vs 就醫、未成年家長同意、效果可能降低之告知、轉介被拒絕時的應對）</div></td>
+        <td class="time">45 分</td><td class="tutor">社區藥學會推薦藥師講師；影片由婦產科醫學會拍攝</td>
       </tr>
       <tr>
-        <td class="no">5</td>
-        <td><div class="topic-t">標準化評估與轉介實務</div><div class="topic-d">線上評估問卷、《藥局供應評估與轉介流程表》🔴🟡🟢 分流、個人化衛教清單、資訊系統操作與給藥紀錄結案</div></td>
-        <td class="time">60 分</td><td class="tutor">〔計畫團隊＋藥師公會・待定〕</td>
+        <td class="no">四</td>
+        <td><div class="topic-t">資訊系統操作與紀錄填寫</div><div class="topic-d">掃碼調閱填答 → 現場檢核表操作 → 給藥紀錄結案之系統全流程；特殊流程（嘔吐補服代碼、轉介單列印、未成年家長或法定代理人同意之確認畫面）；紀錄填寫原則（藥師不得修改民眾填答，需更正由民眾重填）；個資保護注意事項</div></td>
+        <td class="time">45 分</td><td class="tutor">李懿軒藥師（暫定）＋系統廠商列席</td>
       </tr>
       <tr>
-        <td class="no">6</td>
-        <td><div class="topic-t">轉介互動流程與民眾就醫心理準備</div><div class="topic-d"><b>婦產科看診流程示範影片</b>＋性侵一站式服務流程——使藥師能向民眾說明就醫會經歷什麼、提高就診意願；屬影片觀摩、無即時互動，故列非同步</div></td>
-        <td class="time">45 分</td><td class="tutor">〔婦產科醫學會・待定〕</td>
-      </tr>
-      <tr class="test">
-        <td class="no">—</td>
-        <td><div class="topic-t">線上測驗</div><div class="topic-d">通過後始得報名第二階段；具鑑別度，輔以前測／後測</div></td>
-        <td class="time">15 分</td><td class="tutor">—</td>
+        <td class="no">五</td>
+        <td><div class="topic-t">生育自主、性別與友善藥事服務</div><div class="topic-d">CEDAW 生育自主與 CRC 兒少最佳利益在藥事服務中的意義；女性的交織處境（城鄉、年齡、族群／文化、關係權力）；辨識性別刻板印象與污名語言；友善服務「<b>三不一要</b>」（不評價、不責備、不盤問、要提供選擇）；<b>性騷擾防治與藥師自我保護</b>（言行界線、半隱私空間下的應對；納入方式與講師協調）</div></td>
+        <td class="time">60 分</td><td class="tutor">郭育吟處長（勵馨基金會公民對話處；勵馨推薦，待邀請確認）</td>
       </tr>
     </tbody>
   </table>
-  <div class="subtotal">第一階段小計：5 小時 30 分（授課 5 小時 15 分＋線上測驗 15 分）</div>
+  <div class="subtotal">第一階段小計：授課 330 分（5 小時 30 分）；課程一至五分別設課後測驗（不占當日時程）</div>
 
   <!-- 第二階段 -->
-  <div class="phase onsite">🧑‍🏫 第二階段　即時互動課程（實體或視訊 real-time）
-    <span class="p-sub">授課 2 小時 30 分</span>
+  <div class="phase onsite">🧑‍🏫 第二階段　課程六（合併一堂，連貫不中斷；可線上分組即時演練）
+    <span class="p-sub">授課 90 分（1 小時 30 分）</span>
   </div>
   <table>
     <thead><tr><th>#</th><th>主題</th><th>時間</th><th>講師</th></tr></thead>
     <tbody>
-      <tr class="plus">
-        <td class="no">7</td>
-        <td><div class="topic-t">兒少與非自主性行為之辨識與溝通＋兒少服務加值<span class="badge">加值</span></div><div class="topic-d">性侵、脆弱處境、性剝削徵兆（含反覆購買）、以兒少能理解之語言溝通；Fraser 式能力評估操作化（含 Gillick 能力確認、評估留紀錄）、年齡分層作業規則</div></td>
-        <td class="time">75 分</td><td class="tutor">〔社工／性暴力防治專家・待定〕</td>
-      </tr>
       <tr>
-        <td class="no">8</td>
-        <td><div class="topic-t">性騷擾防治與藥師自我保護</div><div class="topic-d">言行界線、避免熱心反受指控、半隱私空間下之應對</div></td>
-        <td class="time">30 分</td><td class="tutor">〔性別平等／法律專家・待定〕</td>
-      </tr>
-      <tr>
-        <td class="no">9</td>
-        <td><div class="topic-t">溝通話術與案例演練</div><div class="topic-d">判斷案例示範</div></td>
-        <td class="time">45 分</td><td class="tutor">〔社工＋資深藥師・待定〕</td>
+        <td class="no">六</td>
+        <td><div class="topic-t">性侵害辨識與兒少保護：辨識、回應與行動（知識＋演練）</div><div class="topic-d">性侵害、兒少保護及性別平等相關法令與通報流程；警訊辨識（<b>警訊不等於證據，辨識不等於調查</b>）；適當開口與回應（不責備、不誘導、不過度追問）；情境演練三案例，每案回答相同三問（<b>你看見什麼？你會怎麼說？下一步怎麼做？</b>）；判斷後的下一步行動與社會資源。藥師需要做到：<b>看見｜開口｜傾聽｜提供資訊｜依法通報</b>；不需要做到：偵訊、判案、輔導、追蹤、個案管理。演練前播放簡短影片後直接操作，保留純實作演練</div></td>
+        <td class="time">90 分</td><td class="tutor">楊菁惠主任（勵馨基金會新竹分事務所；勵馨推薦，待邀請確認）＋分組培訓員</td>
       </tr>
     </tbody>
   </table>
-  <div class="subtotal">第二階段小計：授課 2 小時 30 分</div>
+  <div class="subtotal">第二階段小計：授課 90 分（1 小時 30 分）；線上分組每組 3–4 人（藥師、購買者、觀察員），<b>培訓員人數決定該場受訓藥師人數上限</b></div>
 
-  <div class="total">訓練時數總計：8 小時
-    <span>第一階段 5 小時 30 分（含線上測驗 15 分）＋第二階段 2 小時 30 分——符合第 3 場「訓練 8 小時」原則</span>
+  <div class="total">訓練授課時數總計：420 分（7 小時）
+    <span>第一階段 330 分＋第二階段 90 分（課程六 120→90 分後由原 450 分調整；隨堂測驗時間另計）</span>
   </div>
 
+  <div class="gate"><b>測驗與資格認證（第 5 場決議）</b>：課程一至五分別設課後測驗（單選情境判斷題，答對 80% 過關，未過可換題重測；題庫與錨題依第 5 場會前資料 02a，前測可不辦理）；課程六以出席＋演練參與＋講師回饋認定，不另設筆試。兩階段<b>均完成</b>者列入試辦藥師名單。課程錄影上架全聯會平台；本次兩場（10/3、11/15）實體或線上參加且完成訓練者，確定具示範計畫（含衛教）執行資格；未來常態化採兩階段認證（線上課程＋地方公會 90 分鐘實體演練）。</div>
+
   <div class="note">
-    <div class="nh">📌 待第 4 場確認事項</div>
+    <div class="nh">📌 會後辦理中事項</div>
     <ol>
-      <li>模組 7 暫時納入「兒少服務加值」（Fraser 式能力評估操作化〔含 Gillick 能力確認〕、年齡分層作業規則）；其<b>具體年齡門檻與分層數字待第 8 章年齡限制決議後定版</b>，詳《第4場_兒少服務加值訓練模組_英國Fraser參考》。</li>
+      <li>各課程講師個別溝通與邀請確認（主席獲全體授權）：張文靜藥師、婦產科醫學會講師、楊乙真醫師、社區藥學會推薦講師、李懿軒藥師、郭育吟處長、楊菁惠主任。</li>
+      <li>課程六培訓員量能確認（不限勵馨；曹宜蓁處長聯繫）。</li>
+      <li>8/20 全聯會與地方公會理事長會議報告訓練場次、邀外縣市藥師參加。</li>
+      <li>繼續教育學分申請件數與課程對應待確認。</li>
     </ol>
   </div>
 
   <div class="foot">
-    <p><b>縮寫：</b>LNG＝Levonorgestrel（本試辦品項，單方黃體素）｜LARC＝Long-Acting Reversible Contraception（長效可逆避孕）｜CEDAW＝消除對婦女一切形式歧視公約｜Fraser／Gillick＝英國未成年醫療同意能力評估原則。</p>
-    <p>草案（2026-07-16）｜「115 年度提升處方藥可近性試辦計畫」計畫團隊整理，供第 4 場專家會議討論用，非正式定稿。</p>
+    <p><b>縮寫：</b>LNG＝Levonorgestrel（本試辦品項，單方黃體素）｜LARC＝Long-Acting Reversible Contraception（長效可逆避孕）｜CEDAW＝消除對婦女一切形式歧視公約｜CRC＝兒童權利公約。</p>
+    <p>第 5 場決議修正版（2026-08-17）｜「115 年度提升處方藥可近性試辦計畫」計畫團隊整理，提第 6 場專家會議（2026-08-26）備查，非正式定稿。</p>
   </div>
 </div>
 <script>
