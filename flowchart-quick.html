@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ECP 藥局現場快速判斷表</title>
+<style>
+:root{
+  --red:#b91c1c; --red-bg:#fef2f2; --red-ln:#fca5a5;
+  --amb:#b45309; --amb-bg:#fffbeb; --amb-ln:#fcd34d;
+  --grn:#15803d; --grn-bg:#f0fdf4; --grn-ln:#86efac;
+  --gry:#475569; --gry-bg:#f8fafc; --gry-ln:#cbd5e1;
+  --ink:#1f2937;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#eef2f7;color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.55}
+#gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+#gate h2{font-weight:600;font-size:1.1rem}
+#gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+#gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+#gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+#gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+#content{display:none}
+.page{max-width:1080px;margin:0 auto;padding:18px 16px 60px}
+h1{font-size:1.5rem;margin:6px 0 4px;text-align:center}
+.sub{text-align:center;color:#64748b;font-size:.86rem;margin-bottom:14px}
+.pre{background:#eef2ff;border:2px solid #a5b4fc;border-radius:10px;padding:10px 14px;margin-bottom:18px}
+.pre b{color:#3730a3}
+.pre ol{margin:6px 0 0;padding-left:1.3em}
+.pre li{margin:3px 0;font-size:.95rem}
+.blk{display:grid;grid-template-columns:1fr 92px 260px;gap:0;align-items:stretch;margin-bottom:16px}
+@media(max-width:860px){.blk{grid-template-columns:1fr;}.arrow{transform:rotate(90deg);height:52px}}
+.cond{border:3px solid;border-radius:12px 0 0 12px;padding:12px 16px;background:#fff}
+.cond.r{border-color:var(--red-ln);background:var(--red-bg)}
+.cond.a{border-color:var(--amb-ln);background:var(--amb-bg)}
+.cond.g{border-color:var(--grn-ln);background:var(--grn-bg)}
+.cond h3{margin:0 0 8px;font-size:1.05rem}
+.cond.r h3{color:var(--red)} .cond.a h3{color:var(--amb)} .cond.g h3{color:var(--grn)}
+.cond ul{margin:0;padding-left:1.25em}
+.cond li{margin:5px 0;font-size:.97rem}
+.cond li b{font-weight:700}
+.note{margin-top:9px;padding:7px 10px;border-radius:7px;font-size:.86rem;background:rgba(255,255,255,.75);border:1px dashed rgba(0,0,0,.15)}
+.arrow{display:flex;align-items:center;justify-content:center;font-size:2.1rem;color:#94a3b8}
+.out{border:3px solid;border-radius:0 12px 12px 0;padding:14px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.out.r{border-color:var(--red);background:var(--red);color:#fff}
+.out.a{border-color:#ca8a04;background:#fde047;color:#713f12}
+.out.g{border-color:var(--grn);background:var(--grn);color:#fff}
+.out .sym{font-size:2rem;line-height:1}
+.out .nm{font-size:1.22rem;font-weight:700;margin:4px 0 6px}
+.out .do{font-size:.86rem;text-align:left;background:rgba(255,255,255,.16);border-radius:7px;padding:7px 9px}
+.out.a .do{background:rgba(0,0,0,.07)}
+.out .do li{margin:3px 0}
+.out ul{margin:0;padding-left:1.1em}
+.edu{background:#fff;border:3px solid #94a3b8;border-radius:12px;padding:14px 16px;margin:6px 0 18px}
+.edu h3{margin:0 0 6px;color:#334155;font-size:1.08rem}
+.edu-note{margin:0 0 9px;font-size:.86rem;color:#64748b}
+.edu table{width:100%;border-collapse:collapse;font-size:.93rem}
+.edu th{background:#e2e8f0;border:1px solid #94a3b8;padding:6px 9px;text-align:left}
+.edu td{border:1px solid #cbd5e1;padding:7px 9px;vertical-align:top}
+.edu td.sit{font-weight:700;white-space:nowrap}
+.edu td.sit.a{background:var(--amb-bg);color:var(--amb)}
+.edu td.sit.g{background:var(--grn-bg);color:var(--grn)}
+@media print{.edu{page-break-inside:avoid}}
+.warn{background:#fff7ed;border:2px solid #fdba74;border-radius:10px;padding:11px 15px;margin:6px 0 20px;font-size:.95rem}
+.warn b{color:#c2410c}
+.vomit{background:#fff;border:3px solid #64748b;border-radius:12px;padding:14px 18px}
+.vomit h3{margin:0 0 8px;color:#334155;font-size:1.08rem}
+.vomit ul{margin:0;padding-left:1.25em} .vomit li{margin:5px 0;font-size:.95rem}
+.vomit .talk{margin-top:9px;background:#f1f5f9;border-radius:8px;padding:9px 12px;font-size:.9rem}
+.foot{margin-top:20px;color:#64748b;font-size:.8rem;text-align:center;line-height:1.7}
+@media print{
+  body{background:#fff} #gate{display:none!important} #content{display:block!important}
+  .page{max-width:none;padding:0} .blk{page-break-inside:avoid} .vomit{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+
+<div id="content"><div class="page">
+<h1>緊急事後避孕藥　藥局現場快速判斷表</h1>
+<div class="pre">
+  <b>➊ 供藥前先完成兩件事</b>
+  <ol>
+    <li><b>掃碼調閱</b>線上填答，確認條碼狀態為「<b>可使用</b>」（已失效／已領藥即不供藥）。條碼自民眾自填之<b>性行為發生時間</b>起算 72 小時，<b>現場不再重算時效</b>。</li>
+    <li><b>核對政府核發證件</b>（身分證、健保卡、居留證、護照），重點在確認兩件事：<br>　①<b>本人</b>：藥師核對證件相片與本人，到場者＝線上填答者＝證件本人，<b>不可代購</b>。<br>　②<b>年齡</b>：以證件核實出生年月日，防線上謊報年齡；<b>未滿 16 歲不予供藥</b>，導引至婦產科就醫。</li>
+  </ol>
+</div>
+
+<!-- ── 逕行轉介 ── -->
+<div class="blk">
+  <div class="cond r">
+    <h3>■ 任一符合 → 不予供藥</h3>
+    <ul>
+      <li><b>條碼已失效</b>（距性行為逾 72 小時）</li>
+      <li><b>72 小時內已服用過</b>緊急事後避孕藥</li>
+      <li>對 <b>Levonorgestrel 成分過敏</b></li>
+      <li><b>嚴重肝功能障礙</b>（肝硬化、肝衰竭、黃疸、腹水）</li>
+      <li><b>驗孕陽性</b></li>
+      <li><b>異常陰道出血</b>：與平日月經不同、說不清楚，或當下正在出血且無法判斷是否為月經</li>
+      <li><b>未滿 16 歲</b></li>
+      <li><b>非本人（代購）或證件不符</b> → 不符親領要件</li>
+    </ul>
+        <div class="note">⚠️ <b>急性警訊</b>：單側下腹劇痛＋臉色蒼白冒冷汗，<b>逕送有婦產科之急診</b>，不走一般門診轉介。</div>
+  </div>
+  <div class="arrow">➜</div>
+  <div class="out r">
+    <div class="sym">■</div>
+    <div class="nm">逕行轉介</div>
+    <div class="do"><ul>
+      <li>不予供藥</li>
+      <li>開立<b>醫療轉介單</b></li>
+      <li>交付就醫指引、告知時效急迫性</li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- ── 供藥後轉介或通報 ── -->
+<div class="blk">
+  <div class="cond a">
+    <h3>▲ 任一符合 → 先供藥，再轉介或通報</h3>
+    <ul>
+      <li><b>疑似性暴力／性侵害</b><br><span style="font-size:.86rem;color:#78350f">以觀察為主、不盤問細節；有明顯跡象即通報</span></li>
+      <li><b>性傳染病風險</b>（伴侶已知感染、新或陌生伴侶且無套、本人有症狀、多重性伴侶）</li>
+      <li><b>短期重複使用</b>（如一個月內再次購買，系統自動提示）</li>
+      <li><b>不願驗孕</b>（目前非經期且三週前曾發生無防護性行為者）<br><span style="font-size:.86rem;color:#78350f">不重新勸說、不追問原因</span></li>
+      <li><b>血栓病史／子宮外孕病史／骨盆腔發炎（PID）病史</b><br><span style="font-size:.86rem;color:#78350f">三者均非 LNG 禁忌，仍供藥；併同建議醫療轉介追蹤</span></li>
+    </ul>
+    </div>
+  <div class="arrow">➜</div>
+  <div class="out a">
+    <div class="sym">▲</div>
+    <div class="nm">供藥後轉介或通報</div>
+    <div class="do"><ul>
+      <li><b>先供藥</b>（預防懷孕為第一優先）</li>
+      <li>完成對應加強衛教後<b>開立醫療轉介單</b></li>
+      <li>性暴力／性侵害：依法 <b>113 通報</b>；<b>通報編號回填系統</b></li>
+    </ul></div>
+  </div>
+</div>
+
+<!-- ── 一般供藥（需加強說明） ── -->
+<div class="blk">
+  <div class="cond g">
+    <h3>● 有下列情形 → 仍供藥，但須加強說明</h3>
+    <ul>
+      <li><b>哺乳中</b></li>
+      <li><b>服用肝酵素誘導劑</b>（部分抗癲癇藥、聖約翰草等）</li>
+      <li><b>體重過重</b>（逾 70 公斤／BMI＞26）</li>
+      <li><b>非通報之社會風險個案</b>（脆弱家庭等）</li>
+    </ul>
+    <div style="margin:10px 0 0;padding:9px 12px;border-radius:8px;background:#dcfce7;border:2px solid var(--grn-ln);font-size:1rem">
+      <b style="color:var(--grn)">● 無上述情形 → 供藥，執行一般衛教</b>
+    </div>
+        </div>
+  <div class="arrow">➜</div>
+  <div class="out g">
+    <div class="sym">●</div>
+    <div class="nm">一般供藥</div>
+    <div class="do"><ul>
+      <li>依系統帶出之<b>個人化衛教清單逐項確認</b></li>
+    </ul></div>
+  </div>
+</div>
+
+<div class="edu">
+  <h3>📋 情境別加強衛教對照表</h3>
+  <p class="edu-note">下列為<b>各情境須額外加強說明</b>之內容。<b>全員必說之標準衛教依《A1 基礎衛教單》辦理</b>，不在此重複。系統會依填答自動帶出個人化衛教清單，藥師逐項確認後始能結案（未逐項勾選不能結案）。</p>
+  <table>
+    <tr><th style="width:24%">情境</th><th>加強告知內容</th></tr>
+    <tr><td class="sit a">疑似性暴力／性侵害</td>
+        <td><b>務必說明通報是為了幫助你、不是懲罰</b>：通報後由社工介入協助後續（就醫、驗傷採證、法律協助），可陪同至具社工之醫院一站式服務，避免重複陳述。觀察為主、不盤問細節。</td></tr>
+    <tr><td class="sit a">性傳染病風險</td>
+        <td>交付現成篩檢資訊供自行閱讀，建議至婦產科接受性病篩檢。<b>不主動口頭盤問性行為史</b>。</td></tr>
+    <tr><td class="sit a">短期重複使用</td>
+        <td><b>緊急事後避孕藥是補救措施、不應頻繁使用</b>（重複使用易致月經紊亂，且保護力不如常規方法）；建議改採<b>常規避孕措施</b>——保險套＋常規避孕藥之雙重避孕。交付常規避孕衛教單張，並建議轉介婦產科討論適合的方式。</td></tr>
+    <tr><td class="sit a">不願驗孕</td>
+        <td>不重新勸說、不追問原因，直接完成<b>四項告知</b>：<br>① 已確定懷孕即不應服用，本藥對已成立之懷孕無效，亦無法終止懷孕。<br>② 可能於本次之前即已受孕而不自知，本次服藥其實已無效，務必注意後續追蹤。<br>③ 月經未按預期到來或出現亂經，仍可供藥，惟建議至婦產科就醫確認。<br>④ 服藥後約 3 週驗孕或回診確認未懷孕。</td></tr>
+    <tr><td class="sit a">血栓病史</td>
+        <td>非禁忌，正常供藥；用藥須較小心，<b>特別提醒</b>留意不適症狀。</td></tr>
+    <tr><td class="sit a">子宮外孕病史</td>
+        <td>非禁忌，正常供藥；<b>強化子宮外孕警訊衛教</b>（單側下腹劇痛、臉色蒼白冒冷汗立即就醫）＋<b>務必回診追蹤</b>之明確叮嚀。</td></tr>
+    <tr><td class="sit a">骨盆腔發炎（PID）病史</td>
+        <td>非禁忌，正常供藥；強化<b>雙重避孕</b>（保險套＋常規避孕藥）與<b>性病防治</b>衛教。</td></tr>
+    <tr><td class="sit g">哺乳中</td>
+        <td><b>可繼續哺乳</b>；建議服藥前先哺乳、避免服後馬上哺乳。</td></tr>
+    <tr><td class="sit g">服用肝酵素誘導劑</td>
+        <td>告知<b>效果可能降低</b>（部分抗癲癇藥、聖約翰草等）；<b>不加量</b>。用藥中應告知醫師或藥師。</td></tr>
+    <tr><td class="sit g">體重過重</td>
+        <td>告知<b>效果可能較差</b>（逾 70 公斤／BMI＞26）；<b>體重為選填，未填不得拒絕供藥</b>。</td></tr>
+    <tr><td class="sit g">非通報之社會風險個案</td>
+        <td>提醒<b>衛教單上之社福資源</b>，鼓勵自主聯繫；<b>不強制轉介、不追蹤</b>。</td></tr>
+  </table>
+</div>
+
+<div class="vomit">
+  <h3>🤢 服藥後嘔吐之補服處理</h3>
+  <ul>
+    <li><b>適用情形</b>：服藥後 <b>2 至 3 小時內</b>嘔吐。</li>
+    <li><b>如何辦理</b>：憑<b>原購藥條碼或原給藥紀錄</b>回店，<b>跨藥局亦適用</b>（不限原藥局）；藥師確認情節後以「<b>補服代碼</b>」記錄，<b>免重新評估</b>、不計入短期重複使用。</li>
+    <li><b>時效</b>：仍以<b>距性行為 72 小時內</b>計算；<b>逾 72 小時不補服</b>，改為轉介。</li>
+    <li><b>費用</b>：<b>須再收取一次費用</b>（本項本即自費項目）。</li>
+    <li><b>務必同時提供另一選擇</b>：建議轉介婦產科，由醫師一併處理嘔吐問題並告知其他可行之避孕方式。</li>
+  </ul>
+  </div>
+
+<div class="foot">
+  「115 年度提升處方藥可近性試辦計畫」計畫團隊整理　·　本表為<b>現場快速對照工具</b>，完整判斷步驟、判斷準則與依據請見《藥局供應 ECP 評估與轉介流程表》與《藥師現場檢核表》。<br>
+  處置類別名稱依第 6 場專家會議決議：<b>逕行轉介（■）／供藥後轉介或通報（▲）／一般供藥（●）</b>；另有「不符親領要件，不予供藥（◆）」之例外類別。<br>
+  色彩之外另以形狀區辨，供黑白列印或色彩辨識困難時判讀。
+</div>
+</div></div>
+
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body>
+</html>
