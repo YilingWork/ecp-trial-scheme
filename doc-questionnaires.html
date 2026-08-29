@@ -1,0 +1,489 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>配套文件　服藥者追蹤問卷與衛教回饋問卷｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>配套文件　服藥者追蹤問卷與衛教回饋問卷</h1>
+<div class="sub">四份問卷題目與設計說明</div>
+<blockquote>
+<p>「115 年度提升處方藥可近性試辦計畫」服藥者追蹤問卷與衛教回饋問卷 題目文字已逐題確認，可交資訊廠商建置線上問卷（連動《資訊系統功能需求規格書》C-11、C-11a、C-13、C-14）。 <strong>閱讀方式</strong>：各問卷之「題目」區塊即為民眾／藥師／醫師實際看到的內容；設計考量、指標對應與系統邏輯一律收在各問卷後方之「設計說明」框內，不混入題目。</p>
+</blockquote>
+<hr />
+<h2 id="施測架構總覽">施測架構總覽</h2>
+<table>
+<thead>
+<tr>
+<th>問卷</th>
+<th>對象</th>
+<th>時點</th>
+<th>發送方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>問卷一：服藥後即時問卷（含衛教回饋：用藥狀況＋知識 5 題＋滿意度 5 題，三部分分頁）</td>
+<td>服藥者</td>
+<td>藥師系統勾選「結案」即自動寄發</td>
+<td>系統 Email 自動寄發</td>
+</tr>
+<tr>
+<td>問卷二：追蹤問卷（第二階段）</td>
+<td>服藥者</td>
+<td>服藥後 3–5 週系統自動寄發</td>
+<td>系統 Email 自動寄發</td>
+</tr>
+<tr>
+<td>問卷三：藥師端回饋</td>
+<td>試辦藥師</td>
+<td>試辦期中＋期末各一次（建議）</td>
+<td>Email／系統內問卷</td>
+</tr>
+<tr>
+<td>問卷四：婦產科端問卷（不區分是否加入試辦，一律發送）</td>
+<td>接受轉介之婦產科醫師</td>
+<td><strong>每案即時</strong>（隨醫療轉介單所印 QR Code 觸發）</td>
+<td>線上（轉介單加印 QR Code，掃碼填答、免建帳號）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>共同設計前提（均為已定案，不再議）</strong></p>
+<ul>
+<li>全採系統 Email 兩階段自動寄發，<strong>不採現場 QR Code</strong>（減輕藥局負擔）。</li>
+<li><strong>不採 LINE 回報</strong>：因民眾隱私疑慮（加入官方帳號等同被記錄曾使用本藥）不予採行。</li>
+<li><strong>不提供禮券／獎品</strong>（正當性與社會觀感疑慮）；健保就醫紀錄比對不可行（個資限制）。</li>
+<li>民眾填答<strong>非強制</strong>；以條碼序號去識別串接，不重複蒐集身分資料。</li>
+<li>民眾端文字不出現診斷字眼（如子宮外孕），警訊以症狀描述呈現。</li>
+<li>Email 必填、手機選填，故 Email 為可行之追蹤管道。</li>
+</ul>
+<hr />
+<h1 id="問卷一-服藥後即時問卷結案即寄含衛教回饋">問卷一　服藥後即時問卷（結案即寄；含衛教回饋）</h1>
+<p><strong>開頭語</strong>：您好，感謝您使用本試辦計畫。這份問卷約 3 分鐘，分三個部分，幫助我們確認您的用藥狀況、並讓服務變得更好。您的回覆不會影響任何權益，資料僅供計畫成效分析（去識別）。</p>
+<h3 id="第一部分-用藥狀況3-題">第一部分　用藥狀況（3 題）</h3>
+<ol type="1">
+<li>您是否已服用緊急事後避孕藥？（單選）
+<ul>
+<li>□ 已在藥局當場服用</li>
+<li>□ 已回家後服用</li>
+<li>□ 還沒有服用（預計會服用）</li>
+<li>□ 決定不服用 →（跳答）主要原因：□ 擔心副作用 □ 已就醫改由醫師處理 □ 其他＿＿</li>
+</ul></li>
+<li>到目前為止是否出現以下情形？（可複選）
+<ul>
+<li>□ 單側下腹劇痛</li>
+<li>□ 臉色蒼白冒冷汗</li>
+<li>□ 異常大量出血</li>
+<li>□ 頭暈</li>
+<li>□ 以上皆無</li>
+</ul>
+<blockquote>
+<p>⚠️ 本題僅保留<strong>具風險意義</strong>之項目；噁心、頭痛、疲倦、點狀出血等輕微症狀<strong>不列入本題</strong>（避免民眾誤以為屬警訊）。一般副作用另於問卷二第 3 題以勾選方式蒐集本土資料。</p>
+</blockquote></li>
+<li>藥師交付的衛教單張，您是否留存、之後找得到？（單選：□ 是 □ 否 □ 不確定）</li>
+</ol>
+<h3 id="第二部分-知識題5-題單選">第二部分　知識題（5 題，單選）</h3>
+<ol type="1">
+<li>關於服用緊急事後避孕藥的時間，下列何者正確？
+<ul>
+<li>□ 只要在 72 小時內，早吃晚吃效果都一樣</li>
+<li>□ 越早服用，效果越好</li>
+<li>□ 不知道</li>
+</ul></li>
+<li>如果服藥後 2–3 小時內嘔吐，應該怎麼做？
+<ul>
+<li>□ 不需要做任何處理</li>
+<li>□ 需要補服一劑，可回原藥局詢問藥師</li>
+<li>□ 不知道</li>
+</ul></li>
+<li>服藥後約 3 週，建議做什麼？
+<ul>
+<li>□ 不需要做任何確認</li>
+<li>□ 驗孕或回診，確認避孕是否成功</li>
+<li>□ 不知道</li>
+</ul></li>
+<li>服藥後如果出現「單側下腹劇痛、臉色蒼白冒冷汗、或異常大量出血」，應該怎麼做？
+<ul>
+<li>□ 是正常副作用，在家休息觀察即可</li>
+<li>□ 立即就醫，拖延會有危險</li>
+<li>□ 不知道</li>
+</ul></li>
+<li>關於緊急事後避孕藥的定位，下列何者正確？
+<ul>
+<li>□ 可以當作平常的避孕方法，經常使用</li>
+<li>□ 是臨時的補救措施；平常應使用保險套或常規避孕方法</li>
+<li>□ 不知道</li>
+</ul></li>
+</ol>
+<h3 id="第三部分-滿意度題5-題五點量表非常同意非常不同意">第三部分　滿意度題（5 題，五點量表：非常同意～非常不同意）</h3>
+<ol type="1">
+<li>藥師的說明清楚、容易聽懂。</li>
+<li>在藥局的過程中，我的隱私和尊嚴受到尊重。</li>
+<li>從線上填寫到藥局取藥的流程方便、順暢。</li>
+<li>未來如有需要，我願意再使用藥局這個管道。</li>
+<li>整體而言，我對這次的服務感到滿意。</li>
+</ol>
+<ul>
+<li>（開放題，選答）您有什麼建議想告訴我們？＿＿</li>
+</ul>
+<p><strong>結尾提醒</strong>：約 3 週後我們會再寄一封確認信；在那之前，若月經延遲超過 1 週請驗孕，服藥後約 3 週建議驗孕或回診確認。</p>
+<h3 id="問卷一-設計說明非問卷內容供建置參考">▣ 問卷一　設計說明（非問卷內容，供建置參考）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設計說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>確認服藥完成與早期狀況、檢核衛教理解與滿意度、預告 3 週後追蹤。</td>
+</tr>
+<tr>
+<td>三部分分頁</td>
+<td>用藥狀況 → 知識題 → 滿意度。知識題與滿意度<strong>分頁呈現、知識題送出後才顯示滿意度</strong>，落實「分開施測」；核心追蹤資料（用藥狀況）置於第一頁，中途放棄填答者仍能取得最關鍵資料。</td>
+</tr>
+<tr>
+<td>題數與長度</td>
+<td>3＋5＋5 共 13 題。各部分頁面均顯示進度（如「第 2 頁／共 3 頁」）並控制在 3 分鐘內完成。</td>
+</tr>
+<tr>
+<td>第一部分第 2 題</td>
+<td>對應「一般不良反應回報」（輔助）與「症狀發生率」（核心）兩項指標；<strong>逐項列出</strong>才能統計各症狀比例，故不合併為單一選項。「症狀發生率」以單側下腹劇痛／臉色蒼白冒冷汗／異常大量出血三項任一勾選即列入。前四項對應 A1 基礎衛教單第 3 項（常見副作用、多為短暫），後三項對應第 4 項（警訊症狀）。</td>
+</tr>
+<tr>
+<td>知識題出題範圍</td>
+<td>全數出自 A1 基礎衛教單第 1–5 項（全員必做衛教內容），不考加值情境（避免未受該衛教者答不出）。選項含「不知道」以降低猜答。各題對應：第 1 題＝A1 第 1 項、第 2 題＝第 2 項、第 3 題＝第 4 項、第 4 題＝第 4 項、第 5 題＝第 5 項。</td>
+</tr>
+<tr>
+<td>知識題正解</td>
+<td>第 1 題「越早服用，效果越好」；第 2 題「需要補服一劑，可回原藥局詢問藥師」；第 3 題「驗孕或回診，確認避孕是否成功」；第 4 題「立即就醫，拖延會有危險」；第 5 題「是臨時的補救措施；平常應使用保險套或常規避孕方法」。</td>
+</tr>
+<tr>
+<td>知識題回饋機制</td>
+<td><strong>答錯者於送出後顯示正確衛教訊息</strong>（兼具補強衛教功能）；答錯率高之題目回饋衛教單張改版。</td>
+</tr>
+<tr>
+<td>滿意度題設計</td>
+<td>對齊日本可比較指標（8 成願再到藥局、9 成滿意諮詢）與「制度可行性與滿意度」維度。第 2 題對應民眾隱私尊嚴滿意度；第 4 題對齊日本「願再到藥局」指標。</td>
+</tr>
+<tr>
+<td>系統條件邏輯</td>
+<td>①第一部分第 2 題勾選「單側下腹劇痛／臉色蒼白冒冷汗／異常大量出血」任一 → 帶出「請立即就醫」提示。②第 3 題答「否」或「不確定」→ 帶出電子版衛教單連結。</td>
+</tr>
+<tr>
+<td>指標連動</td>
+<td>本問卷回收率＝「<strong>第一階段追蹤完成率</strong>」（核心指標，分母＝同期結案給藥件數）；知識 5 題答對率＝「衛教理解度」；滿意度 5 題＝「民眾滿意度」。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="問卷二-服藥後-35-週追蹤問卷">問卷二　服藥後 3–5 週追蹤問卷</h1>
+<p><strong>開頭語</strong>：您好，距離您上次於藥局取得緊急事後避孕藥已約 3 週。<strong>填寫</strong>這份問卷約 2 分鐘，是本計畫最重要的一次確認。</p>
+<ol type="1">
+<li>目前您的狀況是？（單選）
+<ul>
+<li>□ 月經已來</li>
+<li>□ 月經還沒來，驗孕結果為陰性（未懷孕）</li>
+<li>□ 月經還沒來，驗孕結果為陽性（懷孕）</li>
+<li>□ 月經還沒來，還沒驗孕　→ <strong>※ 請驗孕並回診</strong></li>
+<li>※ 若出血量明顯比平常月經少，建議仍驗孕確認。</li>
+</ul>
+<blockquote>
+<p>⚠️ 對選「月經還沒來，還沒驗孕」者，須顯示「<strong>請驗孕並回診</strong>」之提示。 <strong>理由</strong>：服藥後出血未必是月經，可能為不完全流產或子宮外孕（此時驗孕仍呈陽性），故<strong>確認是否懷孕為本問卷最重要之題項</strong>。</p>
+</blockquote></li>
+<li>這 3 週內，您是否曾因為這次用藥相關情況回診或就醫？（單選）
+<ul>
+<li>□ 有，看婦產科</li>
+<li>□ 有，看其他科別＿＿</li>
+<li>□ 沒有 →（跳答）主要原因：□ 覺得沒有需要 □ 沒有時間 □ 掛號／費用考量 □ 不想被認出或不好意思 □ 其他＿＿</li>
+</ul></li>
+<li>（驗孕陽性者續答）您目前的打算是？（<strong>可複選</strong>）
+<ul>
+<li>□ 已就醫或已預約就醫</li>
+<li>□ 尚未決定，想先了解資源　→ <strong>直接顯示下列資源</strong>（無論您的決定為何，均可提供協助）： &gt; <strong>①未成年懷孕求助網站</strong>（衛生福利部社會及家庭署） &gt; 　網址：https://257085.sfaa.gov.tw/　求助專線：<strong>0800-25-7085</strong>（愛我，請你幫我） &gt; 　提供驗孕、孕期衛教、抉擇協助與線上客服。 &gt; &gt; <strong>②孕產兒關懷網站</strong>（衛生福利部國民健康署） &gt; 　網址：https://mammy.hpa.gov.tw/　關懷專線：<strong>0800-870-870</strong> &gt; 　提供孕產期照護與相關諮詢。 &gt; &gt; <strong>③人工流產諮詢參考指引</strong>（衛生福利部國民健康署健康九九＋網站） &gt; 　網址：https://health99.hpa.gov.tw/health99/HealthEducation/Detail/6729?nodeId=12</li>
+<li>□ 不方便回答</li>
+</ul>
+<blockquote>
+<p>⚠️ 本題採<strong>複選</strong>（「已就醫或已預約就醫」與「尚未決定」意涵可能重疊）；選「尚未決定，想先了解資源」者，<strong>於題目中直接提供資源連結</strong>，已就醫或已預約者則不需顯示。 ④本題性質屬<strong>衛教資訊提供</strong>，非成效蒐集。</p>
+</blockquote></li>
+<li>這 3 週內是否曾出現單側下腹劇痛、臉色蒼白冒冷汗、或異常大量出血？（單選：□ 否 □ 有，已就醫 □ 有，未就醫）</li>
+<li>您是否已開始使用常規避孕方法（如保險套、常規避孕藥、其他經醫師指示之方法）？（單選）
+<ul>
+<li>□ 是＿＿（選填方法）</li>
+<li>□ 還沒有，但打算使用</li>
+<li>□ 沒有打算</li>
+</ul></li>
+<li><strong>這 3 週內，您是否出現過您認為可能與這次用藥有關的不舒服？</strong>（單選）
+<ul>
+<li>□ 沒有</li>
+<li>□ 有＿＿（選填，簡單描述）</li>
+</ul></li>
+</ol>
+<h3 id="結尾說明藥物不良反應通報管道必顯示">▣ 結尾說明：藥物不良反應通報管道（<strong>必顯示</strong>）</h3>
+<blockquote>
+<p><strong>如果您覺得身體的不舒服可能和藥物有關，您可以自己通報。</strong></p>
+<p>我國設有<strong>全國藥物不良反應通報系統</strong>，除了醫師、藥師等醫事人員之外，<strong>民眾也可以自行通報</strong>。您的通報會讓主管機關掌握藥品在真實使用情況下的安全資訊。</p>
+<p><strong>通報方式</strong> ・說明與通報入口（食品藥物管理署「藥品不良反應通報」頁）：https://www.fda.gov.tw/tc/sitecontent.aspx?sid=4240 ・線上通報系統：adr.fda.gov.tw ・諮詢電話：<strong>(02) 2396-0100</strong>　／　系統操作問題：(02) 6605-7254</p>
+<p>※ 通報不代表藥師或藥局有疏失，也不會影響您的任何權益；這是藥品安全監測的正常程序。 ※ 如果您現在身體不適，<strong>請先就醫</strong>，不要以通報取代就醫。</p>
+</blockquote>
+<h3 id="問卷二-設計說明非問卷內容供建置參考">▣ 問卷二　設計說明（非問卷內容，供建置參考）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設計說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>三項：避孕是否成功、有無回診或就醫、原因。</td>
+</tr>
+<tr>
+<td>第 1 題選項設計</td>
+<td>五類互斥狀態（月經已來／驗孕陰性／驗孕陽性／還沒驗孕／已就醫），可直接對應「避孕成功率」與「症狀就醫率」之分子分母。</td>
+</tr>
+<tr>
+<td><strong>第 6 題與結尾通報管道說明</strong></td>
+<td>本試辦<strong>不另建嚴重不良事件蒐集流程</strong>，回歸既有全國藥物不良反應通報系統辦理，試辦僅負責<strong>將通報管道告知民眾與藥師</strong>。故於問卷二增設第 6 題（開放式，僅蒐集民眾主觀感受，不作因果判定），並於問卷結尾<strong>必顯示</strong>通報管道說明。<br>⚠️ 本區塊僅提供管道，<strong>不由試辦系統代為通報、不作因果判定</strong>（因果關係須經專科醫師逐案釐清共病與併用藥品，社區藥局端無從完成）。<br>✅ <strong>通報網址與專線已確認並填入</strong>（經核實食藥署官網頁面：標題「藥品不良反應通報」，載明「民眾亦可主動通報相關不良反應」）。連結與電話仍須設為<strong>管理端可設定</strong>，異動時免改程式。</td>
+</tr>
+<tr>
+<td>第 1 題提示文字</td>
+<td>服藥後的出血不一定是月經（日本經驗：8 成未回診者以「月經已來」為由，惟服藥後出血未必是月經），故附一行白話說明。對「還沒驗孕」者增列「請驗孕並回診」之提示（服藥後出血未必是月經，可能為不完全流產或子宮外孕）。</td>
+</tr>
+<tr>
+<td>第 2 題跳答</td>
+<td>藥師曾建議就醫（轉介）而未就醫者之原因，為婦產科醫學會 2026-08-03 諮詢指定必蒐項目。</td>
+</tr>
+<tr>
+<td>第 3 題定位</td>
+<td>供資源轉介用，非追問懷孕決定。</td>
+</tr>
+<tr>
+<td>第 5 題定位</td>
+<td>對應「補救 ≠ 常規」衛教目標與行為改變指標（A1 第 5 項）。</td>
+</tr>
+<tr>
+<td>系統條件邏輯</td>
+<td>①第 1 題「驗孕陽性」→ 帶出就醫指引與資源連結。②第 1 題「還沒驗孕」→ 帶出「月經延遲逾 1 週請驗孕」提示。③第 3 題「尚未決定，想先了解資源」→ 帶出三項官方資源（未成年懷孕求助網站、孕產兒關懷網站、人工流產諮詢參考指引）之未成年懷孕求助、生育保健諮詢等現成官方資源連結（A1 第 9 項）。④第 4 題「有，未就醫」→ 帶出立即就醫提示。⑤第 5 題「還沒有，但打算使用」→ 帶出常規避孕衛教連結（A2-3）。</td>
+</tr>
+<tr>
+<td>指標連動</td>
+<td>本問卷回收率＝「<strong>第二階段追蹤完成率</strong>」（核心指標，分母＝同期結案給藥件數）；第 1、2 題＝避孕成功與回診就醫情形；第 2 題跳答＝未就醫原因。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="問卷三-藥師端回饋問卷">問卷三　藥師端回饋問卷</h1>
+<ol type="1">
+<li>平均每一件服務（自民眾出示條碼至結案）約花費多少時間？（單選：□ 10 分鐘以內 □ 11–20 分鐘 □ 21–30 分鐘 □ 30 分鐘以上）</li>
+<li>整體而言，執行本試辦對藥局日常作業造成的負擔程度？（五點量表：非常輕～非常重）</li>
+<li>資訊系統（掃碼調閱、檢核勾選、結案）操作是否順暢？（五點量表＋開放：最常遇到的問題＿＿）</li>
+<li>《評估與轉介流程表》《現場檢核表》在實際判斷時是否夠用？（五點量表＋開放：不足之處＿＿）</li>
+<li>教育訓練內容是否足以應對實際遇到的情境？（五點量表＋開放：希望加強的主題＿＿）</li>
+<li>整體而言，您對參與本試辦計畫的滿意度？（五點量表）</li>
+<li><strong>這段期間您在執行本試辦時，曾遇到下列哪些特殊情形？（可複選）</strong>
+<ul>
+<li>□ 民眾非本人前來（代購）</li>
+<li>□ 民眾疑似謊報年齡</li>
+<li>□ 未滿 16 歲民眾前來詢問</li>
+<li>□ 民眾不願出示證件或提供資料</li>
+<li>□ 現場空間難以確保隱私</li>
+<li>□ 民眾對不予供藥之決定表達不滿</li>
+<li>□ <strong>藥局遭遇言語衝突、暴力或滋擾</strong></li>
+<li>□ 疑似性暴力個案之辨識與通報</li>
+<li>□ 系統異常需改用紙本備援</li>
+<li>□ 其他＿＿</li>
+<li>□ 以上皆無</li>
+</ul>
+<blockquote>
+<p>⚠️ 「藥局遭遇暴力或滋擾」不納入藥師端「不予供藥原因」欄位（該類情形逕行報警處理），改於本問卷調查，以掌握藥局實際遭遇之風險情境。</p>
+</blockquote></li>
+<li>（開放題）執行中遇到的困難或建議：＿＿</li>
+</ol>
+<h3 id="問卷三-設計說明非問卷內容供建置參考">▣ 問卷三　設計說明（非問卷內容，供建置參考）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設計說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>蒐集藥師端回饋（負擔、滿意度）。</td>
+</tr>
+<tr>
+<td>施測時點</td>
+<td><strong>期中、期末各施測一次</strong>（期中結果可及早發現問題並滾動修正）。</td>
+</tr>
+<tr>
+<td>指標連動</td>
+<td>對應「藥師端負擔與滿意度」核心指標（每案耗時、負擔感、系統與工具實用性、訓練足夠度）。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="問卷四-婦產科端問卷不區分是否加入試辦一律發送">問卷四　婦產科端問卷（不區分是否加入試辦，一律發送）</h1>
+<blockquote>
+<p>⚠️ 本問卷<strong>不限承接院所是否加入試辦計畫</strong>，凡承接轉介個案之婦產科醫師皆可填答；問卷內設「貴院所是否加入本試辦計畫」一題；<strong>發送方式為於醫療轉介單加印 QR Code</strong>，由承接醫師掃碼填答、免另建帳號。</p>
+</blockquote>
+<blockquote>
+<p>⚠️ 本問卷為<strong>單案題型</strong>：題目由原「本期間……約＿＿人次」之期間彙總問法，改為就<strong>該一個案</strong>填答。</p>
+</blockquote>
+<p><strong>系統自動帶入（醫師無須填寫）</strong>：轉介單編號、轉介日期、轉介藥局、<strong>藥師所填之轉介事由</strong>。</p>
+<ol start="0" type="1">
+<li><strong>貴院所是否已加入本試辦計畫？</strong>（□ 是 □ 否）</li>
+<li><strong>本案民眾之就診日期</strong>：＿＿＿＿（系統帶入掃碼日期，可修改）</li>
+<li><strong>本案之臨床處置</strong>（可複選）：□ 開立處方（□ 緊急避孕 □ 其他＿＿）　□ 檢查後無需處置　□ 安排後續回診或追蹤　□ 轉介其他科別＿＿　□ 其他＿＿</li>
+<li><strong>藥師所載之轉介事由，與您的臨床判斷是否相符？</strong>（□ 相符　□ 部分相符　□ 不相符）<br>若非「相符」，請簡述：＿＿＿＿</li>
+<li><strong>本案轉介單所載資訊是否足夠？</strong>（□ 足夠　□ 不足，缺少：＿＿＿＿）</li>
+<li><strong>對本試辦轉介機制之其他意見</strong>（選填）：＿＿＿＿</li>
+</ol>
+<blockquote>
+<p>全卷 6 題、其中 4 題為單選或勾選，設計目標為<strong>門診中一分鐘內可填畢</strong>（門診時間有限）。</p>
+</blockquote>
+<h3 id="問卷四-設計說明非問卷內容供建置參考">▣ 問卷四　設計說明（非問卷內容，供建置參考）</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>設計說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目的</td>
+<td>以婦產科端回饋三角驗證轉介成功率。</td>
+</tr>
+<tr>
+<td>適用範圍</td>
+<td><strong>不區分是否加入試辦，一律發送</strong>，並以第 0 題辨識院所身分。已加入試辦者仍可透過系統帳號查閱轉介個案，惟不因此免填本問卷。</td>
+</tr>
+<tr>
+<td>發放時機</td>
+<td><strong>於醫療轉介單加印 QR Code</strong>，由承接醫師掃碼填答、免另建帳號。<br>⚠️ <strong>施測頻率為「每案即時回饋」</strong>：隨每一張轉介單觸發、就該案填答，<strong>非期中／期末批次施測</strong>；系統以轉介單編號辨識案件、避免重複計數。</td>
+</tr>
+<tr>
+<td>題目設計（<strong>2026-08-28 改寫為單案題型</strong>）</td>
+<td>配合每案即時回饋，題目就<strong>該一個案</strong>填答：0 院所身分、1 就診日期、2 本案臨床處置、3 藥師轉介事由與臨床判斷是否相符、4 轉介單資訊是否足夠、5 開放意見。<br><strong>原「期中／期末回顧整段期間難以準確回憶」之疑慮已消解</strong>——醫師於看診當下填答，無須回憶。<br>原草案問法（供對照）：「1. 本期間是否接獲持本試辦計畫轉介單就診之民眾？（□否 □是，約＿＿人次）2. 轉介事由（可複選）3. 處置概況（可複選）4. 對轉介單資訊完整性之建議」。<br><strong>新增第 3 題之理由</strong>：藥師所填轉介事由已由系統帶入，改問「與臨床判斷是否相符」，可直接檢驗藥局端分流之準確度，為原草案所無。</td>
+</tr>
+<tr>
+<td>⚠️ <strong>回收率之解讀限制（每案制之必然結果）</strong></td>
+<td>QR Code 印於轉介單、由民眾持往就診，故<strong>只有實際到診且醫師願意填答之個案才會產生回覆</strong>。因此：①<strong>問卷四之回收率不等於轉介後就醫率</strong>，不可用以推估就醫比例；②<strong>轉介後之就醫情形仍以追蹤問卷二之民眾自陳資料為準</strong>（不另建個案層級就醫追蹤名單）；③回收率偏低時無法區分「未就醫」與「已就醫但醫師未填」，報表須併同呈現此侷限。</td>
+</tr>
+<tr>
+<td>指標連動</td>
+<td>第 2 題處置情形供「轉介成功率」之<strong>部分</strong>三角驗證（僅涵蓋有回覆之個案，見上列解讀限制）；<strong>第 3 題轉介事由相符度</strong>供藥局端分流準確度之檢驗；第 4、5 題供「醫藥合作品質」輔助指標與轉介單改版依據。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td><strong>另立對外分享版</strong>：刪除會議內部痕跡（場次引用與決議沿革、決議結果表、來源索引、個別與會者發言與立場之引述等非對外段落）；問卷題目與選項一字未變更。修訂紀錄予以保留。</td>
+</tr>
+<tr>
+<td>2026-08-17</td>
+<td>主席裁定：衛教回饋問卷<strong>併入結案即寄之第一階段問卷</strong>（知識與滿意度以分頁維持「分開施測」）。</td>
+</tr>
+<tr>
+<td>2026-08-24</td>
+<td>修訂問卷四之適用範圍與發放時機（限未加入試辦之醫療院所；期中＋期末各一次）。</td>
+</tr>
+<tr>
+<td>2026-08-24</td>
+<td>問卷一「副作用」與「警訊症狀」選項改為逐項列出（噁心／頭痛／疲倦；單側下腹劇痛／臉色蒼白冒冷汗／異常大量出血），對應「一般不良反應回報」與「症狀發生率」兩項指標；逐項列出才能統計各症狀比例。</td>
+</tr>
+<tr>
+<td>2026-08-24</td>
+<td>問卷一刪除「服藥後 2–3 小時內是否嘔吐」題：該題不對應第 15 章任何成效評估指標，嘔吐補服數據已由藥局系統「補服代碼」於服務當下記錄，追蹤問卷重複詢問無評估用途。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>問卷四待決議事項由「第 2 題轉介事由是否可行」擴大為「整份問卷之題目設計逐題確認」。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>移除「LINE 快速回報是否試行」待決議事項；共同設計前提改列「不採 LINE 回報」（第 5 場討論中因民眾隱私疑慮未予採行）。</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>第 6 場決議定稿版</strong>：①問卷一第 2 題僅留具風險意義項目；②問卷一知識題第 1、3 題文字定稿；③問卷二開頭語加「填寫」；④問卷二第 1 題增「請驗孕並回診」提示；⑤問卷二第 3 題保留並改複選、直接附資源連結；⑥問卷三定案期中＋期末各一次、增設特殊情形勾選題；⑦<strong>問卷四改為不區分是否加入試辦一律發送、增設第 0 題、發送方式改為轉介單加印 QR Code</strong>；⑧待決議清單改為決議結果表，明列本場未及討論之項目；⑨問卷二第 3 題資源連結<strong>確定為三項官方資源</strong>：未成年懷孕求助網站（社家署，https://257085.sfaa.gov.tw/ ，0800-25-7085）、孕產兒關懷網站（國健署，https://mammy.hpa.gov.tw/ ，0800-870-870）、人工流產諮詢參考指引（國健署健康九九＋網站）；均由主席提供並經逐一核實（2026-08-27）；⑩<strong>問卷二新增第 6 題（可能與用藥有關之不適）與結尾之藥物不良反應通報管道說明</strong>（第 6 場決議：試辦不另建 SAE 蒐集流程，僅負責告知既有通報管道）。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>追蹤完成率拆為第一階段（問卷一回收率）與第二階段（問卷二回收率）兩項核心指標，分母均為同期結案給藥件數。</td>
+</tr>
+<tr>
+<td>2026-08-28</td>
+<td><strong>依第 6 場會議紀錄之人工修正同步</strong>：問卷四施測頻率由「期中＋期末各一次」改為<strong>每案即時回饋</strong>（隨醫療轉介單所印 QR Code 觸發、就該案填答）。</td>
+</tr>
+<tr>
+<td>2026-08-28</td>
+<td><strong>問卷四改寫為單案題型</strong>：全卷 6 題（院所身分／就診日期／本案處置／轉介事由相符度／轉介單資訊是否足夠／開放意見），轉介單編號、轉介日期、轉介藥局與藥師所填轉介事由由系統帶入；新增「轉介事由與臨床判斷是否相符」以檢驗藥局端分流準確度；並載明<strong>回收率不等於轉介後就醫率</strong>之解讀限制。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/配套_服藥者追蹤問卷與衛教回饋問卷.pdf" target="_blank">配套_服藥者追蹤問卷與衛教回饋問卷.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>

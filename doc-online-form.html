@@ -1,0 +1,371 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>線上資料收集評估表　完整規格｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>線上資料收集評估表　完整規格</h1>
+<div class="sub">民眾到藥局前於線上填寫之全部欄位、選項、驗證規則與判定出口</div>
+<blockquote>
+<p>緊急事後避孕藥社區藥局試辦計畫｜<strong>線上資料收集評估表　完整規格</strong> 供資訊廠商建置民眾端線上評估問卷之用。本件為《資訊系統功能需求規格書》之附件，兩者併同適用。 本件逐題列出民眾到藥局前於線上填寫之全部欄位、選項、驗證規則與判定出口；題目文字與判定規則須<strong>可由管理端設定改版</strong>。</p>
+</blockquote>
+<p><strong>縮寫對照表</strong>：LNG＝Levonorgestrel（本試辦品項成分名）｜UPA＝Ulipristal acetate｜PID＝骨盆腔發炎疾病（Pelvic Inflammatory Disease）｜ECP＝緊急事後避孕藥（Emergency Contraceptive Pill）</p>
+<hr />
+<h2 id="線上資料收集評估表完整規格">線上資料收集評估表完整規格</h2>
+<blockquote>
+<p><strong>本節用途</strong>：逐題列出民眾<strong>到藥局之前</strong>於線上填寫之全部欄位，供廠商直接據以建置表單與判定引擎。 <strong>呈現原則</strong>：全部填完後一次送出評估，<strong>作答過程不中斷、不即時顯示判定結果</strong>（避免民眾反覆試填改答案）；送出後才顯示判定與後續指引。 <strong>分頁建議</strong>：基本資料 → 同意書 → 評估題目（❶至❺）→ 送出。各頁顯示進度。</p>
+</blockquote>
+<h3 id="第一部分基本資料與身分">3-1-1　第一部分：基本資料與身分</h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>型別</th>
+<th>必填</th>
+<th>驗證與備註</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名</td>
+<td>文字</td>
+<td>✅</td>
+<td>須與到藥局出示之證件相符</td>
+</tr>
+<tr>
+<td>出生年月日</td>
+<td>日期選擇</td>
+<td>✅</td>
+<td>系統自動計算年齡，觸發 §3-1-2 年齡分流</td>
+</tr>
+<tr>
+<td>身分證字號／居留證號／護照號碼</td>
+<td>文字</td>
+<td>✅</td>
+<td>三擇一；格式驗證須同時支援國民身分證、居留證、護照編碼；全碼加密儲存（C-1）</td>
+</tr>
+<tr>
+<td>電子郵件</td>
+<td>Email</td>
+<td>✅</td>
+<td><strong>必填</strong>，為衛教交付與兩階段追蹤問卷之唯一管道；須格式驗證</td>
+</tr>
+<tr>
+<td>手機號碼</td>
+<td>文字</td>
+<td>⬜</td>
+<td>選填</td>
+</tr>
+<tr>
+<td>性別</td>
+<td>單選</td>
+<td>✅</td>
+<td>選項設計勿排除有懷孕能力之跨性別者</td>
+</tr>
+</tbody>
+</table>
+<h3 id="年齡分流系統自動判定不需民眾作答">3-1-2　⓪ 年齡分流（系統自動判定，不需民眾作答）</h3>
+<table>
+<thead>
+<tr>
+<th>年齡</th>
+<th>系統行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>未滿 16 歲</strong></td>
+<td><strong>立即終止流程</strong>，顯示就醫導引頁（附近婦產科、夜間假日就醫資訊、性暴力求助資源）。<strong>不進入後續填答、不產生條碼、不留存填答內容、不進行任何通報</strong>。僅以去識別方式累計次數（B-17）</td>
+</tr>
+<tr>
+<td><strong>滿 16 歲、未滿 18 歲</strong></td>
+<td>先顯示「給家長或法定代理人的說明」頁 → 由家長或法定代理人線上簽署雙項同意（①個資蒐集 ②同意以本試辦計畫取得藥品）→ 簽署完成始續行。未簽署則導引就醫</td>
+</tr>
+<tr>
+<td><strong>滿 18 歲</strong></td>
+<td>逕行簽署個資同意書後續行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第二部分個人資料告知同意a-4">3-1-3　第二部分：個人資料告知同意（A-4）</h3>
+<p>單一勾選格「勾選即代表同意」，紅色粗體標示，<strong>預設未勾選、不可自動帶入</strong>，須使用者自行點選。記錄同意書版本與簽署時間戳。</p>
+<h3 id="第三部分評估題目">3-1-4　第三部分：評估題目</h3>
+<h4 id="禁忌檢核任一是即-不供藥">❶ 禁忌檢核（任一「是」即 🔴 不供藥）</h4>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q1</td>
+<td>你是否曾對 Levonorgestrel（本藥品成分）過敏？</td>
+<td>是／否／不確定</td>
+<td>「是」→ 🔴 逕行轉介（本試辦僅 LNG、無替代品項）。<br><strong>「不確定」不直接擋藥</strong>：條碼照常產生並附「<strong>過敏史待確認</strong>」註記，由藥師於現場詢問確認；現場確認為過敏者，於 B-11 記錄不予供藥原因</td>
+</tr>
+<tr>
+<td>Q2</td>
+<td>你是否有嚴重肝功能障礙（肝硬化、肝衰竭、黃疸、腹水）？</td>
+<td>是／否／不確定</td>
+<td>「是」→ 🔴 逕行轉介。<strong>「不確定」不直接擋藥</strong>，附「<strong>病史待確認</strong>」註記由藥師現場確認。<strong>題目須附說明</strong>：B 型肝炎帶原、輕度肝功能異常、脂肪肝<strong>不屬</strong>此列，可正常使用</td>
+</tr>
+</tbody>
+</table>
+<h4 id="懷孕可能性評估含3-週閘門">❷ 懷孕可能性評估（含「3 週」閘門）</h4>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>分支邏輯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q3</td>
+<td>你目前是否有下列<strong>有懷孕可能之相關情況</strong>？（可複選）<br>□ 月經週期不規則<br>□ 末次月經已超過預期週期仍未來<br>□ 末次月經情況不確定（經量少、天數短）<br>□ 產後或流產後月經尚未恢復<br>□ 以上皆無</td>
+<td>複選</td>
+<td>勾「以上皆無」→ <strong>跳過 Q4、Q5，直接續問 ❸</strong>（不需驗孕）<br>勾任一情況 → 續問 Q4</td>
+</tr>
+<tr>
+<td>Q4</td>
+<td>距離現在<strong>3 週（21 天）以前</strong>，你是否曾發生無防護性行為？</td>
+<td>是／否</td>
+<td>「否」→ <strong>不需驗孕、可供藥</strong>，供藥時追加告知「不排除本次之前已懷孕之可能」<br>「是」→ 續問 Q5</td>
+</tr>
+<tr>
+<td>Q5</td>
+<td>建議你先使用驗孕棒確認。你的驗孕結果是？</td>
+<td>陽性／陰性／我不想驗孕／我想到藥局再確認</td>
+<td><strong>陽性</strong>→ 🔴 不供藥、轉介婦產科（須確認懷孕位置、排除子宮外孕）<br><strong>陰性</strong>→ 續問 ❸<br><strong>我不想驗孕</strong>→ 🟡 <strong>仍供藥</strong>（不因不願驗孕而擋藥），條碼附「待驗孕」註記，並於個人化衛教清單帶出四項必要告知<br><strong>我想到藥局再確認</strong>→ 同上附註記，由藥師現場確認</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ <strong>重要</strong>：Q5 <strong>僅在 Q3 勾選任一情況且 Q4 答「是」時才出現</strong>；其餘民眾全程不會被問到驗孕。藥局端對「待驗孕」註記者<strong>不重新勸說驗孕</strong>。</p>
+</blockquote>
+<p><strong>不願驗孕者之四項必要告知</strong>（由系統帶入個人化衛教清單，藥師逐項確認）： 1. 若已確定懷孕，即不需服用本藥；本藥對已成立之懷孕無效，亦無法終止懷孕。 2. 若疑似懷孕務必後續追蹤：可能於本次之前即已受孕而不自知，本次服藥其實已無效。 3. 月經未按預期時間到來或出現亂經，仍可供藥，惟建議至婦產科就醫確認。 4. 服藥後約 3 週建議驗孕或回診確認未懷孕。</p>
+<h4 id="異常陰道出血評估兩問法">❸ 異常陰道出血評估（兩問法）</h4>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q6</td>
+<td>你最後一次月經是什麼時候？</td>
+<td>日期選擇</td>
+<td>續下</td>
+</tr>
+<tr>
+<td>Q7</td>
+<td>該次出血與你平常的月經<strong>有沒有不同</strong>（量、天數、顏色）？</td>
+<td>相同／不同／說不清楚／我現在正在出血且不確定是不是月經</td>
+<td>「相同」→ 續問 ❹<br><strong>「不同」「說不清楚」「正在出血且不確定」→ 🔴 不供藥、轉介婦產科查出血原因</strong>（無法說明清楚即視為異常）</td>
+</tr>
+<tr>
+<td>Q8</td>
+<td>你目前是否有<strong>單側下腹劇痛</strong>或<strong>面色蒼白、冒冷汗</strong>？</td>
+<td>是／否</td>
+<td>「是」→ 🔴 <strong>視為急診</strong>，顯示立即就醫警示：應逕送設有婦產科之急診、非一般門診轉介。<br>⚠️ <strong>系統顯示文字不得出現病名推測</strong>（如「疑似子宮外孕」）：藥師與系統不作診斷，僅呈現徵象與處置</td>
+</tr>
+</tbody>
+</table>
+<h4 id="時效窗口">❹ 時效窗口</h4>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q9</td>
+<td>最近一次<strong>未受保護性行為</strong>發生於何時？（請填日期與時間）</td>
+<td>日期＋時間選擇</td>
+<td>系統自動計算時數：<br><strong>72 小時內</strong> → 通過，<strong>購藥條碼自此時間點起算 72 小時內有效</strong><br><strong>逾 72 小時、未逾 96 小時</strong> → 🔴 轉介、不供藥、不產生條碼（LNG 逾時療效無可靠數據）<br><strong>逾 96 小時</strong> → 🔴 轉介婦產科評估 UPA（120 小時內）或含銅子宮內避孕器（5 日內），顯示剩餘時數急迫性</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ Q9 所填之時間即為<strong>購藥條碼效期之起算點</strong>；藥局現場<strong>不再重算時效</strong>，以條碼效期為準。</p>
+</blockquote>
+<h4 id="重複服用檢核">❺ 重複服用檢核</h4>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>判定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q10</td>
+<td>在最近 <strong>72 小時內</strong>，你是否<strong>已經服用過</strong>緊急事後避孕藥？</td>
+<td>是／否</td>
+<td><strong>「是」→ 🔴 不供藥</strong>，顯示說明：Levonorgestrel 於 72 小時內服用一次即具效果，期間內縱有另一次性行為亦<strong>不須再次服用</strong>；如有疑慮請洽婦產科。<br>「否」→ 通過</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第四部分補充資料全部選填不影響判定出口">3-1-5　第四部分：補充資料（全部選填，<strong>不影響判定出口</strong>）</h3>
+<blockquote>
+<p><strong>本節用途</strong>：供 §4 B-15「線上填答帶入現場檢核欄位」取用之欄位。這四題<strong>均為選填、任一未填皆不得阻擋供藥、不得作為拒供理由</strong>，其作用僅在讓藥師端預先帶入、減少櫃檯口頭詢問（連動《06-3 藥師現場檢核表》B7、B8）。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>題號</th>
+<th>題目</th>
+<th>型別</th>
+<th>必填</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Q11</td>
+<td>你的體重大約幾公斤？（選填，不填不影響購藥）</td>
+<td>數字（公斤）</td>
+<td>⬜</td>
+<td>系統計算是否 &gt;70 kg／BMI&gt;26；超標者於個人化衛教清單額外提供就醫轉介指引（A3），並帶出「高體重可能降低效果」之告知。<strong>未填不得拒絕供藥</strong></td>
+</tr>
+<tr>
+<td>Q12</td>
+<td>你是否曾有<strong>血栓</strong>病史？</td>
+<td>是／否／不確定</td>
+<td>⬜</td>
+<td><strong>非禁忌、不得擋藥</strong>；「是」者於衛教清單帶出加強提醒（用藥須較小心）</td>
+</tr>
+<tr>
+<td>Q13</td>
+<td>你是否曾有<strong>子宮外孕</strong>病史？</td>
+<td>是／否／不確定</td>
+<td>⬜</td>
+<td><strong>非禁忌、不得擋藥</strong>；「是」者於衛教清單帶出回診追蹤與警訊衛教提醒</td>
+</tr>
+<tr>
+<td>Q14</td>
+<td>你是否曾罹患<strong>骨盆腔發炎（PID）</strong>？</td>
+<td>是／否／不確定</td>
+<td>⬜</td>
+<td><strong>非禁忌、不得擋藥</strong>；「是」者於衛教清單帶出雙重避孕與性病防治衛教</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ Q11–Q14 之填答<strong>不進入 §3-1-6 判定出口之任何觸發條件</strong>，僅作為 B-15 帶入與 B-6 衛教素材帶出之依據。身高未收集，BMI 之計算方式（或改以體重單一門檻判定）由管理端設定。</p>
+</blockquote>
+<h3 id="判定出口總表">3-1-6　判定出口總表</h3>
+<table>
+<thead>
+<tr>
+<th>出口</th>
+<th>觸發條件</th>
+<th>系統行為</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>🔴 不供藥、轉介</td>
+<td>Q1／Q2 為是或不確定；Q5 陽性；Q7 非「相同」；Q8 為是；Q9 逾 72 小時；<strong>Q10 為是</strong></td>
+<td>顯示就醫指引與資源，<strong>不產生條碼</strong></td>
+</tr>
+<tr>
+<td>🟡 供藥後加強衛教並轉介</td>
+<td>Q5 選「我不想驗孕」或「到藥局再確認」</td>
+<td>產生條碼，附「待驗孕」註記，帶出四項必要告知</td>
+</tr>
+<tr>
+<td>🟢 一般供藥</td>
+<td>全部通過</td>
+<td>產生條碼（QR Code＋條碼＋序號），顯示可查詢試辦藥局之介面（A-7）</td>
+</tr>
+<tr>
+<td>⚪ 年齡未達</td>
+<td>未滿 16 歲</td>
+<td>終止流程、導引就醫、去識別計數（B-17）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td>自《資訊系統功能需求規格書》§3-1 抽出獨立成冊，內容未變更；原規格書該節改為指向本件。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/線上資料收集評估表完整規格.pdf" target="_blank">線上資料收集評估表完整規格.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>

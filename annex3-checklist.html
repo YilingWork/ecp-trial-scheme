@@ -1,0 +1,506 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>附件三　藥師現場檢核表｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>附件三　藥師現場檢核表</h1>
+<div class="sub">藥局現場核對輔助與系統異常時之紙本備援</div>
+<h1 id="藥局供應緊急事後避孕藥ecp藥師現場檢核表">藥局供應緊急事後避孕藥（ECP）藥師現場檢核表</h1>
+<blockquote>
+<p>對應《藥局供應 ECP 評估與轉介流程表》階段二・到藥局現場。正常情形由資訊系統逐項帶出並記錄，本表供<strong>現場核對輔助</strong>與<strong>系統異常時之紙本備援</strong>。 民眾未經線上評估直接到店者：提供線上評估表網址／條碼，請其<strong>先完成線上評估</strong>再依本表辦理。</p>
+</blockquote>
+<table style="width:100%;">
+<thead>
+<tr>
+<th>日期時間</th>
+<th>　　年　　月　　日　　時　　分</th>
+<th>藥局</th>
+<th>藥師</th>
+<th>　</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>購藥條碼號碼</strong></td>
+<td>　</td>
+<td><strong>體重／BMI</strong>（線上選填帶入；未填免問、不得因未填拒供）</td>
+<td><strong>系統狀態</strong></td>
+<td>□ 正常　□ 異常（本表為備援紀錄）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="a-前置確認❻任一不符即停止供藥">A　前置確認（❻）：任一不符即停止供藥</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>檢核項目</th>
+<th>確認方式</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1</td>
+<td><strong>核對政府核發證件</strong></td>
+<td>掃碼調閱線上填答；核對<strong>政府核發證件</strong>（例如：身分證、健保卡、居留證、護照，<strong>涵蓋移工</strong>），重點確認兩事：①<strong>本人</strong>——藥師核對證件相片與本人，確認到場者＝線上填答者＝證件本人（不可代購）；②<strong>年齡</strong>——以證件核實出生年月日，防線上謊報年齡</td>
+<td>□ 相符　□ 不符 → <strong>⚪ 不予供藥（不符親領要件）</strong></td>
+</tr>
+<tr>
+<td>A2</td>
+<td><strong>未成年同意標記</strong>（滿 16 歲、未滿 18 歲者）</td>
+<td>系統顯示「家長或法定代理人已線上簽署同意」標記，確認<strong>標記存在</strong>即可（不要求陪同、不驗證簽署者身分；<strong>不以電話向家長確認</strong>）；無標記者系統不會核發條碼，如遇即屬異常</td>
+<td>□ 有標記／不適用（滿 18 歲）　□ 異常 → 停止供藥、回報系統<br>⚠️ <strong>未滿 16 歲不經藥局供藥</strong>，系統不核發條碼</td>
+</tr>
+<tr>
+<td>A3</td>
+<td><strong>時效檢核（不於現場重算）</strong></td>
+<td>購藥條碼已自<strong>民眾自填之性行為發生時間</strong>起算 72 小時，<strong>以條碼效期為準</strong>；系統顯示狀態：□ 可使用　□ 已失效　□ 已領藥</td>
+<td>□ 條碼有效 續行<br>□ <strong>已失效 → 不供藥</strong>、轉介（UPA ≤120h／含銅子宮內避孕器 ≤5 日，口頭告知剩餘時數急迫性）<br>□ 民眾陳述另有新的性行為 → 請其<strong>重填線上問卷</strong>（系統僅留最新一筆）</td>
+</tr>
+<tr>
+<td>A4</td>
+<td><strong>待確認註記之確認</strong></td>
+<td>條碼若附「過敏史待確認」或「病史待確認」註記（民眾線上答「不確定」），現場詢問確認</td>
+<td>□ 無註記／確認無虞 續行<br>□ <strong>確認為成分過敏或嚴重肝功能障礙 → 🔴 逕行轉介</strong>（系統記錄不予供藥原因）</td>
+</tr>
+<tr>
+<td>A5</td>
+<td><strong>重複服用確認</strong></td>
+<td>詢問「<strong>最近 72 小時內是否已服用過緊急事後避孕藥</strong>」（與線上填答併行雙重把關）</td>
+<td>□ 否 續行<br>□ <strong>是 → 🔴 逕行轉介</strong>，說明「72 小時內服用一次即有效，不須再次服用」，於系統記錄不供藥原因</td>
+</tr>
+<tr>
+<td>A6</td>
+<td><strong>當下出血確認</strong></td>
+<td>到場當下是否新增異常出血／正在出血且無法判斷是否為月經</td>
+<td>□ 無 續行<br>□ 有 → <strong>🔴 轉介查因</strong>（合併單側下腹劇痛＋面色蒼白冒冷汗 → 逕送有婦產科之急診）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>⚪ 不予供藥</strong>（A1 證件不符或 A2 無同意標記）：告知替代途徑（現行就醫程序、時效急迫性），記錄已告知時間：＿＿時＿＿分。</p>
+<hr />
+<h2 id="b-醫療社政銜接檢核❼供藥後轉介或通報以預防懷孕為第一優先">B　醫療／社政銜接檢核（❼）：供藥後轉介或通報，以預防懷孕為第一優先</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>檢核項目</th>
+<th>是</th>
+<th>否</th>
+<th>「是」之處置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B1</td>
+<td>疑似性暴力／性侵害（<strong>辨識以觀察為主、非逐案盤問</strong>。觀察面向：言談徵兆／情緒行為／陪同者代答緊盯／可見傷痕／未成年（滿 16 歲未滿 18 歲）、短期重複購買警訊，詳流程表 7-1）</td>
+<td>□</td>
+<td>□</td>
+<td>先供藥；藥師為責任通報人員，依法 <strong>113 通報</strong>，由社工介入並陪同至具社工之醫院（一站式服務）就醫採證；<strong>通報完成即結案</strong></td>
+</tr>
+<tr>
+<td>B2</td>
+<td>性傳染病風險（伴侶已知感染、新／陌生伴侶且無套、本人有症狀、多重性伴侶）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋建議至婦產科接受性病篩檢</td>
+</tr>
+<tr>
+<td>B3</td>
+<td>短期重複使用（如一個月內再次購買）<br>併問：本次月經週期內是否已用過 ECP（含醫療院所取得）□否 □是</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋常規避孕衛教＋<strong>建議轉介婦產科接受常規避孕諮詢</strong>＋納入追蹤</td>
+</tr>
+<tr>
+<td>B4</td>
+<td>血栓／子宮外孕病史／PID（均非禁忌、勿誤擋；<strong>線上問卷 Q12–Q14 已填者由系統帶入</strong>，未填者現場確認）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋對應加強提醒（見 D 衛教單勾選；子宮外孕病史僅疑似<strong>急性現症</strong>才緊急轉介）</td>
+</tr>
+<tr>
+<td>B5</td>
+<td>「有懷孕可能之相關情況」且「3 週前曾發生無防護性行為」之族群不願驗孕（階段一帶入；<strong>不重新勸說驗孕、不追問原因</strong>，開場：「這不影響你今天買藥，只是把該提醒的事項說清楚」，詳流程表 4-1）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋四項告知（見 D3）＋後續就醫情形以追蹤問卷二統計</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判定</strong>：□ 任一「是」→ <strong>🟡 供藥後轉介或通報</strong>　　□ 皆「否」→ <strong>🟢 一般供藥</strong>（仍須完成 B′ 加強告知檢核）</p>
+<h2 id="b-加強告知檢核❽-一般供藥不觸發轉介或通報">B′　加強告知檢核（❽）：🟢 一般供藥，<strong>不觸發轉介或通報</strong></h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>檢核項目</th>
+<th>是</th>
+<th>否</th>
+<th>「是」之處置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B′1</td>
+<td>哺乳中</td>
+<td>□</td>
+<td>□</td>
+<td>供藥並衛教（可繼續哺乳；服藥前先哺乳、避免服後馬上哺乳；資訊已在基礎衛教單）</td>
+</tr>
+<tr>
+<td>B′2</td>
+<td>服用肝酵素誘導劑（部分抗癲癇藥、聖約翰草等）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋告知效果可能降低＋<strong>詳細諮詢現用藥品與保健食品</strong>（資訊已在基礎衛教單）</td>
+</tr>
+<tr>
+<td>B′3</td>
+<td>體重過重（&gt;70kg／BMI&gt;26，<strong>僅有填答者</strong>；未填不得拒絕供藥）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋告知效果可能降低（資訊已在基礎衛教單）；<strong>有填答且超標者額外提供 A3 就醫指引</strong>（勾選對應情境）</td>
+</tr>
+<tr>
+<td>B′4</td>
+<td>非通報之社會風險個案（脆弱家庭等）</td>
+<td>□</td>
+<td>□</td>
+<td>供藥＋<strong>額外提供 A2-1 社福資源條碼</strong>（逐項說明），鼓勵自主聯繫（不強制轉介、不追蹤）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 本段<strong>不影響處置判定</strong>：勾選「是」仍為 🟢 一般供藥。四項均<strong>不得阻擋供藥</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="c-處置判定">C　處置判定</h2>
+<p>□ 🟢 第三類　一般供藥（B 段皆「否」；B′ 加強告知另計）　□ 🟡 第二類　供藥後轉介或通報（命中項目：<strong>B 段</strong>第＿＿項）　□ 🔴 第一類　逕行轉介（開立轉介單）　□ ⚪ 第四類　不符親領要件，不予供藥</p>
+<h3 id="c-1-不予供藥原因勾選-案件必填同步登錄系統">C-1　不予供藥原因勾選（<strong>🔴／⚪ 案件必填，同步登錄系統</strong>）</h3>
+<p>□ 非本人（代購）　□ 未滿 16 歲　□ 疑似謊報年齡（證件與填答不符）　□ 逾 72 小時（條碼失效） □ 72 小時內已服用過本藥　□ 驗孕陽性　□ 異常出血　□ 禁忌症（成分過敏／嚴重肝功能障礙） □ 民眾不願提供資料或出示證件　□ 現場無法確保隱私　□ 民眾自行放棄　□ 其他</p>
+<p><strong>補充描述</strong>（供上列未涵蓋之情形）：＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿</p>
+<blockquote>
+<p>⚠️ <strong>藥局遭受暴力或滋擾不勾選於此</strong>，逕行報警處理；該類風險改於<strong>藥師端回饋問卷</strong>（期中、期末各一次）調查。</p>
+</blockquote>
+<h3 id="c-2-未滿-16-歲詢問件數">C-2　未滿 16 歲詢問件數</h3>
+<p>□ 本案為未滿 16 歲前來詢問而未獲供藥 → 於系統點記一次（<strong>僅計數，不留存個人資料、不通報</strong>）</p>
+<blockquote>
+<p>用途：掌握此類個案規模，供未來檢討是否延伸服務至未滿 16 歲時參考。</p>
+</blockquote>
+<hr />
+<h2 id="d-衛教執行確認-全員必做系統依填答與-bb-勾選自動帶出個人化清單">D　衛教執行確認（🟢🟡 全員必做；系統依填答與 B、B′ 勾選自動帶出個人化清單）</h2>
+<h3 id="d1-基礎衛教逐項確認">D1　基礎衛教（逐項確認）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>項目</th>
+<th>完成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>盡速服用（越早效果越好）；不強制當場服用（願意者可當場服）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>2</td>
+<td>服藥後 2–3 小時內嘔吐須補服（快速通道見附表）<br>併問：過去服用 ECP 後曾嘔吐？□否 □是（是 → 現場預告補服規則與費用）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>3</td>
+<td>常見副作用：月經提前／延後、點狀出血、噁心、頭痛</td>
+<td>□</td>
+</tr>
+<tr>
+<td>4</td>
+<td>警訊衛教：月經延遲逾 1 週應驗孕；約 3 週驗孕或回診確認避孕成功；單側下腹劇痛、臉色蒼白冒冷汗或異常大量出血立即就醫（子宮外孕警訊；口頭衛教可說明，民眾單張不印病名）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>5</td>
+<td>緊急事後避孕藥屬補救措施、非常規避孕方法；明確告知「真正妥適的避孕方式是保險套＋常規避孕藥之雙重避孕」</td>
+<td>□</td>
+</tr>
+<tr>
+<td>6</td>
+<td>哺乳中之服藥資訊（可繼續哺乳；服藥前先哺乳、避免服後馬上哺乳）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>7</td>
+<td>肝酵素誘導劑交互作用資訊（效果可能降低；用藥中應告知醫師／藥師）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>8</td>
+<td>轉介指引與追蹤：就醫流程說明、性平三法權益、追蹤提醒；體重超標者之效果告知；告知「來得及就醫者仍建議由婦產科醫師評估」</td>
+<td>□</td>
+</tr>
+<tr>
+<td>9</td>
+<td>衛教單附社福資源與相關諮詢條碼</td>
+<td>□</td>
+</tr>
+<tr>
+<td>※</td>
+<td>最近一次月經後、本次之前<strong>另有</strong>未防護性行為者：加強說明「不排除本次之前既已懷孕、此情形本次服藥無效」＋3 週驗孕提醒</td>
+<td>□　□ 不適用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d2-額外提供之衛教素材依-b-檢核結果勾選交付架構依08-衛教資源清單定稿">D2　額外提供之衛教素材（依 B 檢核結果勾選交付；架構依《08 衛教資源清單》定稿）</h3>
+<table>
+<thead>
+<tr>
+<th>素材</th>
+<th>適用情境</th>
+<th>交付</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A2-1 社福現成資源條碼</strong>（性侵害防治中心等既有資源，不自製）</td>
+<td>B1 疑似性暴力（藥師引導掃描）／<strong>B′4</strong> 非通報之社會風險個案（逐項說明、鼓勵自主聯繫）</td>
+<td>□</td>
+</tr>
+<tr>
+<td><strong>A2-2 性傳染病現成資訊</strong>（供自行閱讀，不口頭主動詢問）</td>
+<td>B2</td>
+<td>□</td>
+</tr>
+<tr>
+<td><strong>A2-3 常規避孕衛教單張</strong>（與對外宣導共用同一份）</td>
+<td>B3 短期重複使用</td>
+<td>□</td>
+</tr>
+<tr>
+<td><strong>A3 就醫指引</strong>（單一版本，交付時<strong>勾選適用區塊</strong>）</td>
+<td><strong>B′3</strong> 體重過重（有填答且超標者）／<strong>B4</strong> 血栓・子宮外孕病史・PID／<strong>B5</strong> 不願驗孕之建議轉介者；嘔吐補服建議就醫者；無特殊狀況者亦可提供備用</td>
+<td>□</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d3-不願驗孕者四項告知b5是時逐項完成">D3　不願驗孕者四項告知（<strong>B5</strong>「是」時逐項完成）</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>告知內容</th>
+<th>完成</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>若已確定懷孕，即不需服用本藥；本藥對已成立之懷孕無效，亦無法終止懷孕</td>
+<td>□</td>
+</tr>
+<tr>
+<td>2</td>
+<td>若疑似懷孕，務必注意後續追蹤（可能本次之前即已受孕而不自知，此次服藥已無效）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>3</td>
+<td>月經未按預期時間到來或出現亂經，仍可供藥，供藥後建議至婦產科就醫確認</td>
+<td>□</td>
+</tr>
+<tr>
+<td>4</td>
+<td>服藥後約 3 週建議驗孕或回診確認避孕成功</td>
+<td>□</td>
+</tr>
+</tbody>
+</table>
+<h3 id="d4-b4-血栓子宮外孕病史pid-對應口頭提醒勾選執行">D4　<strong>B4</strong> 血栓・子宮外孕病史・PID 對應口頭提醒（勾選執行）</h3>
+<p>□ 血栓病史：用藥須較小心、特別提醒 □ 子宮外孕病史：強化警訊衛教＋「務必回診追蹤」明確叮嚀 □ PID 病史：強化雙重避孕（保險套＋常規避孕藥）與性病防治衛教</p>
+<hr />
+<h2 id="e-轉介通報追蹤">E　轉介／通報／追蹤</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>執行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>113 通報（B1 疑似性暴力／家暴等強制通報情形，責任通報）</td>
+<td>□ 已通報（時間：＿＿：＿＿）　□ 不適用</td>
+</tr>
+<tr>
+<td><strong>通報編號回填系統</strong>（113「關懷e起來」通報編號，作為通報落實憑證）</td>
+<td>□ 已回填（編號：＿＿＿＿＿＿）　□ 不適用</td>
+</tr>
+<tr>
+<td>轉介單開立與交付（🔴 或 🟡 需轉介者；「113已通報」欄一併勾註）</td>
+<td>□ 已交付　□ 不適用</td>
+</tr>
+<tr>
+<td>後續就醫情形以追蹤問卷二統計（🔴 全部；🟡 之 <strong>B5</strong> 不願驗孕；<strong>B3</strong> 短期重複使用）</td>
+<td>□ 已登錄　□ 不適用</td>
+</tr>
+</tbody>
+</table>
+<h2 id="f-結案">F　結案</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>執行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>供藥品項批號：＿＿＿＿＿＿＿＿　效期：＿＿＿＿＿＿</td>
+<td>□ 已記錄</td>
+</tr>
+<tr>
+<td>系統逐項確認衛教完成（未逐項勾選不能結案：系統事前防呆）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>完成給藥紀錄、結案（防跨店重複購買）</td>
+<td>□</td>
+</tr>
+<tr>
+<td>🔴／⚪ 案件：記錄轉介事由／已告知替代途徑</td>
+<td>□　□ 不適用</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="附表-嘔吐補服快速通道服藥後-23-小時內嘔吐回店案件">附表　嘔吐補服快速通道（服藥後 2–3 小時內嘔吐、回店案件）</h2>
+<table>
+<thead>
+<tr>
+<th>檢核</th>
+<th>規則</th>
+<th>確認</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>時間限定</td>
+<td>憑原條碼／原給藥紀錄回店；<strong>時效以距性行為 72 小時內重算</strong>（逾 72 小時不補服、轉介）</td>
+<td>□ 符合（逾時→轉介）</td>
+</tr>
+<tr>
+<td>費用</td>
+<td>須再收取一次費用（本項本即自費項目）</td>
+<td>□ 已告知</td>
+</tr>
+<tr>
+<td>系統處理</td>
+<td>以「<strong>補服代碼</strong>」記錄、免重新評估、<strong>不計入短期重複使用</strong>、跨店適用</td>
+<td>□ 已登錄</td>
+</tr>
+<tr>
+<td>併同提供轉介選擇</td>
+<td>嘔吐補服<strong>或</strong>建議轉介婦產科（另一條就醫管道）</td>
+<td>□ 已說明</td>
+</tr>
+</tbody>
+</table>
+<p><strong>轉介選擇之口頭說明要點</strong>：①若嘔吐係藥物本身引起，再服一劑很可能再次嘔吐、甚至更嚴重；②若係其他原因引起，待狀況改善後再服或許無虞，惟須由醫師判斷；③婦產科端可一併處理嘔吐問題，並告知其他可行的避孕方式。</p>
+<p>□ 民眾選擇：□ 補服　□ 轉介婦產科</p>
+<hr />
+<p>藥師簽章：＿＿＿＿＿＿＿＿　完成時間：＿＿時＿＿分</p>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td><strong>「曾服用 ECP 後嘔吐」一題移出 B3</strong>：該題與短期重複使用無關（不觸發轉介或通報），移至 D1 基礎衛教第 2 項「服藥後 2–3 小時內嘔吐須補服」之下併問，藥師講解嘔吐補服時順勢詢問並預告補服規則與費用。B3 保留「本次月經週期內是否已用過 ECP」之併問（該題係短期重複使用之判斷依據）。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>另立對外分享版</strong>：刪除會議內部痕跡（場次引用與決議沿革、⚠️／⏳ 待確認標記、決議與資料依據表、內部說明與審閱對照等非對外段落）；條文與表單本體未變更。修訂紀錄予以保留。</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>第 6 場決議修正版</strong>：①<strong>刪除 B10「未滿 16 歲供藥＋通報」</strong>及 A2「已知悉」勾選確認（未滿 16 歲改為不經藥局供藥）；②<strong>A3 時效改依購藥條碼效期，不再現場重算</strong>；③<strong>新增 A3a 重複服用確認</strong>（72 小時內已服用過即不供藥）；④A1 證件核對明確為「藥師核對相片與本人」；⑤<strong>新增 C-1 不予供藥原因勾選欄與補充描述欄</strong>（取代原擬之特殊情形通報清單）；⑥<strong>新增 C-2 未滿 16 歲詢問件數計數</strong>；⑦E 節通報適用範圍改為疑似性侵害、家暴等強制通報情形。</td>
+</tr>
+<tr>
+<td>2026-08-13</td>
+<td><strong>第 5 場決議修正版</strong>（依第 5 場會議紀錄（三）、（四））：①A1 改「一律核對政府核發證件」（身分證、健保卡、居留證、護照，涵蓋移工）；②A2 補未滿 16 歲「已知悉」勾選確認；③新增 B10 未滿 16 歲通報項（供藥與通報脫鉤、先供藥再通報）；④E 節通報補「通報編號回填」欄位。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>短期重複使用之處置文字精確化</strong>：「轉介婦產科」改為「<strong>建議轉介婦產科接受常規避孕諮詢</strong>」。依據：第 3 場決議之轉介標準納入行為風險（重複使用），惟第 3 場紀錄所載處置為「常規避孕衛教與追蹤」、第 5 場為「列為常規避孕加強衛教對象」，均未載「轉介婦產科」四字；該寫法係流程表草擬時加入、經第 4 場逐項確認未提出異議而沿用。本次修正使文字與實際加掛素材（A2-3 常規避孕衛教單張＋追蹤說明，不加掛 A3 就醫指引）一致。<strong>分類仍為 🟡，未變更</strong>。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>🟡／🟢 歸類校正（非變更處置內容）</strong>：原 B4 哺乳中、B5 服用肝酵素誘導劑、B6 非通報之社會風險個案、B7 體重過重四項，移出 B 段並新設「<strong>B′ 加強告知檢核</strong>」歸 🟢；B 段由九項減為五項，原 B8、B9 順移為 <strong>B4、B5</strong>。四項之處置內容（供藥、加強告知、A2-1／A3 加掛）一字未改，改動者僅類別標示。併同修正：C 處置判定註明命中項目限 B 段；D2 素材對照、D3、D4、E 段之 B 編號交叉引用一併更新。</td>
+</tr>
+<tr>
+<td>2026-08-28</td>
+<td><strong>依第 6 場決議同步</strong>：①B8 交叉引用之線上題號由「問卷 6-6」改為「<strong>Q12–Q14</strong>」（配合規格書 §3-1-5 新增之補充資料題）；②「納入未就醫追蹤」改為「後續就醫情形以追蹤問卷二統計」（第 6 場決議不另建個案層級追蹤名單）。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/附件三_藥師現場檢核表.pdf" target="_blank">附件三_藥師現場檢核表.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>

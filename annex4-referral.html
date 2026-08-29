@@ -1,0 +1,286 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>附件四　醫療轉介單｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>附件四　醫療轉介單</h1>
+<div class="sub">系統依處置自動產出、藥局列印紙本交付民眾</div>
+<blockquote>
+<p>緊急事後避孕藥（ECP）試辦計畫｜醫療轉介單 試辦藥品以 LNG（Levonorgestrel）為限；緊急避孕藥＝Emergency Contraceptive Pill（ECP）。</p>
+</blockquote>
+<hr />
+<h3 id="a.-轉介基本資訊">A. 轉介基本資訊</h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>轉介日期／時間</td>
+<td>（<strong>系統自動帶入</strong>）</td>
+</tr>
+<tr>
+<td>轉介類型</td>
+<td>☐ 🔴 第一類　逕行轉介　☐ 🟡 第二類　供藥後轉介或通報　☐ ⚠️ 急性警訊症狀→急診</td>
+</tr>
+<tr>
+<td><strong>預計轉入醫療機構名稱</strong></td>
+<td>＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>轉介單編號／購藥條碼</td>
+<td>（<strong>系統自動帶入</strong>；供院所調閱與雙向回覆對應）</td>
+</tr>
+<tr>
+<td><strong>113已通報</strong></td>
+<td>☐ 已通報（通報時間：＿＿：＿＿；通報編號：＿＿＿＿＿＿）　☐ 不適用：<strong>已勾「已通報」者，接手醫師毋須重複通報</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="b.-民眾基本資料系統自動帶入">B. 民眾基本資料（<strong>系統自動帶入</strong>）</h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名</td>
+<td>（系統帶入）</td>
+</tr>
+<tr>
+<td>年齡</td>
+<td>（系統帶入）　（<strong>滿 16 歲、未滿 18 歲</strong>者：家長或法定代理人已於線上簽署同意，標記由系統帶入。未滿 16 歲不經藥局供藥，本單不會出現該年齡層之藥局轉介案件）</td>
+</tr>
+<tr>
+<td>聯絡方式</td>
+<td>（系統帶入）</td>
+</tr>
+<tr>
+<td>個資提供同意</td>
+<td>☐ 已於線上簽署個人資料提供同意書</td>
+</tr>
+</tbody>
+</table>
+<h3 id="c.-轉介事由可複選對應定案流程表情境">C. 轉介事由（可複選，對應定案流程表情境）</h3>
+<p><strong>🔴 逕行轉介</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />「有懷孕可能之相關情況」且「3 週前曾發生無防護性行為」之族群<strong>驗孕陽性</strong></label></li>
+<li><label><input type="checkbox" />異常陰道出血</label></li>
+<li><label><input type="checkbox" />逾 72 小時（LNG 為仿單外使用／已逾有效時限）</label></li>
+<li><label><input type="checkbox" /><strong>72 小時內已服用過緊急事後避孕藥</strong></label></li>
+<li><label><input type="checkbox" />對 LNG 成分過敏</label></li>
+<li><label><input type="checkbox" />嚴重肝功能障礙（肝硬化／肝衰竭／黃疸／腹水）</label></li>
+<li><label><input type="checkbox" /><strong>急性警訊症狀</strong>（單側下腹劇痛＋面色蒼白＋冒冷汗）→ <strong>逕送有婦產科之急診</strong></label></li>
+</ul>
+<p><strong>🟡 已供藥，建議醫療轉介評估</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />疑似性暴力／性侵害（另依 113 通報，見 A 欄）</label></li>
+<li><label><input type="checkbox" />性傳染病（STI）風險</label></li>
+<li><label><input type="checkbox" />短期反覆使用／重複購買</label></li>
+<li><label><input type="checkbox" />血栓病史／子宮外孕病史／骨盆腔發炎（PID）</label></li>
+<li><label><input type="checkbox" />「有懷孕可能之相關情況」且「3 週前曾發生無防護性行為」之族群<strong>不願驗孕</strong></label></li>
+<li><label><input type="checkbox" />其他（請說明）：＿＿＿＿＿＿＿＿＿＿</label></li>
+</ul>
+<h3 id="d.-藥師處置與給藥狀態">D. 藥師處置與給藥狀態</h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本次供藥</td>
+<td>☐ 已先給 LNG（服藥時間＿＿：＿＿）　☐ 未供藥（轉介）</td>
+</tr>
+<tr>
+<td>已執行衛教</td>
+<td>見下 <strong>D-1 已執行衛教內容</strong>（逐項勾選）</td>
+</tr>
+<tr>
+<td>轉出藥師／藥局</td>
+<td>藥師：（系統帶入）　藥局：（系統帶入）　<strong>藥局電話：（系統自動帶入）</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="d-1.-已執行衛教內容藥師逐項勾選隨單附上">D-1. 已執行衛教內容（藥師逐項勾選，隨單附上）</h3>
+<p><strong>基礎衛教清單</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" />1 盡速服用（越早效果越好）；不強制當場服用</label></li>
+<li><label><input type="checkbox" />2 嘔吐補服（服藥後 2–3 小時內嘔吐須補服一劑）</label></li>
+<li><label><input type="checkbox" />3 常見副作用（月經提前／延後、點狀出血、噁心、頭痛）</label></li>
+<li><label><input type="checkbox" />4 警訊衛教（月經延遲逾 1 週應驗孕；服藥後約 3 週驗孕或回診；下腹劇痛／異常出血立即就醫）</label></li>
+<li><label><input type="checkbox" />5 緊急事後避孕藥屬補救措施、非常規避孕方法；常規避孕與雙重避孕之銜接衛教</label></li>
+<li><label><input type="checkbox" />6 哺乳中之服藥資訊（可繼續哺乳；服藥前先哺乳、避免服後馬上哺乳）</label></li>
+<li><label><input type="checkbox" />7 肝酵素誘導劑交互作用告知（適用者：抗癲癇藥、聖約翰草等，效果可能降低）</label></li>
+<li><label><input type="checkbox" />8 轉介指引與追蹤（就醫流程說明、性別平等相關法規權益、追蹤提醒；體重超標者之效果告知；告知來得及就醫者仍建議由婦產科醫師評估）</label></li>
+<li><label><input type="checkbox" />9 衛教單附社福資源與相關諮詢條碼</label></li>
+</ul>
+<p><strong>情境加值衛教（依個案情境勾選）</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>A2-1 社福資源條碼</strong>：☐ 通報後流程　☐ 就醫採證　☐ 保留證據提醒（勿盥洗／換洗衣物）　☐ 心理支持資源　☐ 113 專線</label></li>
+<li><label><input type="checkbox" /><strong>A2-2 性傳染病篩檢資訊</strong>（已交付，供自行閱讀）</label></li>
+<li><label><input type="checkbox" /><strong>A2-3 常規避孕衛教單張</strong>：☐ 常規避孕與長效可逆避孕選項比較　☐ 月經紊亂預期說明　☐ 建議轉介婦產科接受常規避孕諮詢</label></li>
+<li><label><input type="checkbox" /><strong>口頭加強提醒</strong>：☐ 血栓病史　☐ 子宮外孕病史（回診追蹤）　☐ 骨盆腔發炎（雙重避孕與性病防治）</label></li>
+<li><label><input type="checkbox" /><strong>A3 就醫指引單張</strong>：☐ 轉介事由說明　☐ 就醫時效急迫性（UPA 120 小時內／含銅子宮內避孕器 5 日內）　☐ 就醫會經歷什麼　☐ 體重過重（有填答且超標者）</label></li>
+</ul>
+<hr />
+<h3 id="e.-醫師回覆欄雙向回覆請於評估後回覆轉出藥局">E. 醫師回覆欄（<strong>雙向回覆</strong>，請於評估後回覆轉出藥局）</h3>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>收件日期</td>
+<td>＿＿＿＿</td>
+</tr>
+<tr>
+<td>診斷／處置</td>
+<td>＿＿＿＿＿＿＿＿＿＿</td>
+</tr>
+<tr>
+<td>回覆方式</td>
+<td>☐ 電子轉介平台　☐ 電話　☐ 紙本回覆單</td>
+</tr>
+<tr>
+<td>回覆醫師／院所／科別</td>
+<td>＿＿＿＿＿</td>
+</tr>
+</tbody>
+</table>
+<h3 id="e-1.-婦產科端回饋問卷">E-1. 婦產科端回饋問卷</h3>
+<p>本單右下角印製<strong>問卷四（婦產科端問卷）之 QR Code</strong>，供承接醫師掃碼填答，<strong>免另建帳號</strong>。</p>
+<ul>
+<li>適用對象：<strong>不區分是否加入本試辦計畫</strong>，凡承接轉介個案之婦產科醫師皆可填答（問卷內設「貴院所是否加入本試辦計畫」一題）。</li>
+<li>施測頻率：試辦期中、期末各一次；填答與否由醫師自行決定。</li>
+<li>已申請系統帳號之醫師，亦得循系統內入口填答。</li>
+</ul>
+<p>☐ QR Code 已隨單印出</p>
+<h3 id="f.-雙向聯絡管道">F. 雙向聯絡管道</h3>
+<ul>
+<li>轉出藥局聯絡電話：（<strong>系統自動帶入</strong>）　　轉入院所聯絡電話：＿＿＿＿</li>
+<li>疑義即時溝通窗口（電話諮詢）：＿＿＿＿</li>
+</ul>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td><strong>D-1 情境加值衛教與《衛教資源清單》對齊</strong>：①各項冠上素材編號（A2-1／A2-2／A2-3／A3）；②A2-1 補列「就醫採證」與「113 專線」，五項與該素材主連結（保護服務司性侵害處理求助頁）涵蓋範圍一致；③A2-3 第三子項由「追蹤說明」改為「建議轉介婦產科接受常規避孕諮詢」，與《衛教資源清單》一致；④A3 補列「體重過重（有填答且超標者）」情境（❽-3 明訂超標者額外提供 A3）；⑤口頭加強提醒刪除「哺乳」——哺乳資訊已列基礎衛教清單第 6 項，原並列造成重複。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>D-1 基礎衛教清單由 7 項補為 9 項、編號與《流程表》十一節及《藥師現場檢核表》D1 對齊</strong>：補列第 6 項「哺乳中之服藥資訊」與第 8 項「轉介指引與追蹤」，原第 6、7 項順移為第 7、9 項。原清單缺此二項且第 6 項起編號與檢核表錯開，藥師勾選時易對錯欄位。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td>D-1 已執行衛教內容第 5 項改為正式寫法：「補救 ≠ 常規＋常規避孕與雙重避孕銜接衛教」改為「緊急事後避孕藥屬補救措施、非常規避孕方法；常規避孕與雙重避孕之銜接衛教」。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td>D-1 已執行衛教內容第 4 項刪除「：子宮外孕警訊」之病名：本單由民眾持往就醫，依民眾自持文件不載診斷字眼之原則，警訊一律以症狀描述呈現。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td>C 欄🔴「72 小時內已服用過緊急事後避孕藥」刪除括號內之衛教說明（服用一次即有效、不須再次服用、有疑慮轉請醫師評估）；該說明屬藥師對民眾之告知內容，見《流程表》❺ 與《藥師現場檢核表》，本單僅留勾選事由。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>C 欄轉介事由與 ❼ 五項對齊</strong>：①🔴「驗孕陽性」加註族群限定（「有懷孕可能之相關情況」且「3 週前曾發生無防護性行為」之族群），與《流程表》❷ 之驗孕觸發條件一致；②🟡 補列「疑似性暴力／性侵害」（另依 113 通報，見 A 欄）與「不願驗孕」（含族群限定）；③🟡 移除「體重過重」——該項已改歸 🟢 一般供藥之加強告知（❽-3），僅額外提供 A3 就醫指引衛教單，不開立醫療轉介單。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>刪除「預計轉入醫療機構名稱」欄之產出規則說明</strong>（系統依藥局所在地推薦、不限參與試辦者、民眾可自填、附分區院所清單與特殊服務備註），改列為系統需求（《資訊系統功能需求規格書》B-9）；本單該欄僅留填答空格。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>刪除版面強調之敘述</strong>：A 欄轉介類型、C 欄轉介事由、D-1 已執行衛教內容三處之「勾選項以顏色（／濃淡）強調」移出本單，改列為系統需求（《資訊系統功能需求規格書》B-9）。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>刪除「一、設計說明（非表單本體）」整節</strong>，僅保留轉介單本體，並刪除「轉介單本體（欄位草案）」之節標題，A 至 F 各欄直接列示。該節所載之產出方式、轉介院所範圍與版面要求，均已見《資訊系統功能需求規格書》B-9。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>另立對外分享版</strong>：刪除會議內部痕跡（場次引用與決議沿革、⚠️／⏳ 待確認標記、決議與資料依據表、內部說明與審閱對照等非對外段落）；條文與表單本體未變更。修訂紀錄予以保留。</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>依第 6 場決議修正</strong>：①<strong>新增 E-1 節，本單加印問卷四（婦產科端問卷）之 QR Code</strong>，供承接醫師掃碼填答、免另建帳號，且不區分該院所是否加入試辦；②B 欄刪除「未滿 16 歲者含『依法通報』之『已知悉』勾選」，年齡註記改為滿 16 歲未滿 18 歲；③C 欄轉介事由新增「72 小時內已服用過緊急事後避孕藥」。（A 欄「113已通報」欄位<strong>維持不變</strong>：遇性侵害、家暴等強制通報情形不論年齡仍須通報。）</td>
+</tr>
+<tr>
+<td>2026-08-13</td>
+<td><strong>依第 5 場會議紀錄（七）修正</strong>：①A、B 欄之民眾基本資料、轉介日期、購藥條碼、藥局電話改<strong>系統自動帶入</strong>；②刪除原「D 藥師端已評估資訊」整節（藥師已詢問項目由醫師端系統帳號查閱，轉介單欄位併入資訊系統：（十二）3）、原 E 欄「藥師建議醫師評估重點」列、原 F 欄「是否需藥師後續銜接／追蹤」列（節次重編：E→D、E-1→D-1、F→E、G→F）；③「轉入院所別」改「<strong>預計轉入醫療機構名稱</strong>」，範圍不限試辦婦產科、系統依藥局所在地推薦、民眾可自填；④A 欄新增「<strong>113已通報</strong>」（含通報編號，接手醫師毋須重複通報）；⑤設計說明載明勾選項顏色／濃淡強調；⑥B 欄個資同意補「已知悉」勾選（未滿 16 歲）；⑦「懷孕徵兆」用詞已於前版改「有懷孕可能之相關情況」（該欄位隨 D 節刪除，不再出現）。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/附件四_醫療轉介單.pdf" target="_blank">附件四_醫療轉介單.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>

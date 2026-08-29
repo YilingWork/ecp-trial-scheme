@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hant" xml:lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ECP臨床流程參考（ACOG／CCJM 改寫版）</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    table col{width:auto!important}
+</style>
+  <link rel="stylesheet" href="data:," />
+<style>
+body{font-family:system-ui,-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;max-width:860px;margin:0 auto;padding:28px 18px;line-height:1.8;color:#1e293b;background:#f8fafc}
+h1{font-size:1.35rem;border-bottom:3px solid #4f46e5;padding-bottom:8px}
+h2{font-size:1.15rem;color:#3730a3;margin-top:1.6em}
+table{border-collapse:collapse;width:100%;font-size:.92rem}
+th,td{border:1px solid #cbd5e1;padding:6px 10px;text-align:left}
+th{background:#e0e7ff}
+blockquote{border-left:4px solid #4f46e5;background:#eef2ff;margin:.8em 0;padding:.4em 1em;color:#475569}
+a{color:#4338ca}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（與首頁共用 sessionStorage，首頁輸入過即免再輸） ====== -->
+<div id="pwgate" style="position:fixed;inset:0;background:#f8fafc;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,-apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;padding:20px;text-align:center">
+  <h2 style="color:#1e293b">🔒 專家審議平台</h2>
+  <p style="color:#475569;max-width:420px">本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pwg_in" type="password" placeholder="請輸入存取密碼" autocomplete="off" style="padding:9px 14px;font-size:1rem;border:1px solid #cbd5e1;border-radius:8px;width:220px">
+  <button onclick="pwgCheck()" style="margin-top:12px;padding:9px 26px;border-radius:8px;border:0;background:#4f46e5;color:#fff;font-size:1rem;cursor:pointer">進入</button>
+  <div id="pwg_err" style="color:#dc2626;margin-top:8px;font-size:.9rem"></div>
+</div>
+<script>
+const PWG_HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function pwgSha(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function pwgCheck(){const v=document.getElementById("pwg_in").value;if(await pwgSha(v)===PWG_HASH){sessionStorage.setItem("ok","1");document.getElementById("pwgate").remove();}else{document.getElementById("pwg_err").textContent="密碼錯誤，請再試一次。";}}
+if(sessionStorage.getItem("ok")==="1"){document.getElementById("pwgate").remove();}
+else{document.getElementById("pwg_in").addEventListener("keydown",e=>{if(e.key==="Enter")pwgCheck();});}
+</script>
+
+<p><a href="index.html">← 回審議平台首頁</a></p>
+<header id="title-block-header">
+<h1 class="title">ECP臨床流程參考（ACOG／CCJM 改寫版）</h1>
+</header>
+<blockquote>
+<p><strong>用途</strong>：回應第 2 場專家會議待議事項第 6 點「婦產科現行
+SOP（待邀婦產科提供）」。
+本檔案<strong>以美國婦產科醫學會（ACOG）指引為參考骨架</strong>，改寫為適用本試辦「藥師指示」情境之流程草案。
+<strong>性質定位</strong>：①
+來源為<strong>美國</strong>指引，其主軸為「<strong>醫師開處方＋預先提供（advance
+provision）</strong>」；本試辦為「<strong>藥師指示</strong>」模式，角色不同，故僅取其<strong>臨床決策內容</strong>（篩檢、禁忌、衛教、追蹤），流程角色已改寫。②
+臨床事實均引自 ACOG
+原文；正式定稿仍<strong>須經國內婦產科／藥學專家確認</strong>，並與本土法規、仿單對齊。③
+本試辦第 2 場已傾向<strong>先以 LNG 為主、UPA
+留待正式計畫</strong>，本檔案涉 UPA 部分標示為參考。
+整理：2026-07-03　·　來源：ACOG PB 152（2015, 重申 2022）、ACOG CO
+707（2017, 重申 2024）、CCJM 2025（Wilden &amp; Wainstein）</p>
+</blockquote>
+<hr />
+<h1 id="ecp-臨床流程參考acogccjm-改寫版藥師指示情境">ECP
+臨床流程參考——ACOG／CCJM 改寫版（藥師指示情境）</h1>
+<h2
+id="一核心臨床原則acog-一手可直接作為衛教與把關依據">一、核心臨床原則（ACOG
+一手，可直接作為衛教與把關依據）</h2>
+<table>
+<thead>
+<tr>
+<th>原則</th>
+<th>ACOG 原文重點</th>
+<th>出處</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>越快越好</strong></td>
+<td>口服 EC 應於無（不足）保護性行為後<strong>盡快</strong>開始；120
+小時內有效，<strong>尤其 24 小時內最有效</strong></td>
+<td>CO 707 Background；PB 152</td>
+</tr>
+<tr>
+<td><strong>用前不需檢查／驗孕</strong></td>
+<td>提供口服 EC
+前<strong>不需要臨床檢查或驗孕</strong>（許多醫病雙方誤以為需要，屬取得障礙之一）</td>
+<td>CO 707 Education Barriers；PB 152（Level B）</td>
+</tr>
+<tr>
+<td><strong>無醫學禁忌</strong></td>
+<td>口服 EC
+<strong>無醫學禁忌</strong>；僅「已知或疑似懷孕」不建議（因已著床則無效），但此情形用藥<strong>對胎兒/妊娠無已知傷害</strong></td>
+<td>CCJM／PB 152</td>
+</tr>
+<tr>
+<td><strong>非墮胎藥</strong></td>
+<td>所有 EC
+僅在<strong>妊娠成立前</strong>有效，<strong>不是墮胎藥</strong>；不會中止已成立妊娠</td>
+<td>CO 707 Misconceptions</td>
+</tr>
+<tr>
+<td><strong>可近性不增風險行為</strong></td>
+<td>提高 EC
+可近性<strong>不會</strong>減少荷爾蒙避孕/保險套使用、不會增加無保護性行為或意外懷孕</td>
+<td>CO 707 Misconceptions</td>
+</tr>
+<tr>
+<td><strong>可重複使用</strong></td>
+<td>同一週期內可多次使用；但頻繁使用者應提供常規避孕諮詢；同週期繼續性行為者仍有懷孕風險</td>
+<td>CO 707 Safety of Repeated Use</td>
+</tr>
+<tr>
+<td><strong>體重影響效果（不得拒用）</strong></td>
+<td>LNG（BMI≥25）、UPA（BMI≥30）效果可能下降；<strong>不得因體重拒絕或勸退</strong>用藥；UPA
+效果優於 LNG</td>
+<td>CO 707；PB 152</td>
+</tr>
+</tbody>
+</table>
+<h2
+id="二改寫後之流程五步藥師指示情境">二、改寫後之流程（五步，藥師指示情境）</h2>
+<blockquote>
+<p>對照 CCJM Figure 1（美國：篩檢懷孕意願→檢視避孕→討論 EC→開立
+UPA/預先提供→追蹤），改寫為藥師指示交付流程。</p>
+</blockquote>
+<p><strong>Step 1　需求確認</strong></p>
+<ul>
+<li>確認為緊急避孕需求（無保護／保護不足性行為，或避孕失敗：破套、漏藥、偷拔套等）。</li>
+<li>確認距性行為時間（決定選藥與時效）。</li>
+<li>對高風險族群提高警覺並準備轉介：青少年、性侵倖存者、經濟弱勢、偏鄉、語言不通者（CO
+707 Special Populations）。</li>
+</ul>
+<p><strong>Step 2　適用與禁忌評估（藥師篩檢）</strong></p>
+<ul>
+<li><strong>無醫學禁忌</strong>，用前不需檢查/驗孕；快速確認：是否已知/疑似懷孕（則無效，改轉介）、對成分過敏、不明陰道出血、肝功能不良等仿單注意事項（連動衛教單張）。</li>
+<li>詢問近期用藥（若近期已用 UPA 或使用 CYP
+誘導劑等，影響選藥——正式版須補國內仿單交互作用清單）。</li>
+</ul>
+<p><strong>Step 3　選藥與時效說明</strong></p>
+<ul>
+<li>本試辦<strong>以 LNG 為主</strong>：LNG
+於排卵前服用可延後/抑制排卵；<strong>時效 72
+小時內、越早越好</strong>。</li>
+<li>（參考，UPA 留待正式計畫）UPA：可於 LH
+峰開始後仍延後排卵，<strong>時效 120 小時、各時點效果均優於
+LNG</strong>；屬處方。</li>
+<li>銅質 IUD 為最有效之緊急避孕（需醫師置入，屬轉介選項）。</li>
+</ul>
+<p><strong>Step 4　交付與衛教（重點）</strong></p>
+<ul>
+<li><strong>服藥時機</strong>：盡快服用；若服後 <strong>2
+小時內嘔吐需補服一次</strong>。</li>
+<li><strong>副作用告知</strong>：噁心、嘔吐、頭痛、乳房脹痛、腹痛、點狀出血；下次月經可能提早或延後數日。</li>
+<li><strong>非常規避孕</strong>：EC
+為緊急備援，效果低於常規避孕；提供常規避孕與性教育資訊（尤其重複使用者）。</li>
+<li><strong>後續避孕銜接</strong>：LNG
+後可<strong>立即</strong>開始任何避孕法（+至少 1 週備援）；（UPA
+後荷爾蒙避孕須<strong>等 5 天</strong>再開始，期間備援——參考）。</li>
+</ul>
+<p><strong>Step 5　追蹤與轉介</strong></p>
+<ul>
+<li><strong>不需常規回診</strong>；但衛教病人：<strong>月經延遲逾 1
+週</strong>（或服後約 3 週未來經）、下腹痛、持續不規則出血 →
+<strong>驗孕並就醫評估</strong>。</li>
+<li><strong>轉介時機</strong>：疑似懷孕/子宮外孕徵象、超過時效、臨床風險、需常規避孕或銅
+IUD、重複求助者；性暴力/兒少保護個案依法定通報與知情同意轉介（連動第
+9、10 章）。</li>
+</ul>
+<h2 id="三待補正式定稿前">三、待補（正式定稿前）</h2>
+<ol type="1">
+<li>國內<strong>仿單</strong>之禁忌症、交互作用、警語逐項對齊（取代美國泛述）。</li>
+<li>婦產科<strong>現行實務 SOP</strong>（待邀提供）與本改寫版整合。</li>
+<li>LNG 為主之流程確認；UPA 是否納入正式計畫再議。</li>
+</ol>
+<hr />
+<h2 id="來源">來源</h2>
+<ul>
+<li>ACOG <strong>Practice Bulletin No. 152</strong>《Emergency
+Contraception》. Obstet Gynecol 2015;126(3):e1–e11.（重申 2022）——
+reference 資料夾全文</li>
+<li>ACOG <strong>Committee Opinion No. 707</strong>《Access to Emergency
+Contraception》. Obstet Gynecol 2017;130(1):e48–e52.（重申 2024）——
+reference 資料夾全文</li>
+<li><strong>CCJM 2025</strong>：Wilden AR, Wainstein. How should I
+incorporate emergency contraception counseling into my practice? Cleve
+Clin J Med 2025;92(12):738–741.（含 Figure 1 諮詢流程、Table 1 EC
+選項）—— reference 資料夾全文</li>
+<li>對照：本試辦《第 2
+場專家會議摘要》待議#6、跨章原則（藥品可近性、藥師指示模式、LNG
+為主）</li>
+</ul>
+</body>
+</html>

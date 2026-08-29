@@ -1,0 +1,132 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>附件六　給家長或法定代理人的說明頁｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>附件六　給家長或法定代理人的說明頁</h1>
+<div class="sub">滿 16 歲、未滿 18 歲個案之家長線上同意前置說明頁</div>
+<blockquote>
+<p>衛教素材 A4｜給家長或法定代理人的說明頁（系統彈出頁） <strong>使用時機</strong>：<strong>滿 16 歲、未滿 18 歲</strong>個案申請參加試辦時，家長或法定代理人於線上簽署同意書<strong>之前</strong>，系統跳出本頁；閱畢按「我已閱讀，前往簽署」進入個人資料提供同意書八之一簽署區。未滿 16 歲者不經社區藥局供藥，系統於年齡分流階段即導引就醫、不進入本頁。 未取得家長或法定代理人同意者，系統不進入後續填答，將提供婦產科就醫資訊。 設計要素：字級 14pt 以上、白話、重點前置；版式以 A4 直式設計、可另存列印。</p>
+</blockquote>
+<hr />
+<h1 id="給家長或法定代理人的說明">給家長或法定代理人的說明</h1>
+<p>您的孩子正在申請參與<strong>衛生福利部食品藥物管理署</strong>的「提升處方藥可近性試辦計畫」（緊急事後避孕藥藥局試辦），這是由該署監督執行的試辦計畫。簽署同意之前，請先花三分鐘看完這頁。</p>
+<h2 id="現在發生什麼事">① 現在發生什麼事</h2>
+<p>您的孩子可能發生了沒有避孕（或避孕失敗）的性行為。緊急事後避孕藥必須在 <strong>72 小時內</strong>服用才有效，<strong>時間，是現在最重要的事</strong>。</p>
+<h2 id="這個藥是什麼安全嗎">② 這個藥是什麼？安全嗎？</h2>
+<ul>
+<li>它是避孕的補救措施，<strong>不是墮胎藥</strong>：只能在懷孕發生前發揮作用，對已經懷孕的人沒有效果，也不能終止懷孕。</li>
+<li><strong>經評估後正確使用，絕大多數是安全的。</strong>想了解更多，可掃描這裡的藥品資訊：［條碼｜仿單／藥品資訊連結］</li>
+<li>在本計畫中，藥品由<strong>受過訓練的藥師</strong>評估後才提供，必要時會轉介婦產科。</li>
+<li>請注意：<strong>服藥後仍有懷孕的可能</strong>（效果並非百分之百），所以服藥三週後的驗孕確認很重要（見④）。</li>
+</ul>
+<h2 id="您的同意代表什麼">③ 您的同意代表什麼</h2>
+<p>您的同意包含兩件事：</p>
+<ol type="1">
+<li>同意提供孩子的個人資料（僅用於本次評估與衛教）；</li>
+<li>同意孩子透過本計畫向試辦藥局取得藥品（是否供藥仍由藥師依流程評估）。</li>
+</ol>
+<p>同意之後，<strong>您不一定需要陪同孩子到藥局</strong>。</p>
+<p>您也可以選擇另一條路：<strong>陪孩子去看婦產科</strong>，醫師同樣能提供緊急避孕的協助。</p>
+<h2 id="接下來怎麼陪伴孩子">④ 接下來，怎麼陪伴孩子</h2>
+<ul>
+<li>先處理緊急避孕，再談發生了什麼。<strong>責備會讓孩子不敢求助。</strong></li>
+<li>鼓勵孩子三週後驗孕或回診，確認避孕成功；也可以一起討論之後的避孕方式。</li>
+<li>留意孩子的情緒與交往狀況：如果您懷疑孩子是被迫的，請撥 <strong>113</strong>。</li>
+</ul>
+<h2 id="家長也可以求助">⑤ 家長也可以求助</h2>
+<ul>
+<li><strong>未成年懷孕求助資源</strong>（衛生福利部社會及家庭署）：https://257085.sfaa.gov.tw/ 　求助專線 <strong>0800-25-7085</strong></li>
+<li><strong>113 保護專線</strong>：24 小時免付費，手機、市話與簡訊均可直撥；亦可透過「關懷 e 起來」線上通報（https://ecare.mohw.gov.tw/ ）</li>
+<li><strong>全國家庭教育諮詢專線</strong>（親職教養、親子關係、情感交往等諮詢）：<strong>4128185</strong>（手機請加 02）　https://familyedu.moe.gov.tw/ 　服務時間：週一至週六 9:00–12:00、14:00–17:00；週一至週五 18:00–21:00。專線老師謹守保密原則。</li>
+</ul>
+<p>［上列資源以條碼呈現，供掃描查閱］</p>
+<p>〔按鈕〕<strong>我已閱讀，前往簽署</strong></p>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td>⑤「家長也可以求助」由條碼佔位改為列出資源名稱與連結：未成年懷孕求助資源（社家署 https://257085.sfaa.gov.tw/ ，0800-25-7085）、113 保護專線（含關懷 e 起來 https://ecare.mohw.gov.tw/ ）。家庭教育部分改列<strong>全國家庭教育諮詢專線 4128185</strong>（手機加 02）並載明服務時間與保密原則（來源：教育部家庭教育網 https://familyedu.moe.gov.tw/docDetail.aspx?uid=8846&amp;pid=8844&amp;docid=182729 ，使用者提供）。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td>②「三週後的驗孕確認」改為「<strong>服藥</strong>三週後的驗孕確認」，明確起算點為服藥時而非性行為時。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td>首段兩句併為一句：「……參與<strong>衛生福利部食品藥物管理署</strong>的『提升處方藥可近性試辦計畫』，這是由<strong>該署</strong>監督執行的試辦計畫」，明示主管機關名稱且避免機關全稱重複兩次。</td>
+</tr>
+<tr>
+<td>2026-08-29</td>
+<td><strong>另立對外分享版</strong>：刪除會議內部痕跡（場次引用與決議沿革、⚠️／⏳ 待確認標記、決議與資料依據表、內部說明與審閱對照等非對外段落）；條文與表單本體未變更。修訂紀錄予以保留。</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>第 6 場決議修正版</strong>：①適用對象明確為<strong>滿 16 歲、未滿 18 歲</strong>（未滿 16 歲不經藥局供藥、不進入本頁）；②計畫名稱維持官方名稱，平臺名稱另行研議。</td>
+</tr>
+<tr>
+<td>2026-08-13</td>
+<td><strong>依第 5 場決議（六）修正</strong>：①首段加註食藥署計畫與主管機關監督；②原「WHO 認為……安全（⚠️待查證）」句改為定稿文字「經評估後正確使用，絕大多數是安全的」＋仿單 QR Code（原待查證項結案）；③新增「服藥後仍有懷孕的可能」提醒；④「不需要陪同」改「不一定需要陪同」；⑤刪「下一次」敏感字眼（④第一點句改寫）。計畫名稱是否另取易懂名稱未定案，暫用官方名稱。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/附件六_給家長法定代理人的說明頁.pdf" target="_blank">附件六_給家長法定代理人的說明頁.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>

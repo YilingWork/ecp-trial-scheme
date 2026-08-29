@@ -1,0 +1,453 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>配套文件　成效評估指標｜ECP 試辦計畫專家審議平台</title>
+<style>
+  :root{--ink:#1f2933;--sub:#64748b;--line:#e2e8f0;--card:#fff;--accent:#1d4ed8}
+  *{box-sizing:border-box}
+  body{margin:0;font:15px/1.85 -apple-system,"PingFang TC","Noto Sans TC",sans-serif;color:var(--ink);background:#f8fafc}
+  .page{max-width:920px;margin:0 auto;padding:24px 18px 80px}
+  h1{font-size:1.35rem;margin:0 0 6px;line-height:1.5}
+  .sub{color:var(--sub);font-size:.9rem;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid var(--line)}
+  h1+.sub{margin-top:4px}
+  h2{font-size:1.12rem;margin:28px 0 10px;padding-left:10px;border-left:4px solid var(--accent)}
+  h3{font-size:1rem;margin:20px 0 8px;color:#334155}
+  p{margin:8px 0}
+  ul,ol{margin:8px 0;padding-left:1.6em}
+  li{margin:4px 0}
+  blockquote{margin:10px 0;padding:10px 14px;background:#f1f5f9;border-left:4px solid #94a3b8;border-radius:0 8px 8px 0;font-size:.93rem}
+  blockquote p{margin:4px 0}
+  table{width:max-content;max-width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem;background:var(--card);display:block;overflow-x:auto}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:700;white-space:nowrap}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:.9em}
+  hr{border:0;border-top:1px dashed var(--line);margin:22px 0}
+  .back{display:inline-block;margin-bottom:14px;font-size:.88rem;color:var(--accent);text-decoration:none}
+  .back:hover{text-decoration:underline}
+  .dl{margin:26px 0 0;padding:12px 16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:.9rem}
+  #gate{position:fixed;inset:0;background:#1f2933;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;flex-direction:column;padding:20px;text-align:center}
+  #gate h2{font-weight:600;font-size:1.1rem;border:0;padding:0}
+  #gate p{color:#cbd5e1;font-size:.85rem;max-width:360px}
+  #gate input{font:inherit;padding:10px 14px;border-radius:8px;border:none;width:240px;margin:10px 0}
+  #gate button{font:inherit;padding:10px 22px;border-radius:8px;border:none;background:#1d4ed8;color:#fff;cursor:pointer}
+  #gate .err{color:#fca5a5;font-size:.85rem;height:1.2em}
+  #content{display:none}
+  table col{width:auto!important}
+</style>
+</head>
+<body>
+<!-- ====== 密碼閘（前端弱保護，與平台同密碼；sessionStorage 已解鎖則略過） ====== -->
+<div id="gate">
+  <h2>🔒 食藥署115年度處方藥可近性試辦計畫 專家審議平台</h2>
+  <p>本頁內容為政策研議中資料，僅供受邀專家委員參閱，請勿外流或公開轉貼。</p>
+  <input id="pw" type="password" placeholder="請輸入存取密碼" autocomplete="off">
+  <div><button onclick="checkPw()">進入</button></div>
+  <div class="err" id="err"></div>
+</div>
+<div class="page" id="content">
+<a class="back" href="index.html">← 回試辦方案總覽</a>
+<h1>配套文件　成效評估指標</h1>
+<div class="sub">四大維度與公衛背景層之指標定義、設計前提與藥局層級 KPI</div>
+<blockquote>
+<p>「115 年度提升處方藥可近性試辦計畫」成效評估指標 本件為指標規格，內容含評估架構（四大維度與公衛背景層）、設計前提、藥局層級 KPI 與檢討觸發清單。</p>
+</blockquote>
+<p><strong>縮寫對照表</strong>：LNG＝Levonorgestrel（本試辦品項成分名）｜LARC＝長效可逆避孕（Long-Acting Reversible Contraception）｜KPI＝關鍵績效指標（Key Performance Indicator）｜SAE＝嚴重不良事件（Serious Adverse Event）｜STI＝性傳染病（Sexually Transmitted Infection）｜SOP＝標準作業流程（Standard Operating Procedure）｜WHO＝世界衛生組織</p>
+<hr />
+<hr />
+<h2 id="一評估架構">一、評估架構：</h2>
+<blockquote>
+<p><strong>用途定位三類</strong> ： 【監測】持續追蹤，不觸發處置 【檢討觸發】達特定情形召開專家會議檢討（非自動停辦） 【排除】明確不作為停辦或限制依據</p>
+</blockquote>
+<h3 id="維度①-安全性與循證">維度①　安全性與循證</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>定義／量測</th>
+<th>資料來源</th>
+<th>用途</th>
+<th>分類</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>嚴重不良事件（SAE）</td>
+<td><strong>本試辦不另設 SAE 蒐集機制</strong>，回歸既有全國藥物不良反應通報系統辦理，試辦僅負責告知通報管道（<strong>於衛教單張及問卷二結尾必顯示之通報管道說明區塊為之</strong>）。理由：該類案件須經專科醫師逐案釐清共病、併用藥品與因果關係後始具效力，社區藥局端無從完成因果判定</td>
+<td>既有 ADR 通報系統</td>
+<td><strong>檢討觸發</strong>（知悉後）</td>
+<td>不列本試辦指標</td>
+<td>發生或群聚即觸發檢討（非自動停辦）</td>
+</tr>
+<tr>
+<td><strong>服藥後未懷孕之比例</strong></td>
+<td>月經已來或驗孕陰性之比例（分母＝回覆者）　※更名理由：服藥後仍來月經是否等於成功、服藥後懷孕是否等於失敗，「成功」定義易生歧義</td>
+<td>追蹤問卷二第 1 題</td>
+<td>監測</td>
+<td>核心</td>
+<td>國際無直接可比目標值，建議監測一期後依本土現況訂定</td>
+</tr>
+<tr>
+<td>第一階段追蹤完成率</td>
+<td>結案即寄之追蹤問卷一回收率（分母＝同期結案給藥件數）</td>
+<td>系統統計（追蹤問卷一回收率）</td>
+<td>監測</td>
+<td>核心</td>
+<td>國際無可比值：日本同名問卷達 89–91%，但係「藥師面前服用直後」當場填寫，本案不採現場填寫、全走結案後 Email，兩者不可比；建議監測一期後依本土現況訂定</td>
+</tr>
+<tr>
+<td>第二階段追蹤完成率</td>
+<td>服藥後 3–5 週寄發之追蹤問卷二回收率（分母＝同期結案給藥件數）</td>
+<td>系統統計（追蹤問卷二回收率）</td>
+<td>監測</td>
+<td>核心</td>
+<td>日本同一設計之實際回收率為 <strong>57.6–58.5%</strong>（令和 6 年度 3,957／6,760、令和 7 年度期間② 3,185／5,529，分母均為實際供藥件數），惟日本受訪者皆已簽署研究參加同意並留存聯絡方式，該數宜視為<strong>參照上限</strong>而非可期待值；確切目標值待本場討論或監測一期後訂定</td>
+</tr>
+<tr>
+<td>症狀發生率</td>
+<td>警訊症狀（單側下腹劇痛／臉色蒼白冒冷汗／異常大量出血，逐項列出、任一勾選即列入）發生比例（分母＝回覆者）</td>
+<td>追蹤問卷一第 2 題</td>
+<td>監測</td>
+<td>輔助</td>
+<td>監測性指標，不設目標值</td>
+</tr>
+<tr>
+<td>症狀就醫率</td>
+<td>發生警訊症狀者之就醫比例（分母＝症狀發生者）</td>
+<td>追蹤問卷二第 4 題</td>
+<td>監測</td>
+<td>輔助</td>
+<td>監測性指標，不設目標值</td>
+</tr>
+<tr>
+<td>一般不良反應回報</td>
+<td>常見副作用（噁心／頭痛／疲倦逐項列出）勾選統計</td>
+<td>追蹤問卷一第 2 題</td>
+<td>監測</td>
+<td>輔助</td>
+<td>輔助項，不設目標值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="維度②-可近性與公衛時效">維度②　可近性與公衛時效</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>定義／量測</th>
+<th>資料來源</th>
+<th>用途</th>
+<th>分類</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年齡分布</td>
+<td>使用者年齡結構（含未成年占比）</td>
+<td>系統自動統計</td>
+<td>監測（觸及弱勢）＋<strong>排除</strong>作限制依據</td>
+<td>核心</td>
+<td>不設目標值（用途為排除限制依據，非達標判斷準則）</td>
+</tr>
+<tr>
+<td>重複使用情形</td>
+<td>須<strong>事先定義計算期間與分母</strong>（如 30 日內＞1 次）；系統記錄並提示藥師</td>
+<td>系統自動統計</td>
+<td>監測→觸發<strong>個案層級常規避孕加強衛教</strong>；<strong>排除</strong>作停辦</td>
+<td>核心</td>
+<td>國際無公認定義，不設目標值（僅監測＋排除停辦依據）</td>
+</tr>
+<tr>
+<td>服務件數與分布</td>
+<td>給藥件數，分縣市／時段（夜間、假日）／藥局</td>
+<td>系統自動統計</td>
+<td>監測＋<strong>排除</strong>作停辦</td>
+<td>輔助</td>
+<td>監測性指標，不設目標值（用途為排除停辦依據，非達標判斷準則）</td>
+</tr>
+<tr>
+<td>給藥時效</td>
+<td>自性行為至給藥之時間分布（線上填答時間＋給藥紀錄推算）；72 小時內各時段占比</td>
+<td>系統自動統計</td>
+<td>監測</td>
+<td>輔助</td>
+<td>不設目標值，以日本令和 6 年度分布（夜間 21–8 時約 2%）作比較基礎</td>
+</tr>
+<tr>
+<td>偏鄉／非都會使用占比</td>
+<td>依試辦區域分級統計</td>
+<td>系統自動統計</td>
+<td>監測</td>
+<td>輔助</td>
+<td>監測性指標，不設目標值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="維度③-社會安全與人權防護">維度③　社會安全與人權防護</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>定義／量測</th>
+<th>資料來源</th>
+<th>用途</th>
+<th>分類</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通報編號回填率</td>
+<td>依法通報案件中，113「關懷 e 起來」通報編號回填系統之比例</td>
+<td>系統＋回填紀錄</td>
+<td>監測（兼稽核憑證）</td>
+<td>核心</td>
+<td>台灣 113 制度為本土特有機制，國際無可比對象，目標值待監測一期後訂定</td>
+</tr>
+<tr>
+<td>轉介成功率</td>
+<td>轉介單開立數→實際就醫數</td>
+<td>系統＋追蹤問卷二第 2 題自陳＋必要時婦產科端三角驗證</td>
+<td>監測（KPI）</td>
+<td>核心</td>
+<td>參考英國實證（避孕轉介完成率約 3%、篩檢轉介約 4%），建議定位為「待改善品質標的」，不宜設定高標 KPI</td>
+</tr>
+<tr>
+<td>高風險個案辨識與轉介件數</td>
+<td>疑似性暴力、社福資源轉介之件數與處理情形</td>
+<td>系統統計</td>
+<td>監測</td>
+<td>輔助</td>
+<td>監測性指標（件數統計），不設比率目標</td>
+</tr>
+<tr>
+<td><strong>不予供藥原因統計</strong></td>
+<td><strong>不另訂</strong>藥師逐案填報之特殊情形通報清單。於系統「不予供藥」時設<strong>原因勾選欄位＋自由描述欄</strong>：非本人、未滿 16 歲、謊報年齡、逾 72 小時、72 小時內已服用、驗孕陽性、異常出血、禁忌症、不願提供資料、無法確保隱私、自行放棄、其他。⚠️ 藥局遭受暴力或滋擾不列此欄，逕行報警，改於藥師端問卷調查</td>
+<td>藥師端系統</td>
+<td>監測</td>
+<td>輔助</td>
+<td>監測性指標（件數統計），不設目標值；日本經驗顯示多數為量能缺口（如營業時間無法販售），非違規</td>
+</tr>
+<tr>
+<td>未就醫追蹤名單處理率</td>
+<td>🔴 轉介未就醫者、不願驗孕者之追蹤情形</td>
+<td>檢核表 E＋問卷二</td>
+<td>監測</td>
+<td>輔助</td>
+<td>無國際直接可比值，目標值待監測一期後訂定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="維度④-制度可行性與滿意度">維度④　制度可行性與滿意度</h3>
+<table style="width:100%;">
+<thead>
+<tr>
+<th>指標</th>
+<th>定義／量測</th>
+<th>資料來源</th>
+<th>用途</th>
+<th>分類</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>衛教理解度</td>
+<td>知識 5 題答對率（題目出自 A1 基礎衛教單）</td>
+<td>問卷一第二部分</td>
+<td>監測</td>
+<td>核心</td>
+<td>國際參照：日本令和 5 年度「充分理解」99.8%（n=1,643，問卷自陳）；惟量測方式不同（本案為情境測驗、非單純自陳），可比性有限，建議先監測本土現況再訂目標</td>
+</tr>
+<tr>
+<td>民眾滿意度</td>
+<td>滿意度 5 題（說明清晰、隱私尊嚴、流程便利、願再使用、整體滿意）</td>
+<td>問卷一第三部分</td>
+<td>監測</td>
+<td>核心</td>
+<td>國際參照：日本「非常滿意」91.8%（費用滿意度最低 38.4%）；量表設計不同，不宜直接比附數值，建議監測本土現況後再訂目標</td>
+</tr>
+<tr>
+<td>藥師端負擔與滿意度</td>
+<td>每案耗時、負擔感、系統與工具實用性、訓練足夠度</td>
+<td>問卷三（藥師端）</td>
+<td>監測</td>
+<td>核心</td>
+<td>無國際直接可比值，目標值待監測一期後訂定</td>
+</tr>
+<tr>
+<td>SOP 遵循情形</td>
+<td>系統防呆下之例外統計（衛教未勾選擋結案次數、紙本備援啟用次數等）</td>
+<td>系統自動統計</td>
+<td>監測；<strong>系統性違規時檢討觸發</strong></td>
+<td>核心</td>
+<td>參考英國 Berkshire West 服務規格，過程指標門檻訂 100%；本案系統防呆下過程完成率結構性趨近 100%，目標宜訂為「例外事件極低／趨近零」，非傳統遵從率百分比</td>
+</tr>
+<tr>
+<td>醫藥合作品質</td>
+<td>婦產科端對轉介內容適切性之回饋</td>
+<td>問卷四（婦產科端）</td>
+<td>監測</td>
+<td>輔助</td>
+<td>輔助項，不設目標值</td>
+</tr>
+<tr>
+<td>常規避孕銜接</td>
+<td>已開始使用常規避孕方法之比例（行為改變指標）</td>
+<td>追蹤問卷二第 5 題</td>
+<td>監測</td>
+<td>輔助</td>
+<td>輔助項，無國際直接可比值，不設目標值</td>
+</tr>
+</tbody>
+</table>
+<h3 id="公衛背景層背景監測因果連結有限不作成效唯一判斷準則不作停辦觸發">公衛背景層（背景監測；因果連結有限，不作成效唯一判斷準則、不作停辦觸發）</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>台灣現況數據</th>
+<th>用途</th>
+<th>目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>青少年 STI 趨勢（淋病、梅毒、HIV，15–19／20–24 歲分性別病例數）</td>
+<td>疾管署開放資料：2019→2024 淋病與梅毒上升（15–19 歲女性梅毒約 11 倍）、HIV 下降</td>
+<td>【監測】背景；<strong>排除</strong>作停辦觸發</td>
+<td>不設目標值（背景監測，32 國 24 年資料未見因果顯著變化，不作成效判斷準則）</td>
+</tr>
+<tr>
+<td>未成年（15–19 歲）生育率</td>
+<td>內政部／性平會：全國 114 年 2‰；花蓮 8‰、臺東 7‰ 顯著偏高</td>
+<td>【監測】背景 lag，分縣市呈現</td>
+<td>不設目標值（背景監測，結構性因素影響大，不宜設定齊一目標）</td>
+</tr>
+<tr>
+<td>人工流產率</td>
+<td>⚠️ 台灣無強制通報法源、各來源統計範圍不一（健保流產約 18–19 萬件／年含自然流產；RU486 推估約 4–5 萬件／年）</td>
+<td><strong>不建議作主要指標</strong></td>
+<td>不設目標值；法國 IGAS 2009 實證顯示緊急避孕用量增 72% 但人工流產件數持平，國際無「下降目標」先例</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="二設計前提">二、設計前提</h2>
+<ol type="1">
+<li><strong>不得以重複使用率、未成年使用率作為停辦指標</strong>。</li>
+<li>計畫層級<strong>不自動終止</strong>：採「稽核機制＋觸發點（SAE 或實施半年／一年後檢視指標）→召開專家會議決定修正或續辦」（參考人體試驗 SAE 概念）。</li>
+<li>退場分兩層：<strong>藥局層級</strong>（未達 KPI 等）與<strong>計畫層級</strong>，處理方式不同。</li>
+<li>因缺本土統計，「降低墮胎率」<strong>不列為主要目的</strong>；試辦目的含<strong>蒐集本土實證</strong>、俾利前後對照。</li>
+<li><strong>轉介率、回覆率為計畫 KPI</strong>（書面轉介單＋系統留紀錄即為此設計）。</li>
+<li>家長團體所提條件：成效評估<strong>勿用墮胎率</strong>，改採未成年生育率、青少年懷孕就醫、性傳染病通報趨勢、給藥次數與重複使用率。</li>
+<li><strong>通報編號回填率兼作成效指標</strong>（113「關懷 e 起來」回填系統為憑證）。</li>
+<li>性傳染病率、人工流產率<strong>定位為成效指標、非稽核項目</strong>。</li>
+<li>衛教落實檢核＝知識 5 題＋滿意度 5 題分開施測；另收藥師端回饋（負擔、滿意度）；<strong>指標可於試辦中途增補</strong>。</li>
+<li>章名含「安全性」：不能只評估成效與滿意度，須交代<strong>風險高低與是否可接受</strong>，作為未來擴大辦理之依據。</li>
+</ol>
+<hr />
+<h2 id="三藥局層級-kpi與計畫層級指標分開連動-2.5-退場與第-14-章稽核">三、藥局層級 KPI（與計畫層級指標分開；連動 §2.5 退場與第 14 章稽核）</h2>
+<table>
+<thead>
+<tr>
+<th>KPI</th>
+<th>定義</th>
+<th>未達之處理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOP 遵循</td>
+<td>稽核（系統統計）無系統性違規</td>
+<td>輔導改善；嚴重未遵從者退出試辦</td>
+</tr>
+<tr>
+<td>紀錄完整率</td>
+<td><strong>個別藥局</strong>之給藥紀錄、轉介單、通報紀錄完整比例（逐藥局檢視，非計畫全體加總）</td>
+<td>輔導改善</td>
+</tr>
+<tr>
+<td>進貨量勾稽</td>
+<td><strong>不另訂固定勾稽規則</strong>（結案掃碼即可核對供應件數；藥品追蹤追溯機制與本試辦同步上路）</td>
+<td>不列為稽核項目</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>藥局層級退場與計畫層級檢討分流；「過多試辦藥局被退場」本身列為計畫層級檢討觸發之一（顯示計畫面問題）。 <strong>本表所有 KPI 均以個別藥局為評估單位</strong>：「未達之處理」（輔導改善／退出試辦）只對個別未達標之藥局執行，不對計畫全體平均數採取行動；與第一節四大維度之<strong>計畫層級</strong>指標分開計算、分開判讀。</p>
+</blockquote>
+<hr />
+<h2 id="修訂紀錄">修訂紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>時間</th>
+<th>修訂內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-29</td>
+<td><strong>另立對外分享版</strong>：僅保留第一至三節之指標規格（評估架構、設計前提、藥局層級 KPI）；第四節檢討觸發與排除清單因閾值尚未定案，一併不列；刪除各節之「細節與依據」論證段、第五節對照與比較設計、第六節資料可行性備註、第七節國際比較速覽、第八節決議結果表、決議與資料依據表，以及場次引用與個別與會者發言之引述。指標定義、資料來源、用途與目標欄位未變更。修訂紀錄予以保留。</td>
+</tr>
+<tr>
+<td>2026-08-17</td>
+<td>初版整理（第 15 章成效評估指標草案）。</td>
+</tr>
+<tr>
+<td>2026-08-24</td>
+<td>欄位「建議」改名「分類」；逐項查證是否有專家提案，無提案者由「核心」降為「輔助」，原「加分」一律改「輔助」。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>「追蹤完成率」拆為第一階段（結案即寄之問卷一回收率）與第二階段（服藥後 3–5 週之問卷二回收率）兩項指標，均列核心，分母同為結案給藥件數。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>依官方一手報告書全面更正追蹤完成率之參照值：刪除以日本 14.4%（實為自陳受診率）作參照下限之誤引，改列日本問卷二實際回收率 57.6–58.5% 為參照上限；補述可比性限制。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>刪除健保雲端跨藥局辨識之函詢事項（確認不採）；待決議事項第 6、7 項改為直接列出選項。</td>
+</tr>
+<tr>
+<td>2026-08-27</td>
+<td><strong>第 6 場決議修正版</strong>：①嚴重不良事件<strong>不另設蒐集機制</strong>（回歸既有 ADR 通報系統）；②「避孕成功率」更名「<strong>服藥後未懷孕之比例</strong>」；③<strong>不另訂特殊情形通報清單</strong>，改為不予供藥原因勾選欄＋自由描述欄；④維度③刪除「未滿 16 歲通報」件數、新增未滿 16 歲詢問件數計數；⑤公衛背景層<strong>不設目標值</strong>；⑥不另建就醫追蹤名單；⑦第八節改為決議結果表，明列本場<strong>未及討論之 5 項待決議事項</strong>。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>各維度表改為核心指標在上、輔助指標在下。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>查證並結案原「未確認／待回查」兩項（「後續月經確認率 89.9%」屬實、僅載於報告書本文；「滿意度 98.8%」為年度標錯）；令和 7 年度報告書已查閱。</td>
+</tr>
+<tr>
+<td>2026-08-25</td>
+<td>用語統一：統一改用「定義／統計範圍」「判斷準則」「現況數據」「計算期間」等說法；移除全部 ✅ 標記與破折號；可比性欄改純文字。</td>
+</tr>
+<tr>
+<td>2026-08-26</td>
+<td>維度③細節與依據新增「台灣版通報清單（草案 13 類）」：刪日本第 5 項「拒絕在藥師面前服用」（我國不採面前服用），增「補服案件」「謊報年齡」，並敘明第 4 項在我國僅作記錄用途。</td>
+</tr>
+<tr>
+<td>2026-08-26</td>
+<td>第五節核心問題段刪除「現況七八成經社區藥局零售」之引述（該情形仍屬處方釋出、與模式三性質不同），改述為「我國無使用行為之系統性資料、現行處方途徑未蒐集評估與追蹤紀錄」。</td>
+</tr>
+<tr>
+<td>2026-08-28</td>
+<td><strong>依第 6 場會議紀錄之人工修正同步</strong>：進貨量勾稽由「若本場決議採行」改為<strong>第 6 場決議不另訂固定勾稽規則</strong>（結案掃碼可核對供應件數、追蹤追溯機制與本試辦同步上路），稽核項目表該列改列不列為稽核項目，比較分析段改標為存查用。</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dl">📄 本件 PDF：<a href="docs-final/配套_成效評估指標.pdf" target="_blank">配套_成效評估指標.pdf</a>（開啟密碼與本平台相同）</div>
+</div>
+<script>
+const HASH="918777243dc8acc62bd60336f1b2b299e50695cd1be3420b7a395a871395ef9b";
+async function sha256(s){const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");}
+async function checkPw(){const v=document.getElementById("pw").value;if(await sha256(v)===HASH){sessionStorage.setItem("ok","1");reveal();}else{document.getElementById("err").textContent="密碼錯誤，請再試一次。";}}
+function reveal(){document.getElementById("gate").style.display="none";document.getElementById("content").style.display="block";}
+if(sessionStorage.getItem("ok")==="1") reveal();
+document.getElementById("pw").addEventListener("keydown",e=>{if(e.key==="Enter")checkPw();});
+</script>
+</body></html>
